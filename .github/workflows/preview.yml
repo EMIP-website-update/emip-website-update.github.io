@@ -1,0 +1,17 @@
+# Rebuilds the design previews at https://emip-website-update.github.io/ when this
+# branch is pushed. Drafts repository only: leave this file out of any pull request
+# to EMIPws/emipws.github.io.
+name: Update preview
+
+on: push
+
+permissions:
+  actions: write
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run previews.yml --repo "$GITHUB_REPOSITORY" --ref previews
+        env:
+          GH_TOKEN: ${{ github.token }}
