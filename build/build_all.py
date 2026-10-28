@@ -59,7 +59,10 @@ def versions():
 
 def checkout(version):
     ref = f"refs/preview/{version['slug']}"
-    git("fetch", "--quiet", "--depth", "1", "--no-tags", version["remote"],
+    # Shallow fetches only in CI: locally they would mark commits in your own
+    # repository as shallow and hide their history.
+    depth = ["--depth", "1"] if os.environ.get("GITHUB_ACTIONS") else []
+    git("fetch", "--quiet", *depth, "--no-tags", version["remote"],
         f"+refs/heads/{version['branch']}:{ref}")
     sha, date, subject = git("log", "-1", "--format=%H%x00%cI%x00%s", ref, capture=True).split("\x00")
     version.update(sha=sha, date=date, subject=subject)
