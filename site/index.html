@@ -128,8 +128,12 @@
 </dialog>
 
 <script>
+  // The ?hero= entries switch the homepage picture in designs that support it (Event page).
   const PAGES = [
     ["Home", "/"],
+    ["Home: gaze over venue", "/?hero=venue-gaze"],
+    ["Home: gaze on code", "/?hero=gaze"],
+    ["Home: other photo", "/?hero=photo-alt"],
     ["EMIP 2027", "/workshop/emip-2027/"],
     ["EMIP 2026", "/workshop/emip-2026/"],
     ["2026 program", "/workshop/emip-2026-program/"],
@@ -219,7 +223,7 @@
     try { p = frame.contentWindow.location.pathname; } catch (e) { showNotice(true); return; }
     const base = new URL(d.url + "/", location.href).pathname;
     if (!p.startsWith(base)) return;
-    const rel = "/" + p.slice(base.length);
+    const rel = "/" + p.slice(base.length) + frame.contentWindow.location.search;
     if (rel === state.path) return;
     frame.dataset.src = d.url + rel;
     state.path = rel;
