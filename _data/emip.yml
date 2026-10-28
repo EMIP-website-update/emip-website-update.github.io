@@ -21,20 +21,17 @@ submit_url:
 program_url:
 note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call for papers will be posted on this page.
 
-# Picture beside the title: photo | gaze | venue-gaze.
-# Reviewers can try the others with ?hero=gaze and so on.
-hero: photo
-photos:
-  # Add `credit`, `source`, `license` and `license_url` for a photo whose license asks for
-  # credit (e.g. CC BY); they are then shown under it.
-  photo:
-    src: /images/venues/2027-pamplona-castillo-1600.jpg
-    width: 1600
-    small: /images/venues/2027-pamplona-castillo-800.jpg
-    alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
-    caption: Plaza del Castillo, Pamplona
-    # Public domain (CC0) by Zarateman, so no credit is required:
-    # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
+# Venue photo beside the title: a 4:3 JPEG about 1600 px wide plus an 800 px copy.
+# For a photo whose license asks for credit (e.g. CC BY), add `credit`, `source`,
+# `license` and `license_url`; they are then shown under it.
+photo:
+  src: /images/venues/2027-pamplona-castillo-1600.jpg
+  width: 1600
+  small: /images/venues/2027-pamplona-castillo-800.jpg
+  alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
+  caption: Plaza del Castillo, Pamplona
+  # Public domain (CC0) by Zarateman, so no credit is required:
+  # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
 
 # Workshop organizers (name, affiliation, url, photo) and program committee
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the

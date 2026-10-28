@@ -13,6 +13,24 @@ main:
     url: /#organizers
   - title: "Dataset"
     url: /#dataset
+    # Listed beside the dataset pages (not in the top menu).
+    children:
+      - title: "Dataset"
+        url: /dataset/
+      - title: "Corrected Dataset"
+        url: /corrected-dataset/
+      - title: "Stimulus Material"
+        url: /stimulus-material/
+      - title: "Participating Labs"
+        url: /participating-labs/
+      - title: "Call for Contributions"
+        url: /call-for-contributions/
+      - title: "Coding Scheme"
+        url: /coding-scheme/
+      - title: "Visualizations and Tools"
+        url: /visualizations-and-tools/
+      - title: "Resources"
+        url: /resources/
   - title: "Past workshops"
     url: /#workshops
 
