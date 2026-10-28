@@ -12,7 +12,8 @@
     "note": "Editorial look, but the whole site scrolls on one page: the menu jumps to each section, long texts are folded, and each workshop year keeps its own page."
   },
   "event": {
-    "title": "Event page",
-    "note": "The homepage is the 2027 workshop: Pamplona photo, call for papers, dates, submission and organizers first, then the dataset and past workshops. Try the hero options in the page list."
+    "title": "Event page (chosen)",
+    "note": "Chosen direction: the homepage is the 2027 workshop on one scrolling page, with the Pamplona photo, call for papers, dates, submission and organizers, then the dataset and past workshops.",
+    "featured": true
   }
 }

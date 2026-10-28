@@ -377,8 +377,9 @@
       designs = cfg.designs;
       if (!bySlug(state.a)) state.a = (bySlug("current") || designs[0]).slug;
       if (!bySlug(state.b) || state.b === state.a) {
+        // The featured (chosen) design first, otherwise the most recently updated one.
         const others = designs.filter((d) => d.slug !== state.a).sort((x, y) => (y.date || "").localeCompare(x.date || ""));
-        state.b = (others[0] || designs[0]).slug;
+        state.b = (others.find((d) => d.featured) || others[0] || designs[0]).slug;
       }
       remember();
       setupControls();

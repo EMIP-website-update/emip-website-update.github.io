@@ -4,6 +4,8 @@ Redesign drafts for [www.emipws.org](https://www.emipws.org). This repository is
 
 **Compare the drafts and give feedback: <https://emip-website-update.github.io/>**
 
+**Chosen direction: [Event page](https://emip-website-update.github.io/event/)** (`design/event`), the homepage as the page of the next workshop on one scrolling page, with the venue photo.
+
 ## Branches
 
 | Branch | What it holds |

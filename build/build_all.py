@@ -143,6 +143,7 @@ def main():
         note = notes.get(version["slug"], {})
         version["title"] = note.get("title") or version["slug"].replace("-", " ").capitalize()
         version["note"] = note.get("note", "")
+        version["featured"] = bool(note.get("featured"))
         print(f"\n== {version['title']} ({version['branch']})", flush=True)
         src = checkout(version)
         dest = OUT / version["slug"]
