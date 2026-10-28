@@ -1,0 +1,10 @@
+{
+  "current": {
+    "title": "Current site",
+    "note": "What www.emipws.org looks like today, built from EMIPws/emipws.github.io."
+  },
+  "editorial": {
+    "title": "Editorial",
+    "note": "Printed-report look: Source Serif and IBM Plex, a data-driven homepage with an animated scanpath figure, section rails on inner pages."
+  }
+}

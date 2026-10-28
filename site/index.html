@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>EMIP Website Drafts</title>
+<link rel="icon" href="current/images/EMIP_Icon_2021_transparent.png">
+<style>
+  :root {
+    --paper: #fbfaf7; --paper-2: #f3f1ec; --ink: #1b1d22; --ink-2: #464a53; --muted: #6c6f77;
+    --rule: #d8d3c8; --accent: #2055a0; --accent-wash: #e6eef8;
+    --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { display: flex; flex-direction: column; background: var(--paper-2); color: var(--ink); font: 14px/1.45 var(--sans); }
+  a { color: var(--accent); }
+  input, select, button, textarea { font: inherit; color: inherit; }
+  input, select, textarea { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; }
+  button { cursor: pointer; background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.65rem; }
+  button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.6rem 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  header h1 { margin: 0 0.5rem 0 0; font-size: 15px; font-weight: 600; }
+  .group { display: flex; align-items: center; gap: 0.35rem; }
+  .group > span { color: var(--muted); }
+  #path { width: 15rem; font-family: var(--mono); font-size: 13px; }
+  #feedback-open { margin-left: auto; }
+  .pages { display: flex; flex-wrap: wrap; gap: 0.2rem; padding: 0.35rem 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .pages button { border: 0; background: none; color: var(--accent); padding: 0.15rem 0.45rem; }
+  .pages button.is-current { background: var(--paper-2); color: var(--ink); font-weight: 600; }
+
+  main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); min-height: 0; }
+  main.single { grid-template-columns: 1fr; }
+  .pane { display: flex; flex-direction: column; background: var(--paper-2); min-width: 0; min-height: 0; }
+  .pane__bar { padding: 0.4rem 0.75rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .pane__top { display: flex; align-items: center; gap: 0.5rem; }
+  .pane__top a { margin-left: auto; font-size: 12px; white-space: nowrap; }
+  .pane__note { margin: 0.25rem 0 0; color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pane__stage { flex: 1; position: relative; overflow: hidden; }
+  .pane__stage iframe { position: absolute; top: 0; left: 50%; border: 0; background: #fff; transform-origin: top center; box-shadow: 0 0 0 1px var(--rule); }
+  .notice { margin: 0; padding: 0.35rem 1rem; color: var(--muted); font-size: 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+
+  dialog { width: min(40rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); padding: 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); }
+  dialog::backdrop { background: rgba(27, 29, 34, 0.35); }
+  .dlg { padding: 1.25rem 1.5rem 1.5rem; }
+  .dlg h2 { margin: 0 0 0.25rem; font-size: 18px; }
+  .dlg > p { margin: 0 0 1rem; color: var(--ink-2); }
+  fieldset { margin: 0 0 1rem; padding: 0; border: 0; }
+  legend { font-weight: 600; margin-bottom: 0.4rem; }
+  .choices { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .choices label { display: flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; border: 1px solid var(--rule); border-radius: 999px; background: #fff; cursor: pointer; }
+  .choices label:has(input:checked) { border-color: var(--accent); background: var(--accent-wash); }
+  .field { display: block; margin: 0 0 1rem; }
+  .field > span { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+  .field textarea { width: 100%; min-height: 8rem; resize: vertical; }
+  .check { display: flex; gap: 0.5rem; align-items: baseline; margin: 0 0 1.25rem; color: var(--ink-2); }
+  .check code { font-family: var(--mono); font-size: 12px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; align-items: center; }
+  .actions .status { margin-right: auto; color: var(--muted); font-size: 12px; }
+  .so-far { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+  .so-far h3 { margin: 0 0 0.5rem; font-size: 14px; }
+  .tally { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin: 0 0 0.75rem; padding: 0; list-style: none; }
+  .tally b { font-variant-numeric: tabular-nums; }
+  .recent { margin: 0; padding: 0; list-style: none; }
+  .recent li { padding: 0.45rem 0; border-top: 1px solid var(--paper-2); color: var(--ink-2); }
+  .recent .meta { color: var(--muted); font-size: 12px; }
+
+  @media (max-width: 52rem) {
+    main { grid-template-columns: 1fr; }
+    main > .pane:nth-child(2) { display: none; }
+    #single { display: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>EMIP website drafts</h1>
+  <div class="group">
+    <span>Page</span>
+    <input id="path" value="/" spellcheck="false" aria-label="Page to open in both designs">
+  </div>
+  <div class="group" role="group" aria-label="Screen width">
+    <span>Width</span>
+    <button data-width="1280" aria-pressed="true">Desktop</button>
+    <button data-width="820" aria-pressed="false">Tablet</button>
+    <button data-width="390" aria-pressed="false">Phone</button>
+  </div>
+  <button id="single" aria-pressed="false">One at a time</button>
+  <button id="feedback-open" class="primary">Give feedback</button>
+</header>
+<nav class="pages" id="pages" aria-label="Common pages"></nav>
+<p class="notice" id="notice" hidden></p>
+<main id="panes"></main>
+
+<dialog id="feedback" aria-labelledby="feedback-title">
+  <form class="dlg" method="dialog">
+    <h2 id="feedback-title">Give feedback</h2>
+    <p>Your feedback is posted as an issue on GitHub, where the other reviewers can read it. Posting needs a free GitHub account. Without one, use <em>Copy as text</em> and send it by email instead.</p>
+    <fieldset>
+      <legend>Which design do you prefer overall?</legend>
+      <div class="choices" id="choices"></div>
+    </fieldset>
+    <label class="field">
+      <span>Comments</span>
+      <textarea id="comments" placeholder="What works, what doesn't, what's missing"></textarea>
+    </label>
+    <label class="check">
+      <input type="checkbox" id="mention-page" checked>
+      <span>Mention the page I'm looking at: <code id="page-label"></code></span>
+    </label>
+    <div class="actions">
+      <span class="status" id="status" role="status"></span>
+      <button value="cancel" formnovalidate>Close</button>
+      <button type="button" id="copy">Copy as text</button>
+      <button type="button" id="submit" class="primary">Continue on GitHub</button>
+    </div>
+    <section class="so-far" id="so-far" hidden>
+      <h3>Feedback so far</h3>
+      <ul class="tally" id="tally"></ul>
+      <ul class="recent" id="recent"></ul>
+    </section>
+  </form>
+</dialog>
+
+<script>
+  const PAGES = [
+    ["Home", "/"],
+    ["EMIP 2027", "/workshop/emip-2027/"],
+    ["EMIP 2026", "/workshop/emip-2026/"],
+    ["2026 program", "/workshop/emip-2026-program/"],
+    ["Past workshops", "/workshop/previous-workshops/"],
+    ["EMIP 2017", "/workshop/emip-2017/"],
+    ["Dataset", "/dataset/"],
+    ["Corrected dataset", "/corrected-dataset/"],
+    ["Resources", "/resources/"],
+    ["Organizers", "/organizers/"],
+    ["Sponsors", "/sponsors/"],
+  ];
+  const WIDTH_NAMES = { 1280: "desktop", 820: "tablet", 390: "phone" };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  let repo = "";
+  let designs = [];
+  const state = { path: "/", width: 1280, single: false, a: "", b: "" };
+
+  try { Object.assign(state, JSON.parse(localStorage.getItem("emip-compare") || "{}")); } catch (e) {}
+  const params = new URLSearchParams(location.search);
+  if (params.get("path")) state.path = params.get("path");
+  if (params.get("a")) state.a = params.get("a");
+  if (params.get("b")) state.b = params.get("b");
+  if (params.get("w")) state.width = Number(params.get("w")) || state.width;
+
+  function remember() {
+    try { localStorage.setItem("emip-compare", JSON.stringify(state)); } catch (e) {}
+    const q = new URLSearchParams({ path: state.path, a: state.a, b: state.b, w: state.width });
+    history.replaceState(null, "", "?" + q);
+  }
+
+  const bySlug = (slug) => designs.find((d) => d.slug === slug);
+  const picks = () => (state.single ? [state.a] : [state.a, state.b]);
+
+  function buildPanes() {
+    const panes = $("panes");
+    panes.innerHTML = "";
+    panes.classList.toggle("single", state.single);
+    picks().forEach((slug, i) => {
+      const pane = document.createElement("section");
+      pane.className = "pane";
+      pane.innerHTML = `
+        <div class="pane__bar">
+          <div class="pane__top">
+            <select aria-label="Design in pane ${i + 1}">${designs.map((d) =>
+              `<option value="${esc(d.slug)}"${d.slug === slug ? " selected" : ""}>${esc(d.title)}</option>`).join("")}</select>
+            <a target="_blank" rel="noopener">Open in new tab</a>
+          </div>
+          <p class="pane__note"></p>
+        </div>
+        <div class="pane__stage"><iframe title="Design preview ${i + 1}"></iframe></div>`;
+      pane.querySelector("select").addEventListener("change", (e) => {
+        state[i === 0 ? "a" : "b"] = e.target.value;
+        remember();
+        load();
+      });
+      pane.querySelector("iframe").addEventListener("load", (e) => followPane(e.target, i));
+      panes.appendChild(pane);
+    });
+    load();
+  }
+
+  function load() {
+    $("path").value = state.path;
+    document.querySelectorAll(".pane").forEach((pane, i) => {
+      const d = bySlug(picks()[i]) || designs[0];
+      const src = d.url + state.path;
+      const frame = pane.querySelector("iframe");
+      if (frame.dataset.src !== src) { frame.dataset.src = src; frame.src = src; }
+      pane.querySelector(".pane__top a").href = src;
+      const updated = d.date ? `Updated ${new Date(d.date).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : "";
+      const note = pane.querySelector(".pane__note");
+      note.innerHTML = [esc(d.note || ""), d.branch_url ? `<a href="${esc(d.branch_url)}" target="_blank" rel="noopener">${esc(updated || d.branch)}</a>` : ""]
+        .filter(Boolean).join(" · ");
+      note.title = d.subject || "";
+    });
+    document.querySelectorAll("#pages button").forEach((b) => b.classList.toggle("is-current", b.dataset.path === state.path));
+    fit();
+  }
+
+  // When someone clicks a link inside one design, open the same page in the other.
+  function followPane(frame, i) {
+    const d = bySlug(picks()[i]);
+    let p;
+    try { p = frame.contentWindow.location.pathname; } catch (e) { showNotice(true); return; }
+    const base = new URL(d.url + "/", location.href).pathname;
+    if (!p.startsWith(base)) return;
+    const rel = "/" + p.slice(base.length);
+    if (rel === state.path) return;
+    frame.dataset.src = d.url + rel;
+    state.path = rel;
+    remember();
+    load();
+  }
+
+  function showNotice(crossOrigin) {
+    const n = $("notice");
+    if (!crossOrigin || !n.hidden) return;
+    n.textContent = "Links clicked inside a pane only move that pane here; use the page box or the page list to move both.";
+    n.hidden = false;
+  }
+
+  // Draw each design at the chosen screen width, scaled down to fit its pane.
+  function fit() {
+    document.querySelectorAll(".pane__stage").forEach((stage) => {
+      const frame = stage.querySelector("iframe");
+      const scale = Math.min(1, stage.clientWidth / state.width);
+      frame.style.width = state.width + "px";
+      frame.style.height = stage.clientHeight / scale + "px";
+      frame.style.transform = `translateX(-50%) scale(${scale})`;
+    });
+  }
+
+  function setupControls() {
+    PAGES.forEach(([label, path]) => {
+      const b = document.createElement("button");
+      b.textContent = label;
+      b.dataset.path = path;
+      b.addEventListener("click", () => { state.path = path; remember(); load(); });
+      $("pages").appendChild(b);
+    });
+    $("path").addEventListener("change", () => {
+      let p = $("path").value.trim() || "/";
+      if (!p.startsWith("/")) p = "/" + p;
+      state.path = p;
+      remember();
+      load();
+    });
+    document.querySelectorAll("[data-width]").forEach((b) => {
+      b.setAttribute("aria-pressed", Number(b.dataset.width) === state.width);
+      b.addEventListener("click", () => {
+        state.width = Number(b.dataset.width);
+        document.querySelectorAll("[data-width]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+        remember();
+        fit();
+      });
+    });
+    $("single").setAttribute("aria-pressed", state.single);
+    $("single").addEventListener("click", () => {
+      state.single = !state.single;
+      $("single").setAttribute("aria-pressed", state.single);
+      remember();
+      buildPanes();
+    });
+    window.addEventListener("resize", fit);
+  }
+
+  // Feedback
+
+  const NO_PREF = "No preference yet";
+
+  function openFeedback() {
+    const shown = picks().map(bySlug).filter(Boolean);
+    $("choices").innerHTML = [...designs.map((d) => d.title), NO_PREF].map((title) =>
+      `<label><input type="radio" name="preferred" value="${esc(title)}"> ${esc(title)}</label>`).join("");
+    $("page-label").textContent = `${state.path} at ${WIDTH_NAMES[state.width] || state.width + "px"} width, comparing ${shown.map((d) => d.title).join(" and ")}`;
+    $("status").textContent = "";
+    $("feedback").showModal();
+    loadSoFar();
+  }
+
+  function feedback() {
+    const preferred = (document.querySelector("input[name=preferred]:checked") || {}).value || "";
+    const comments = $("comments").value.trim();
+    const page = $("mention-page").checked ? $("page-label").textContent : "";
+    return { preferred, comments, page };
+  }
+
+  function check(f) {
+    if (!f.preferred) { $("status").textContent = "Pick a design first (or “No preference yet”)."; return false; }
+    if (!f.comments) { $("status").textContent = "Add a comment or two first."; $("comments").focus(); return false; }
+    return true;
+  }
+
+  $("submit").addEventListener("click", () => {
+    const f = feedback();
+    if (!check(f)) return;
+    const q = new URLSearchParams({
+      template: "design-feedback.yml",
+      title: f.preferred === NO_PREF ? "Feedback: no preference yet" : `Feedback: prefers ${f.preferred}`,
+      preferred: f.preferred,
+      page: f.page,
+      comments: f.comments,
+    });
+    window.open(`https://github.com/${repo}/issues/new?${q}`, "_blank", "noopener");
+    $("status").textContent = "Opened GitHub in a new tab. Press “Create” there to post it.";
+  });
+
+  $("copy").addEventListener("click", async () => {
+    const f = feedback();
+    if (!check(f)) return;
+    const text = `EMIP website drafts: ${location.origin}/\n\nPreferred design: ${f.preferred}\n${f.page ? `Page: ${f.page}\n` : ""}\n${f.comments}\n`;
+    try {
+      await navigator.clipboard.writeText(text);
+      $("status").textContent = "Copied. Paste it into an email.";
+    } catch (e) {
+      $("status").textContent = "Couldn't reach the clipboard; select the comment text and copy it by hand.";
+    }
+  });
+
+  function section(body, label) {
+    const m = (body || "").match(new RegExp("### " + label + "\\s+([\\s\\S]*?)(?=\\n### |$)"));
+    const v = m ? m[1].trim() : "";
+    return v === "_No response_" ? "" : v;
+  }
+
+  let soFarLoaded = false;
+  async function loadSoFar() {
+    if (soFarLoaded || !repo) return;
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/issues?labels=design-feedback&state=all&per_page=100`);
+      if (!res.ok) return;
+      const issues = (await res.json()).filter((i) => !i.pull_request);
+      soFarLoaded = true;
+      if (!issues.length) return;
+      const counts = new Map();
+      issues.forEach((i) => {
+        const raw = section(i.body, "Preferred design");
+        const d = designs.find((x) => [x.title, x.slug].some((n) => n.toLowerCase() === raw.toLowerCase()));
+        const key = d ? d.title : raw || NO_PREF;
+        counts.set(key, (counts.get(key) || 0) + 1);
+      });
+      $("tally").innerHTML = [...counts].sort((a, b) => b[1] - a[1])
+        .map(([k, n]) => `<li>${esc(k)}: <b>${n}</b></li>`).join("");
+      $("recent").innerHTML = issues.slice(0, 6).map((i) => {
+        const text = section(i.body, "Comments");
+        return `<li>${esc(text.length > 180 ? text.slice(0, 180) + "…" : text)}
+          <div class="meta"><a href="${esc(i.html_url)}" target="_blank" rel="noopener">${esc(i.user.login)}, ${new Date(i.created_at).toLocaleDateString()}</a></div></li>`;
+      }).join("");
+      $("so-far").hidden = false;
+    } catch (e) { /* the list is a bonus; the form works without it */ }
+  }
+
+  $("feedback-open").addEventListener("click", openFeedback);
+
+  fetch("designs.json")
+    .then((r) => r.json())
+    .then((cfg) => {
+      repo = cfg.repo;
+      designs = cfg.designs;
+      if (!bySlug(state.a)) state.a = (bySlug("current") || designs[0]).slug;
+      if (!bySlug(state.b) || state.b === state.a) {
+        const others = designs.filter((d) => d.slug !== state.a).sort((x, y) => (y.date || "").localeCompare(x.date || ""));
+        state.b = (others[0] || designs[0]).slug;
+      }
+      remember();
+      setupControls();
+      buildPanes();
+    })
+    .catch(() => {
+      $("panes").innerHTML = '<p class="notice">Couldn’t load the list of designs (designs.json).</p>';
+    });
+</script>
+</body>
+</html>

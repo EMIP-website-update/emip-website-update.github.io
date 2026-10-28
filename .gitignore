@@ -1,0 +1,5 @@
+_out/
+_src/
+# Local compare page reads its own list of localhost servers.
+site/designs.json
+.sass-cache/

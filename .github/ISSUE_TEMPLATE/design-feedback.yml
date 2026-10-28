@@ -1,0 +1,28 @@
+name: Design feedback
+description: Say which website design you prefer and why.
+title: "Feedback: "
+labels: ["design-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Compare the designs at https://emip-website-update.github.io/ first. Everyone on the review can read this issue.
+  - type: input
+    id: preferred
+    attributes:
+      label: Preferred design
+      description: The design you like best overall, as named on the compare page, or "No preference yet".
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page you were looking at
+      description: Optional. For example /workshop/emip-2026/ at phone width.
+  - type: textarea
+    id: comments
+    attributes:
+      label: Comments
+      description: What works, what doesn't, what's missing.
+    validations:
+      required: true

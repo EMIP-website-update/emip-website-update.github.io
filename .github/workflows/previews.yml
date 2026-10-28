@@ -1,0 +1,49 @@
+# Builds the live site and every design/* branch into one GitHub Pages site:
+# https://emip-website-update.github.io/ (compare page) and /<design>/ for each version.
+# Design branches start this workflow from their own small preview.yml on every push.
+name: Build previews
+
+on:
+  push:
+    branches: [previews]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *" # daily, to pick up changes on www.emipws.org
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/build/Gemfile
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Build every version
+        run: python3 build/build_all.py
+        env:
+          JEKYLL_GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

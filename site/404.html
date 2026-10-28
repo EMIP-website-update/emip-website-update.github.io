@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Page Not In This Design</title>
+<style>
+  :root { --paper: #fbfaf7; --ink: #1b1d22; --muted: #6c6f77; --accent: #2055a0; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--paper); color: var(--ink);
+         font: 16px/1.5 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding: 1rem; }
+  main { max-width: 30rem; text-align: center; }
+  h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
+  p { color: var(--muted); margin: 0 0 1rem; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 0.875em; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>This page isn't in this version</h1>
+  <p>Nothing is published at <code id="where"></code>. Some pages only exist in some designs, for example the EMIP 2027 page.</p>
+  <p><a href="/" target="_top">Back to the compare page</a></p>
+</main>
+<script>document.getElementById("where").textContent = location.pathname;</script>
+</body>
+</html>

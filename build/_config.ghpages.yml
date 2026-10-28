@@ -1,0 +1,22 @@
+# Preview builds only. Applied after each version's own _config.yml.
+
+# Build for the site root (build_all.py then moves each version under /<slug>/).
+# Set explicitly so jekyll-github-metadata doesn't guess a base path.
+url: "https://www.emipws.org"
+baseurl: ""
+
+# Plugins GitHub Pages turns on for every classic build,
+# so the output matches what www.emipws.org serves.
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-coffeescript
+  - jekyll-default-layout
+  - jekyll-github-metadata
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
