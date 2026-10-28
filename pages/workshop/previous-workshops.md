@@ -1,13 +1,7 @@
 ---
-layout: single
+layout: moved
 permalink: /workshop/previous-workshops/
-header:
-  #image: /images/EMIP_Icon_2021_transparent.png
+moved_to: /#workshops
 title: "Previous Workshops"
-sidebar:
-  nav: "previous-workshops"
+sitemap: false
 ---
-
-Every EMIP workshop since the first one in 2013. Each page keeps that year's call for papers, program and accepted papers.
-
-{% include editions-table.html %}

@@ -1,12 +1,7 @@
 ---
-layout: single
+layout: moved
 permalink: /organizers/
-header:
+moved_to: /#organizers
 title: "Organizers"
-sidebar:
-  nav: "main"
+sitemap: false
 ---
-
-The EMIP steering committee, in alphabetical order. Each year's workshop organizers and program committee are listed on that [workshop's page](/workshop/previous-workshops/).
-
-{% include people-grid.html %}

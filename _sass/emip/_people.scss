@@ -3,8 +3,9 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
-  gap: 2rem 1.5rem;
+  /* At least two portraits per row, even on phones. */
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 2rem 1.25rem;
 }
 .prose .people > li::before { display: none; }
 .prose .people > li { margin: 0; }

@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
+{%- comment -%}
+  The whole site on one scrolling page. Each section's id is a target of the
+  main menu (_data/navigation.yml); longer reference texts are folded blocks
+  (_includes/fold.html) whose text lives in _includes/onepage/.
+{%- endcomment -%}
 {%- assign next = site.data.emip -%}
 <div class="wrap home">
 
@@ -12,7 +17,7 @@ layout: default
         {{ content }}
       </div>
       <p class="home-intro__next">
-        Next: <a href="{{ next.url | relative_url }}">EMIP {{ next.year }}</a>
+        Next: <a href="#next-workshop">EMIP {{ next.year }}</a>
         with {{ next.host }} in {{ next.place }}{% if next.host_dates %}, {{ next.host_dates }}{% endif %}.
       </p>
     </div>
@@ -21,7 +26,7 @@ layout: default
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="next-title">
+  <section class="home-section" id="next-workshop" aria-labelledby="next-title">
     <h2 class="home-section__head" id="next-title">Next workshop</h2>
     <div class="home-section__body">
       <h3 class="edition-title">
@@ -40,17 +45,23 @@ layout: default
         {%- if next.program_url -%}<div><dt>Program</dt><dd><a href="{{ next.program_url | relative_url }}">See the program</a></dd></div>{%- endif -%}
       </dl>
       {%- if next.note -%}<p class="home-note">{{ next.note }}</p>{%- endif -%}
-      {%- if next.previous -%}
       <p class="home-previous">
-        Last edition: <a href="{{ next.previous.url | relative_url }}">EMIP {{ next.previous.year }}</a>,
-        {{ next.previous.host }} in {{ next.previous.place }}{% if next.previous.papers %}, with {{ next.previous.papers }} accepted papers{% endif %}.
-        {%- if next.previous.program_url %} <a href="{{ next.previous.program_url | relative_url }}">Program</a>.{% endif %}
+        <a href="{{ next.url | relative_url }}">EMIP {{ next.year }} workshop page</a>
+        {%- if next.previous %} · Last edition: <a href="{{ next.previous.url | relative_url }}">EMIP {{ next.previous.year }}</a>,
+        {{ next.previous.host }} in {{ next.previous.place }}{% if next.previous.papers %}, with {{ next.previous.papers }} accepted papers{% endif %}.{% endif %}
       </p>
-      {%- endif -%}
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="data-title">
+  <section class="home-section" id="workshops" aria-labelledby="archive-title">
+    <h2 class="home-section__head" id="archive-title">Workshops since 2013</h2>
+    <div class="home-section__body">
+      <p class="home-section__lede">Each workshop has its own page with its program, accepted papers, organizers and call for papers.</p>
+      {% include editions-table.html %}
+    </div>
+  </section>
+
+  <section class="home-section" id="dataset" aria-labelledby="data-title">
     <h2 class="home-section__head" id="data-title">The EMIP dataset</h2>
     <div class="home-section__body">
       <p class="home-section__lede">
@@ -64,12 +75,13 @@ layout: default
         <div><dt>Stimuli</dt><dd>2 programs in 3 languages</dd></div>
         <div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></dd></div>
       </dl>
-      <ul class="link-row">
-        <li><a href="{{ '/dataset/' | relative_url }}">Dataset</a></li>
-        <li><a href="{{ '/corrected-dataset/' | relative_url }}">Corrected dataset and EMIP Toolkit</a></li>
-        <li><a href="{{ '/stimulus-material/' | relative_url }}">Stimulus material</a></li>
-        <li><a href="{{ '/participating-labs/' | relative_url }}">Participating labs</a></li>
-      </ul>
+      <div class="folds">
+        {% include fold.html id="dataset-files" file="dataset" title="Dataset" hint="What the download contains and how it was recorded" %}
+        {% include fold.html id="corrected-dataset" file="corrected-dataset" title="Corrected dataset and EMIP Toolkit" hint="Token-level corrections and a Python toolkit" %}
+        {% include fold.html id="stimulus-material" file="stimulus-material" title="Stimulus material" hint="The two programs in Java, Python and Scala, with downloads" %}
+        {% include fold.html id="participating-labs" file="participating-labs" title="Participating labs" hint="The labs that collected data, in their own words" class="labs" %}
+        {% include fold.html id="call-for-contributions" file="call-for-contributions" title="Call for contributions" hint="How labs joined the distributed data collection" %}
+      </div>
       <p class="cite">
         Bednarik, R., Busjahn, T., Gibaldi, A., et al. (2020). EMIP: The eye movements in programming dataset.
         <em>Science of Computer Programming</em>, 198, 102520.
@@ -78,10 +90,45 @@ layout: default
     </div>
   </section>
 
-  <section class="home-section" aria-labelledby="archive-title">
-    <h2 class="home-section__head" id="archive-title">Workshops since 2013</h2>
+  <section class="home-section" id="resources" aria-labelledby="resources-title">
+    <h2 class="home-section__head" id="resources-title">Resources</h2>
     <div class="home-section__body">
-      {% include editions-table.html %}
+      <div class="folds">
+        {% include fold.html id="coding-scheme" file="coding-scheme" title="Coding scheme" hint="Categories for coding gaze on source code, revised February 2014" %}
+        {% include fold.html id="visualizations-and-tools" file="visualizations-and-tools" title="Visualizations and tools" hint="eyeCode, flow charts and VETool" %}
+      </div>
+      <h3 class="home-subhead">From the first workshops</h3>
+      <ul class="plain-list">
+        <li><a href="{{ '/workshop/emip-2013-datasets/' | relative_url }}">Datasets used in Analyzing the Expert’s Gaze (2013)</a></li>
+        <li><a href="{{ '/workshop/emip-2014-datasets/' | relative_url }}">Datasets used in Analyzing the Novice’s Gaze (2014)</a></li>
+        <li><a href="{{ '/workshop/emip-2013-technical-report/' | relative_url }}">Report: Eye Movements in Programming Education: Analyzing the Expert’s Gaze (2013)</a></li>
+        <li><a href="{{ '/workshop/emip-2014-technical-report/' | relative_url }}">Report: Eye Movements in Programming Education II: Analyzing the Novice’s Gaze (2014)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="home-section" id="organizers" aria-labelledby="organizers-title">
+    <h2 class="home-section__head" id="organizers-title">Organizers</h2>
+    <div class="home-section__body">
+      <p class="home-section__lede">The EMIP steering committee, in alphabetical order. Each year’s workshop organizers and program committee are listed on <a href="#workshops">that workshop’s page</a>.</p>
+      {% include people-grid.html %}
+    </div>
+  </section>
+
+  <section class="home-section" id="sponsors" aria-labelledby="sponsors-title">
+    <h2 class="home-section__head" id="sponsors-title">Sponsors</h2>
+    <div class="home-section__body">
+      <p class="home-section__lede">This series of workshops has been supported by:</p>
+      <ul class="sponsors">
+        <li>
+          <span class="sponsors__name">Joensuu University Foundation</span>
+          <span class="sponsors__for">2013, Analyzing the expert’s gaze · 2015, Models to data</span>
+        </li>
+        <li>
+          <img src="{{ '/images/SMI-Logo.jpg' | relative_url }}" alt="SMI (SensoMotoric Instruments)" class="sponsors__logo">
+          <span class="sponsors__for">2014, Analyzing the novice’s gaze · 2015, Models to data</span>
+        </li>
+      </ul>
     </div>
   </section>
 

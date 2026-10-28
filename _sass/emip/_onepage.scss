@@ -1,0 +1,113 @@
+/* One-page homepage: the menu stays on screen and jumps to sections. */
+
+html { scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+/* The section being read, marked by emip.js. */
+.masthead__nav a.is-current {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+@media (max-width: 52rem) {
+  .masthead__nav a.is-current { font-weight: 600; }
+  /* Long menus scroll inside the sticky header instead of running off screen. */
+  .masthead__nav.is-open { max-height: calc(100vh - 4.5rem); overflow-y: auto; }
+}
+
+.home-section > .home-section__head { align-self: start; }
+
+.home-subhead {
+  margin: 2rem 0 0.6rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.plain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.plain-list li { padding: 0.3rem 0; }
+
+/* Folded blocks of reference text. */
+.folds {
+  margin: 0 0 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+.fold { border-bottom: 1px solid var(--rule-soft); }
+.fold > summary {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  column-gap: 0.4rem;
+  padding: 0.8rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::before {
+  content: "+";
+  grid-row: 1 / span 2;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.fold[open] > summary::before { content: "\2212"; }
+.fold__title {
+  font-weight: 600;
+  color: var(--ink);
+}
+.fold > summary:hover .fold__title { color: var(--accent-ink); text-decoration: underline; text-decoration-thickness: 1px; }
+.fold__hint {
+  grid-column: 2;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+.fold__body {
+  padding: 0.25rem 0 1.5rem 1.65rem;
+  max-width: var(--measure);
+}
+@media (max-width: 40rem) {
+  .fold__body { padding-left: 0; }
+}
+
+/* Participating labs: old pasted HTML with fixed floats and justified text. */
+.fold__body.labs p { text-align: left !important; }
+.fold__body.labs img {
+  max-width: 40%;
+  height: auto;
+}
+@media (max-width: 40rem) {
+  .fold__body.labs img {
+    float: none !important;
+    display: block;
+    max-width: 100%;
+    margin: 1rem 0 0.5rem !important;
+  }
+}
+
+.sponsors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.sponsors li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.sponsors__name { font-weight: 600; }
+.sponsors__logo { display: block; width: 7rem; height: auto; }
+.sponsors__for { color: var(--ink-2); font-size: 0.9375rem; }

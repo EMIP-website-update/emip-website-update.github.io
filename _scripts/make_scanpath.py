@@ -106,7 +106,7 @@ def main():
     o('</div>')
     o('<figcaption><span class="scanpath__label">Fig. 1</span> '
       f'The first {len(pts)} fixations on the code ({span_s:.1f}&nbsp;s) of participant {a.participant} reading '
-      '<code>Rectangle.java</code>, from the <a href="/corrected-dataset/">corrected EMIP dataset</a>. '
+      '<code>Rectangle.java</code>, from the <a href="/#corrected-dataset">corrected EMIP dataset</a>. '
       'Circle size follows fixation duration. '
       + (f'The trial is shifted {abs(dy):.0f}&nbsp;px vertically by its median line offset. ' if abs(dy) >= 2 else '')
       +

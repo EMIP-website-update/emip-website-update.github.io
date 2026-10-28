@@ -1,4 +1,10 @@
+{%- comment -%}
+  Menu items jump to sections of the one-page homepage. There, emip.js marks
+  the section being read; on workshop pages the matching item is marked here.
+{%- endcomment -%}
 {%- assign current_prefix = '/workshop/emip-' | append: site.data.emip.year -%}
+{%- assign on_workshop = false -%}
+{%- if page.url contains '/workshop/' or page.url == '/emip-2021-ii/' -%}{%- assign on_workshop = true -%}{%- endif -%}
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="{{ '/' | relative_url }}">
@@ -10,15 +16,9 @@
       <ul>
         {%- for link in site.data.navigation.main -%}
           {%- assign active = false -%}
-          {%- if page.url == link.url -%}{%- assign active = true -%}{%- endif -%}
-          {%- for child in link.children -%}
-            {%- if child.url == page.url -%}{%- assign active = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if link.url == site.data.emip.url and page.url contains current_prefix -%}{%- assign active = true -%}{%- endif -%}
-          {%- if link.url == '/workshop/previous-workshops/' -%}
-            {%- if page.url contains '/workshop/' or page.url == '/emip-2021-ii/' -%}
-              {%- unless page.url contains current_prefix -%}{%- assign active = true -%}{%- endunless -%}
-            {%- endif -%}
+          {%- if on_workshop -%}
+            {%- if link.url == '/#next-workshop' and page.url contains current_prefix -%}{%- assign active = true -%}{%- endif -%}
+            {%- if link.url == '/#workshops' -%}{%- unless page.url contains current_prefix -%}{%- assign active = true -%}{%- endunless -%}{%- endif -%}
           {%- endif -%}
           <li><a href="{{ link.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ link.short | default: link.title }}</a></li>
         {%- endfor -%}
