@@ -80,37 +80,38 @@
     spied.forEach(function (s) { spy.observe(s.section); });
   }
 
-  // Scanpath: replays the recorded fixations in real time once the figure is on screen.
-  var fig = document.querySelector("[data-scanpath]");
-  if (!fig) return;
+  // Scanpaths (Fig. 1 and the hero variants): each replays its fixations in real
+  // time once it is on screen. Hidden variants never intersect, so never play.
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduce || !("IntersectionObserver" in window)) return;
 
-  var replay = fig.querySelector(".scanpath__replay");
-  var steps = fig.querySelectorAll(".scanpath__fixations g");
-  var last = steps[steps.length - 1];
-  var lastT = last ? parseInt(last.style.getPropertyValue("--t"), 10) || 0 : 0;
-  var timer;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-scanpath]"), function (fig) {
+    var replay = fig.querySelector(".scanpath__replay");
+    var steps = fig.querySelectorAll(".scanpath__fixations g");
+    var last = steps[steps.length - 1];
+    var lastT = last ? parseInt(last.style.getPropertyValue("--t"), 10) || 0 : 0;
+    var timer;
 
-  function play() {
-    fig.classList.remove("is-playing");
-    void fig.getBoundingClientRect(); // restart CSS animations
-    fig.classList.add("is-playing");
-    if (replay) replay.hidden = true;
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      if (replay) replay.hidden = false;
-    }, lastT + 1000);
-  }
-
-  fig.classList.add("is-armed");
-  var io = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) {
-      io.disconnect();
-      play();
+    function play() {
+      fig.classList.remove("is-playing");
+      void fig.getBoundingClientRect(); // restart CSS animations
+      fig.classList.add("is-playing");
+      if (replay) replay.hidden = true;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (replay) replay.hidden = false;
+      }, lastT + 1000);
     }
-  }, { threshold: 0.4 });
-  io.observe(fig);
 
-  if (replay) replay.addEventListener("click", play);
+    fig.classList.add("is-armed");
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        io.disconnect();
+        play();
+      }
+    }, { threshold: 0.4 });
+    io.observe(fig);
+
+    if (replay) replay.addEventListener("click", play);
+  });
 })();

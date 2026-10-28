@@ -4,6 +4,8 @@
   </thead>
   <tbody>
     {%- for e in site.data.editions -%}
+    {%- comment -%} include.before: leave out that year and later (the homepage shows the next workshop above). {%- endcomment -%}
+    {%- if include.before and e.year >= include.before -%}{%- continue -%}{%- endif -%}
     <tr{% if e.status == 'planned' %} class="is-planned"{% endif %}>
       <td class="editions__year"><a href="{{ e.url | relative_url }}">{{ e.year }}</a></td>
       <td>

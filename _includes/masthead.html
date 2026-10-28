@@ -1,8 +1,7 @@
 {%- comment -%}
   Menu items jump to sections of the one-page homepage. There, emip.js marks
-  the section being read; on workshop pages the matching item is marked here.
+  the section being read; on past workshop pages "Past workshops" is marked here.
 {%- endcomment -%}
-{%- assign current_prefix = '/workshop/emip-' | append: site.data.emip.year -%}
 {%- assign on_workshop = false -%}
 {%- if page.url contains '/workshop/' or page.url == '/emip-2021-ii/' -%}{%- assign on_workshop = true -%}{%- endif -%}
 <header class="masthead">
@@ -16,10 +15,7 @@
       <ul>
         {%- for link in site.data.navigation.main -%}
           {%- assign active = false -%}
-          {%- if on_workshop -%}
-            {%- if link.url == '/#next-workshop' and page.url contains current_prefix -%}{%- assign active = true -%}{%- endif -%}
-            {%- if link.url == '/#workshops' -%}{%- unless page.url contains current_prefix -%}{%- assign active = true -%}{%- endunless -%}{%- endif -%}
-          {%- endif -%}
+          {%- if on_workshop and link.url == '/#workshops' -%}{%- assign active = true -%}{%- endif -%}
           <li><a href="{{ link.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ link.short | default: link.title }}</a></li>
         {%- endfor -%}
       </ul>

@@ -1,0 +1,38 @@
+# Call for papers and submission rules on the homepage.
+# Replace with the new call each year and update `source`.
+
+source: Topics and rules from the 2026 call. The 2027 call will replace them here.
+
+intro: >-
+  We invite contributions that analyze gaze behavior in programming activities such as
+  code reading, debugging and collaboration, with implications for software engineering
+  practice or programming education. Topics include, but are not limited to:
+
+topics:
+  - Data abstractions for eye tracking analysis
+  - Models of cognition about software development
+  - Effects of text-based, graphical and diagram-based program representations
+  - Effects of syntax, language features and programming paradigms
+  - How learners read, write and debug code, acquire new skills and grow over time
+  - Obstacles for learners and software engineers
+  - Eye tracking for program comprehension, debugging, requirements traceability and change tracking
+  - Tools and processes for working with eye tracking
+  - Visualizations of static and dynamic program execution
+  - Programming assistance and accessibility using eye tracking
+  - Eye tracking combined with fMRI, EEG, GSR or fNIRS
+  - Multi-person eye tracking, such as pair programming
+  - Eye gaze datasets and source code suited to gaze studies
+  - Analyses of existing datasets, such as the EMIP dataset
+  - Platforms, tools and methods for reproducible experiments
+
+submission:
+  - label: Full papers
+    text: Up to 8 pages, single column, excluding references and appendix. Published open access in the ACM Digital Library with the ETRA workshop proceedings.
+  - label: Work in progress
+    text: Up to 4 pages, single column, excluding references. Lightly reviewed and not published in the proceedings.
+  - label: Review
+    text: Double-anonymous, by three members of the program committee. Use the ACM article template with the <code>manuscript,review,anonymous</code> options.
+  - label: Submitting
+    text: Through the Precision Conference System (PCS), in the EMIP track of ETRA.
+  - label: Presenting
+    text: At least one author of each accepted paper presents it in person.

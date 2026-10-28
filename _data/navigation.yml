@@ -1,19 +1,20 @@
-# Main menu (top of every page). Each item jumps to a section of the one-page
-# homepage (_layouts/home.html); "short" is the label shown in the menu.
+# Main menu (top of every page). Each item jumps to a section of the
+# homepage, which is the page of the next workshop (_layouts/home.html).
 main:
-  - title: "EMIP 2027 Workshop"
-    short: "EMIP 2027"
-    url: /#next-workshop
-  - title: "Past workshops"
-    url: /#workshops
-  - title: "Dataset"
-    url: /#dataset
-  - title: "Resources"
-    url: /#resources
+  - title: "About"
+    url: /#about
+  - title: "Call for papers"
+    url: /#call-for-papers
+  - title: "Dates"
+    url: /#dates
+  - title: "Submission"
+    url: /#submission
   - title: "Organizers"
     url: /#organizers
-  - title: "Sponsors"
-    url: /#sponsors
+  - title: "Dataset"
+    url: /#dataset
+  - title: "Past workshops"
+    url: /#workshops
 
 previous-workshops:
   - title: "EMIP 2013 Workshop"

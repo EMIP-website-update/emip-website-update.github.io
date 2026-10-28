@@ -1,13 +1,13 @@
-# The next (or current) workshop, shown on the homepage.
-# Update this file once a year. Leave a value empty to hide that row.
+# The next (or current) workshop: the homepage is built around it.
+# Update this file once a year. Leave a value empty to hide it.
 
 year: 2027
 ordinal: Fifteenth
-url: /workshop/emip-2027/
+url: /
 
 # planned  -> date and call not out yet
-# open     -> call for papers is open
-# program  -> program is published
+# open     -> call for papers is open (set paper_deadline and submit_url)
+# program  -> program is published (set program_url)
 status: planned
 
 host: ETRA 2027
@@ -17,9 +17,45 @@ place: Pamplona, Spain
 host_dates: June 7–10, 2027
 workshop_date: To be announced
 paper_deadline:
-cfp_url:
+submit_url:
 program_url:
-note: The workshop day, call for papers and submission details will be posted here.
+note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call for papers will be posted on this page.
+
+# Picture beside the title: photo | photo-alt | gaze | venue-gaze.
+# Reviewers can try the others with ?hero=gaze and so on.
+hero: photo
+photos:
+  photo:
+    src: /images/venues/2027-pamplona-kiosco-1400.jpg
+    small: /images/venues/2027-pamplona-kiosco-800.jpg
+    alt: The domed bandstand in Plaza del Castillo, Pamplona, under a blue sky, with apartment buildings around the square
+    caption: Plaza del Castillo, Pamplona
+    credit: Giorgio Galeotti
+    source: https://commons.wikimedia.org/wiki/File:Kiosco_of_Plaza_del_Castillo_-_Pamplona,_Spain_-_July_17,_2024.jpg
+    license: CC BY-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-sa/4.0/
+    position: 50% 62%
+  photo-alt:
+    src: /images/venues/2027-pamplona-facades-1400.jpg
+    small: /images/venues/2027-pamplona-facades-800.jpg
+    alt: Colourful façades with balconies around Plaza del Castillo, Pamplona, on a cloudy day
+    caption: Plaza del Castillo, Pamplona
+    credit: Krzysztof Golik
+    source: https://commons.wikimedia.org/wiki/File:Plaza_del_Castillo_in_Pamplona_(3).jpg
+    license: CC BY-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-sa/4.0/
+    position: 50% 50%
+
+# Important dates, in order. All deadlines are Anywhere on Earth.
+dates:
+  - label: Paper submission
+    date: To be announced
+  - label: Notification
+    date: To be announced
+  - label: Camera-ready
+    date: To be announced
+  - label: Workshop
+    date: June 2027 at ETRA 2027 (June 7–10), day to be announced
 
 previous:
   year: 2026

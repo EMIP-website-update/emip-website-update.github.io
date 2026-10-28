@@ -1,0 +1,259 @@
+/* Homepage as the page of the next workshop: hero, then one section per topic
+   with the heading in a left column. */
+
+/* Hero */
+.event-hero {
+  border-bottom: 1px solid var(--rule);
+  padding-block: 2.25rem 2.75rem;
+}
+.event-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem 4rem;
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .event-hero { padding-block: 3.5rem 4rem; }
+  .event-hero__inner { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+
+.event-hero__kicker {
+  margin: 0 0 0.5rem;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-2);
+}
+
+.event-hero__title {
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.6rem, calc(1.5rem + 3.6vw), 4.25rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+.event-hero__year {
+  display: block;
+  color: var(--accent-ink);
+}
+
+.event-hero__meta {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+.event-hero__meta li + li::before {
+  content: "·";
+  margin: 0 0.6rem;
+  color: var(--muted);
+}
+/* Phones: one fact per line rather than a wrapped line that starts with a dot. */
+@media (max-width: 30rem) {
+  .event-hero__meta { flex-direction: column; }
+  .event-hero__meta li + li::before { content: none; }
+}
+
+.event-hero__status {
+  margin: 0 0 1.5rem;
+  max-width: 32rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.status {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper-2);
+}
+.status--open { border-color: #2f7a4f; color: #1f5b39; background: #e7f3ec; }
+.status--program { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-wash); }
+
+.event-hero__actions {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  font-family: var(--sans);
+}
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.15rem;
+  border-radius: 4px;
+  background: var(--accent-ink);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+.button:hover { color: #fff; background: #04213f; }
+.text-link { font-size: 0.9375rem; }
+
+/* Hero picture: one variant shows, chosen in _data/emip.yml or with ?hero= (see head.html). */
+.hero-variant { display: none; }
+html:not([data-hero]) .hero-variant[data-hero-variant="photo"],
+html[data-hero="photo"] .hero-variant[data-hero-variant="photo"],
+html[data-hero="photo-alt"] .hero-variant[data-hero-variant="photo-alt"],
+html[data-hero="gaze"] .hero-variant[data-hero-variant="gaze"],
+html[data-hero="venue-gaze"] .hero-variant[data-hero-variant="venue-gaze"] { display: block; }
+
+.hero-photo { margin: 0; }
+.hero-photo__frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+.hero-photo__frame img,
+.hero-photo__frame svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-photo__frame img { object-fit: cover; }
+.hero-photo figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.hero-photo figcaption a { color: inherit; }
+
+/* Gaze over the venue: blue marks with a white outline and soft shadow, so they
+   read on sky, stone and façades alike. */
+.scanpath--venue svg { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); }
+.scanpath--venue .scanpath__fixations circle {
+  fill: var(--accent);
+  fill-opacity: 0.5;
+  stroke: #fff;
+  stroke-width: 4;
+}
+.scanpath--venue .scanpath__saccades line {
+  stroke: #fff;
+  stroke-opacity: 0.95;
+  stroke-width: 3.5;
+}
+.scanpath--venue.is-playing .scanpath__fixations circle { animation-name: emip-fixation-dot-venue; }
+@keyframes emip-fixation-dot-venue {
+  0% { transform: scale(0.35); fill-opacity: 0.9; }
+  35% { transform: scale(1); fill-opacity: 0.8; }
+  100% { transform: scale(1); fill-opacity: 0.5; }
+}
+
+/* Sections */
+.event { padding-bottom: 3rem; }
+
+.event-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem 3rem;
+  padding-block: 2.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.event-section:last-child { border-bottom: 0; }
+@media (min-width: 52rem) {
+  .event-section { grid-template-columns: 15rem minmax(0, 46rem); padding-block: 4rem; }
+}
+
+.event-section__head {
+  margin: 0;
+  font-size: clamp(1.45rem, calc(1.1rem + 1vw), 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  align-self: start;
+}
+
+.event-section__body > :first-child { margin-top: 0; }
+.event-section__body p { margin: 0 0 1.1rem; }
+
+.event-lede p {
+  font-size: clamp(1.15rem, calc(1rem + 0.5vw), 1.35rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.event-note {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.event-note--top { margin-bottom: 1.5rem !important; }
+
+.event-subhead {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.event-pc { margin-top: 1.75rem !important; }
+
+/* Call for papers topics: two columns from tablet width. */
+.topics {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  font-size: 0.975rem;
+  line-height: 1.45;
+}
+@media (min-width: 44rem) {
+  .topics { columns: 2; column-gap: 2.5rem; }
+}
+.topics li {
+  position: relative;
+  break-inside: avoid;
+  padding: 0 0 0.7rem 1.1rem;
+}
+.topics li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+/* Label / value rows: important dates and submission rules. */
+.rows {
+  margin: 0 0 1rem;
+  border-top: 1px solid var(--rule);
+}
+.rows > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.15rem 1.5rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+@media (min-width: 36rem) {
+  .rows > div { grid-template-columns: 10rem minmax(0, 1fr); }
+}
+.rows dt {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--accent-ink);
+}
+.rows dd { margin: 0; }
+.rows code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  padding: 0.05rem 0.3rem;
+  background: var(--paper-2);
+}
+
+.event-sponsors { margin-top: 2.5rem; }
