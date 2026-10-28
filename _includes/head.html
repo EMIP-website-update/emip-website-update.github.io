@@ -8,15 +8,6 @@
 {% endunless %}
 
 <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
-{%- if page.layout == 'home' %}
-<script>
-  // Which picture the homepage hero shows: _data/emip.yml `hero`, or ?hero= when reviewing designs.
-  (function () {
-    var m = /[?&]hero=([a-z-]+)/.exec(location.search);
-    document.documentElement.setAttribute("data-hero", m ? m[1] : "{{ site.data.emip.hero | default: 'photo' }}");
-  })();
-</script>
-{%- endif %}
 
 <link rel="preload" href="{{ '/assets/fonts/source-serif-4-latin-opsz-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/ibm-plex-sans-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>

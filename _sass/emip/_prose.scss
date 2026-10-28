@@ -51,6 +51,17 @@
   border-bottom: 1px solid var(--rule-soft);
 }
 
+/* Old pages pasted from WordPress: no justified text, and no side floats on phones. */
+.prose p[style*="justify"] { text-align: left !important; }
+@media (max-width: 40rem) {
+  .prose img[style*="float"] {
+    float: none !important;
+    display: block;
+    max-width: 100%;
+    margin: 1rem 0 0.5rem !important;
+  }
+}
+
 /* A page that opens with a section heading already has the title's rule above it. */
 .prose > h1:first-child {
   padding-top: 0;

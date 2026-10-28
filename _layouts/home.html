@@ -4,8 +4,7 @@ layout: default
 {%- comment -%}
   The homepage is the page of the next workshop (_data/emip.yml), with the
   call (_data/call.yml), the people, the dataset and the archive below it.
-  Section ids are targets of the main menu (_data/navigation.yml); longer
-  reference texts are folded blocks (_includes/fold.html).
+  Section ids are targets of the main menu (_data/navigation.yml).
 {%- endcomment -%}
 {%- assign next = site.data.emip -%}
 {%- assign call = site.data.call -%}
@@ -37,22 +36,13 @@ layout: default
       </p>
     </div>
 
-    {%- comment -%} One of these shows: _data/emip.yml `hero`, or ?hero= for reviewers. {%- endcomment -%}
-    <div class="event-hero__visual">
-      {%- for entry in next.photos -%}
-        {%- assign key = entry[0] -%}{%- assign photo = entry[1] -%}
-      <div class="hero-variant" data-hero-variant="{{ key }}">
-        <figure class="hero-photo">
-          <div class="hero-photo__frame">
-            <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}{% if key != next.hero %} loading="lazy"{% endif %}>
-          </div>
-          <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
-        </figure>
+    {%- assign photo = next.photo -%}
+    <figure class="hero-photo event-hero__visual">
+      <div class="hero-photo__frame">
+        <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}">
       </div>
-      {%- endfor -%}
-      <div class="hero-variant" data-hero-variant="gaze">{% include scanpath.html %}</div>
-      <div class="hero-variant" data-hero-variant="venue-gaze">{% include venue-gaze.html %}</div>
-    </div>
+      <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -130,26 +120,15 @@ layout: default
         269 programmers recorded (15 excluded), reading <em>Rectangle</em> and <em>Vehicle</em> in Java, Python or Scala
         on an SMI RED250 tracker at 250&nbsp;Hz. Free to use under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
       </p>
-      <div class="folds">
-        {% include fold.html id="dataset-files" file="dataset" title="Dataset" hint="What the download contains and how it was recorded" %}
-        {% include fold.html id="corrected-dataset" file="corrected-dataset" title="Corrected dataset and EMIP Toolkit" hint="Token-level corrections and a Python toolkit" %}
-        {% include fold.html id="stimulus-material" file="stimulus-material" title="Stimulus material" hint="The two programs in Java, Python and Scala, with downloads" %}
-        {% include fold.html id="participating-labs" file="participating-labs" title="Participating labs" hint="The labs that collected data, in their own words" class="labs" %}
-        {% include fold.html id="call-for-contributions" file="call-for-contributions" title="Call for contributions" hint="How labs joined the distributed data collection" %}
-      </div>
-      <div id="resources">
-        <h3 class="event-subhead">Resources</h3>
-        <div class="folds">
-          {% include fold.html id="coding-scheme" file="coding-scheme" title="Coding scheme" hint="Categories for coding gaze on source code, revised February 2014" %}
-          {% include fold.html id="visualizations-and-tools" file="visualizations-and-tools" title="Visualizations and tools" hint="eyeCode, flow charts and VETool" %}
-        </div>
-        <ul class="plain-list">
-          <li><a href="{{ '/workshop/emip-2013-datasets/' | relative_url }}">Datasets used in Analyzing the Expert’s Gaze (2013)</a></li>
-          <li><a href="{{ '/workshop/emip-2014-datasets/' | relative_url }}">Datasets used in Analyzing the Novice’s Gaze (2014)</a></li>
-          <li><a href="{{ '/workshop/emip-2013-technical-report/' | relative_url }}">Report: Analyzing the Expert’s Gaze (2013)</a></li>
-          <li><a href="{{ '/workshop/emip-2014-technical-report/' | relative_url }}">Report: Analyzing the Novice’s Gaze (2014)</a></li>
-        </ul>
-      </div>
+      <ul class="link-list">
+        <li><a href="{{ '/dataset/' | relative_url }}">Dataset</a></li>
+        <li><a href="{{ '/corrected-dataset/' | relative_url }}">Corrected dataset and EMIP Toolkit</a></li>
+        <li><a href="{{ '/stimulus-material/' | relative_url }}">Stimulus material</a></li>
+        <li><a href="{{ '/participating-labs/' | relative_url }}">Participating labs</a></li>
+        <li><a href="{{ '/coding-scheme/' | relative_url }}">Coding scheme</a></li>
+        <li><a href="{{ '/visualizations-and-tools/' | relative_url }}">Visualizations and tools</a></li>
+        <li><a href="{{ '/resources/' | relative_url }}">Resources and reports</a></li>
+      </ul>
       <p class="cite">
         Bednarik, R., Busjahn, T., Gibaldi, A., et al. (2020). EMIP: The eye movements in programming dataset.
         <em>Science of Computer Programming</em>, 198, 102520.

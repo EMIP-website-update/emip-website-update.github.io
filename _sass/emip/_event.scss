@@ -102,13 +102,7 @@
 .button:hover { color: #fff; background: #04213f; }
 .text-link { font-size: 0.9375rem; }
 
-/* Hero picture: one variant shows, chosen in _data/emip.yml or with ?hero= (see head.html). */
-.hero-variant { display: none; }
-html:not([data-hero]) .hero-variant[data-hero-variant="photo"],
-html[data-hero="photo"] .hero-variant[data-hero-variant="photo"],
-html[data-hero="gaze"] .hero-variant[data-hero-variant="gaze"],
-html[data-hero="venue-gaze"] .hero-variant[data-hero-variant="venue-gaze"] { display: block; }
-
+/* Venue photo */
 .hero-photo { margin: 0; }
 .hero-photo__frame {
   position: relative;
@@ -133,27 +127,6 @@ html[data-hero="venue-gaze"] .hero-variant[data-hero-variant="venue-gaze"] { dis
   color: var(--muted);
 }
 .hero-photo figcaption a { color: inherit; }
-
-/* Gaze over the venue: blue marks with a white outline and soft shadow, so they
-   read on sky, stone and façades alike. */
-.scanpath--venue svg { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); }
-.scanpath--venue .scanpath__fixations circle {
-  fill: var(--accent);
-  fill-opacity: 0.5;
-  stroke: #fff;
-  stroke-width: 4;
-}
-.scanpath--venue .scanpath__saccades line {
-  stroke: #fff;
-  stroke-opacity: 0.95;
-  stroke-width: 3.5;
-}
-.scanpath--venue.is-playing .scanpath__fixations circle { animation-name: emip-fixation-dot-venue; }
-@keyframes emip-fixation-dot-venue {
-  0% { transform: scale(0.35); fill-opacity: 0.9; }
-  35% { transform: scale(1); fill-opacity: 0.8; }
-  100% { transform: scale(1); fill-opacity: 0.5; }
-}
 
 /* Sections */
 .event { padding-bottom: 3rem; }
@@ -273,3 +246,16 @@ html[data-hero="venue-gaze"] .hero-variant[data-hero-variant="venue-gaze"] { dis
 }
 
 .event-sponsors { margin-top: 2.5rem; }
+
+/* Links to the dataset and resource pages: two columns from tablet width. */
+.link-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+}
+@media (min-width: 44rem) {
+  .link-list { columns: 2; column-gap: 2.5rem; }
+}
+.link-list li { padding: 0.3rem 0; break-inside: avoid; }
