@@ -284,11 +284,6 @@ emip-2019:
     url: /workshop/emip-2018/
   - title: "EMIP 2019 Workshop"
     url: /workshop/emip-2019/
-    children:
-      - title: "Call for Papers"
-        url: /workshop/emip-2019-call-for-papers/
-      - title: "Program"
-        url: /workshop/emip-2019-program/
   - title: "EMIP 2020 Workshop"
     url: /workshop/emip-2020/
   - title: "EMIP 2021 Workshop"

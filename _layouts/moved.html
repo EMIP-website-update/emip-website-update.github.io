@@ -1,0 +1,19 @@
+---
+---
+{%- comment -%}
+  Old address of a page that was merged into another one (set `moved_to:`,
+  e.g. /workshop/emip-2019/#program). Works without plugins on GitHub Pages.
+{%- endcomment -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="canonical" href="{{ page.moved_to | absolute_url }}">
+  <meta http-equiv="refresh" content="0; url={{ page.moved_to | relative_url }}">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+  <p>This page is now part of <a href="{{ page.moved_to | relative_url }}">{{ page.moved_to | relative_url }}</a>.</p>
+</body>
+</html>

@@ -56,6 +56,33 @@
   text-wrap: balance;
 }
 
+/* Workshop year pages: photo above the title, facts row below it. */
+.page__photo { margin: 0 0 1.5rem; }
+.page__photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--paper-2);
+}
+.page__photo figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.page__photo figcaption a { color: inherit; }
+
+.page__facts {
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.6rem 1.5rem;
+}
+.page__facts dt { font-size: 0.95rem; line-height: 1.3; }
+.page__facts dd { margin: 0; line-height: 1.4; }
+
 /* Section rail */
 .page__rail {
   font-family: var(--sans);

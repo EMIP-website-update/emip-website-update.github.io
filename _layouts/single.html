@@ -14,6 +14,17 @@ layout: default
   {%- assign heading = page.title -%}
 {%- endif -%}
 
+{%- comment -%}
+  Workshop year pages set `year:` (facts come from _data/editions.yml) and
+  may set `photo:` (src, alt, caption, position, credit, credit_url, license).
+{%- endcomment -%}
+{%- if page.year -%}
+  {%- assign edition = site.data.editions | where: "year", page.year | first -%}
+  {%- if kicker == nil and edition.ordinal -%}
+    {%- assign kicker = "The " | append: edition.ordinal | append: " International Workshop on Eye Movements in Programming" -%}
+  {%- endif -%}
+{%- endif -%}
+
 {%- capture section_nav -%}{% include sidebar.html %}{%- endcapture -%}
 {%- assign section_nav = section_nav | strip -%}
 
@@ -26,8 +37,26 @@ layout: default
 {%- endcomment -%}
 <article class="wrap page{% if section_nav == '' %} page--no-rail{% endif %}{% if toc_items >= 3 and page.toc != false %} page--toc{% endif %}">
   <header class="page__header">
+    {%- if page.photo -%}
+    <figure class="page__photo">
+      <img src="{{ page.photo.src | relative_url }}" alt="{{ page.photo.alt | escape }}"{% if page.photo.position %} style="object-position: {{ page.photo.position }}"{% endif %}>
+      {%- if page.photo.caption or page.photo.credit -%}
+      <figcaption>
+        {{- page.photo.caption -}}
+        {%- if page.photo.credit %} Photo: {% if page.photo.credit_url %}<a href="{{ page.photo.credit_url }}">{{ page.photo.credit }}</a>{% else %}{{ page.photo.credit }}{% endif %}{% if page.photo.license %}, {{ page.photo.license }}{% endif %}.{% endif -%}
+      </figcaption>
+      {%- endif -%}
+    </figure>
+    {%- endif -%}
     {%- if kicker -%}<p class="page__kicker">{{ kicker }}</p>{%- endif -%}
     <h1 class="page__title">{{ heading | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h1>
+    {%- if edition -%}
+    <dl class="page__facts">
+      {%- if edition.date -%}<div><dt>Date</dt><dd>{{ edition.date }}</dd></div>{%- endif -%}
+      {%- if edition.with -%}<div><dt>Held with</dt><dd>{{ edition.with }}</dd></div>{%- endif -%}
+      {%- if edition.place -%}<div><dt>Place</dt><dd>{{ edition.place }}</dd></div>{%- endif -%}
+    </dl>
+    {%- endif -%}
   </header>
 
   {%- if section_nav != '' -%}

@@ -33,6 +33,24 @@
   padding-top: 1.1rem;
   border-top: 1px solid var(--rule);
 }
+/* Folded sections, e.g. an old call for papers on a workshop year page. */
+.prose details {
+  margin: 0 0 1.1rem;
+  padding: 0 1rem;
+  border: 1px solid var(--rule);
+}
+.prose summary {
+  padding: 0.7rem 0;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.prose details[open] > summary {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
 /* A page that opens with a section heading already has the title's rule above it. */
 .prose > h1:first-child {
   padding-top: 0;

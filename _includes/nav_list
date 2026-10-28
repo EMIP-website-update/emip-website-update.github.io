@@ -21,7 +21,8 @@
     {%- endfor -%}
   {%- endif -%}
   <nav class="section-nav">
-    {%- if group -%}
+    {%- comment -%} Years kept on a single page have no subpages to list. {%- endcomment -%}
+    {%- if group and group.children.size > 0 -%}
     <p class="rail-label">EMIP {{ current_year }}</p>
     <ul class="section-nav__list">
       <li><a href="{{ group.url | relative_url }}"{% if page.url == group.url %} aria-current="page"{% endif %}>Overview</a></li>
