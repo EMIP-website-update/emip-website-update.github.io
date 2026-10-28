@@ -1,4 +1,6 @@
-/* Content pages: [section rail] [text] [on this page] */
+/* Content pages. Source order is title, section rail, text. Small screens stack
+   them, with the rail as a strip of links under the title; from 64rem the rail
+   moves into a left column: [section rail] [title + text] [on this page] */
 
 .page {
   display: grid;
@@ -7,25 +9,37 @@
   padding-block: 2.25rem 4.5rem;
 }
 
+.page__header,
+.page__rail,
 .page__body { min-width: 0; max-width: var(--measure); }
 
 @media (min-width: 64rem) {
-  .page { grid-template-columns: 11.5rem minmax(0, var(--measure)); }
+  .page {
+    grid-template-columns: 11.5rem minmax(0, var(--measure));
+    grid-template-rows: auto 1fr;
+  }
   .page--no-rail { grid-template-columns: minmax(0, var(--measure)); }
-  .page__rail { grid-column: 1; grid-row: 1; }
-  .page__body { grid-column: 2; }
+  .page__rail { grid-column: 1; grid-row: 1 / span 2; }
+  .page__header, .page__body { grid-column: 2; }
+  .page--no-rail .page__header,
   .page--no-rail .page__body { grid-column: 1; }
 }
 
 @media (min-width: 82rem) {
   .page--toc { grid-template-columns: 11.5rem minmax(0, var(--measure)) 12rem; }
   .page--toc.page--no-rail { grid-template-columns: minmax(0, var(--measure)) 12rem; }
+  .page__toc { grid-column: -2; grid-row: 1 / span 2; }
 }
 
 .page__header {
   padding-bottom: 1.25rem;
   margin-bottom: 1.75rem;
   border-bottom: 1px solid var(--rule);
+}
+/* Small screens: the rail strip sits right under the title's rule. */
+.page:not(.page--no-rail) .page__header { margin-bottom: 0; }
+@media (min-width: 64rem) {
+  .page:not(.page--no-rail) .page__header { margin-bottom: 1.75rem; }
 }
 
 .page__kicker {
@@ -46,35 +60,45 @@
 .page__rail {
   font-family: var(--sans);
   font-size: 0.875rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  padding-block: 0.55rem;
   border-bottom: 1px solid var(--rule-soft);
 }
-@media (min-width: 64rem) {
-  .page__rail {
-    margin: 0;
-    padding: 0.3rem 0 0;
-    border: 0;
-  }
+
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+/* The title already names the section, so small screens keep the labels for screen readers only. */
+.page__rail .rail-label {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .rail-label {
   margin: 0 0 0.4rem;
   font-size: 1rem;
 }
-.section-nav__list + .rail-label { margin-top: 1.6rem; }
 
 .section-nav__list {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 1px solid var(--rule);
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.1rem;
 }
 .section-nav__list a {
   display: block;
-  padding: 0.28rem 0 0.28rem 0.85rem;
-  margin-left: -1px;
-  border-left: 2px solid transparent;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
   color: var(--ink-2);
   text-decoration: none;
   line-height: 1.35;
@@ -83,10 +107,58 @@
 .section-nav__list a[aria-current="page"] {
   color: var(--ink);
   font-weight: 600;
-  border-left-color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* Small screens fold the year list behind a button (only when JS runs). */
+.year-toggle { display: none; }
+.js .year-toggle {
+  display: inline-block;
+  font: 500 0.875rem/1 var(--sans);
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+.js .year-toggle[aria-expanded="true"] { background: var(--paper-2); }
+.js .year-list { display: none; }
+.js .year-list.is-open { display: grid; }
+
+@media (min-width: 64rem) {
+  .page__rail {
+    margin: 0;
+    padding: 0.3rem 0 0;
+    border: 0;
+  }
+  .section-nav { display: block; }
+  .page__rail .rail-label {
+    position: static;
+    width: auto; height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .section-nav__list + .rail-label { margin-top: 1.6rem; }
+
+  .section-nav__list {
+    display: block;
+    border-left: 1px solid var(--rule);
+  }
+  .section-nav__list a {
+    padding: 0.28rem 0 0.28rem 0.85rem;
+    margin-left: -1px;
+    border-bottom: 0;
+    border-left: 2px solid transparent;
+  }
+  .section-nav__list a[aria-current="page"] { border-left-color: var(--ink); }
+
+  .js .year-toggle { display: none; }
+  .js .year-list { display: grid; }
 }
 
 .year-list {
+  flex-basis: 100%;
   list-style: none;
   margin: 0;
   padding: 0;

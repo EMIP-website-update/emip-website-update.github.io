@@ -13,6 +13,17 @@
     });
   }
 
+  // Year list on workshop pages: folds behind a button on small screens.
+  var yearToggle = document.querySelector(".year-toggle");
+  var yearList = document.getElementById("year-list");
+  if (yearToggle && yearList) {
+    yearToggle.addEventListener("click", function () {
+      var open = yearToggle.getAttribute("aria-expanded") === "true";
+      yearToggle.setAttribute("aria-expanded", String(!open));
+      yearList.classList.toggle("is-open", !open);
+    });
+  }
+
   // Scanpath: replays the recorded fixations in real time once the figure is on screen.
   var fig = document.querySelector("[data-scanpath]");
   if (!fig) return;

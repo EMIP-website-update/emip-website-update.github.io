@@ -30,8 +30,9 @@
       {%- endfor -%}
     </ul>
     {%- endif -%}
-    <p class="rail-label">All workshops</p>
-    <ul class="year-list">
+    <p class="rail-label year-label">All workshops</p>
+    <button class="year-toggle" type="button" aria-expanded="false" aria-controls="year-list">All workshops</button>
+    <ul class="year-list" id="year-list">
       {%- assign years = site.data.editions | reverse -%}
       {%- for e in years -%}
         {%- if e.in_year_list == false -%}{%- continue -%}{%- endif -%}
