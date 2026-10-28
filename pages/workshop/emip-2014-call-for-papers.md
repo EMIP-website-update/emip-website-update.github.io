@@ -29,4 +29,4 @@ Participants will delve into the data in order to identify and reflect on stages
 The workshop is kindly supported by SensoMotoric Instruments: [www.smivision.com/en.html](www.smivision.com/en.html)
 
 Details of the workshop outcomes can be found in:
-Busjahn, T.; Schulte, C.; Tamm, S.; Bednarik, R. (Eds.): [Eye Movements in Programming Education II: Analyzing the Novice’s Gaze](/emip-2014-technical-report/). Freie Universität Berlin, Department of Mathematics and Computer Science, Berlin, Germany, Technical Report TR-B-15-01, 2015.
+Busjahn, T.; Schulte, C.; Tamm, S.; Bednarik, R. (Eds.): [Eye Movements in Programming Education II: Analyzing the Novice’s Gaze](/workshop/emip-2014-technical-report/). Freie Universität Berlin, Department of Mathematics and Computer Science, Berlin, Germany, Technical Report TR-B-15-01, 2015.
