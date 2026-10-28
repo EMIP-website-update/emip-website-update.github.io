@@ -44,9 +44,9 @@ layout: default
       <div class="hero-variant" data-hero-variant="{{ key }}">
         <figure class="hero-photo">
           <div class="hero-photo__frame">
-            <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} 1400w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}{% if key != next.hero %} loading="lazy"{% endif %}>
+            <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}{% if key != next.hero %} loading="lazy"{% endif %}>
           </div>
-          <figcaption>{{ photo.caption }}, host city of {{ next.host }}. {% include photo-credit.html photo=photo %}</figcaption>
+          <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
         </figure>
       </div>
       {%- endfor -%}

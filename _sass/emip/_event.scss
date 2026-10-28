@@ -106,7 +106,6 @@
 .hero-variant { display: none; }
 html:not([data-hero]) .hero-variant[data-hero-variant="photo"],
 html[data-hero="photo"] .hero-variant[data-hero-variant="photo"],
-html[data-hero="photo-alt"] .hero-variant[data-hero-variant="photo-alt"],
 html[data-hero="gaze"] .hero-variant[data-hero-variant="gaze"],
 html[data-hero="venue-gaze"] .hero-variant[data-hero-variant="venue-gaze"] { display: block; }
 

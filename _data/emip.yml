@@ -21,30 +21,20 @@ submit_url:
 program_url:
 note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call for papers will be posted on this page.
 
-# Picture beside the title: photo | photo-alt | gaze | venue-gaze.
+# Picture beside the title: photo | gaze | venue-gaze.
 # Reviewers can try the others with ?hero=gaze and so on.
 hero: photo
 photos:
+  # Add `credit`, `source`, `license` and `license_url` for a photo whose license asks for
+  # credit (e.g. CC BY); they are then shown under it.
   photo:
-    src: /images/venues/2027-pamplona-kiosco-1400.jpg
-    small: /images/venues/2027-pamplona-kiosco-800.jpg
-    alt: The domed bandstand in Plaza del Castillo, Pamplona, under a blue sky, with apartment buildings around the square
+    src: /images/venues/2027-pamplona-castillo-1600.jpg
+    width: 1600
+    small: /images/venues/2027-pamplona-castillo-800.jpg
+    alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
     caption: Plaza del Castillo, Pamplona
-    credit: Giorgio Galeotti
-    source: https://commons.wikimedia.org/wiki/File:Kiosco_of_Plaza_del_Castillo_-_Pamplona,_Spain_-_July_17,_2024.jpg
-    license: CC BY-SA 4.0
-    license_url: https://creativecommons.org/licenses/by-sa/4.0/
-    position: 50% 62%
-  photo-alt:
-    src: /images/venues/2027-pamplona-facades-1400.jpg
-    small: /images/venues/2027-pamplona-facades-800.jpg
-    alt: Colourful façades with balconies around Plaza del Castillo, Pamplona, on a cloudy day
-    caption: Plaza del Castillo, Pamplona
-    credit: Krzysztof Golik
-    source: https://commons.wikimedia.org/wiki/File:Plaza_del_Castillo_in_Pamplona_(3).jpg
-    license: CC BY-SA 4.0
-    license_url: https://creativecommons.org/licenses/by-sa/4.0/
-    position: 50% 50%
+    # Public domain (CC0) by Zarateman, so no credit is required:
+    # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
 
 # Important dates, in order. All deadlines are Anywhere on Earth.
 dates:
