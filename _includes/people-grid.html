@@ -5,7 +5,8 @@
     {%- if p.photo -%}
       <img class="person__photo" src="{{ p.photo | relative_url }}" alt="" width="240" height="240" loading="lazy">
     {%- else -%}
-      <span class="person__photo person__photo--initials" aria-hidden="true">{{ p.initials }}</span>
+      {%- assign names = p.name | split: ' ' -%}
+      <span class="person__photo person__photo--initials" aria-hidden="true">{{ p.initials | default: names.first | slice: 0 }}{% unless p.initials %}{{ names.last | slice: 0 }}{% endunless %}</span>
     {%- endif -%}
     <span class="person__name">{% if p.url %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</span>
     {%- if p.affiliation -%}<span class="person__affiliation">{{ p.affiliation }}</span>{%- endif -%}

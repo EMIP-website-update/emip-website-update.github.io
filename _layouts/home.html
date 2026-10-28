@@ -100,9 +100,25 @@ layout: default
   <section class="event-section" id="organizers" aria-labelledby="organizers-title">
     <h2 class="event-section__head" id="organizers-title">Organizers</h2>
     <div class="event-section__body">
+      {%- if next.organizers -%}
+      {% include people-grid.html people=next.organizers %}
+      {%- else -%}
       <p class="event-note event-note--top">The steering committee is shown until the {{ next.year }} organizers are announced.</p>
       {% include people-grid.html %}
+      {%- endif -%}
+      {%- if next.program_committee -%}
+      <h3 class="event-subhead">Program committee</h3>
+      <ul class="pc-list">
+        {%- for m in next.program_committee -%}<li>{{ m }}</li>{%- endfor -%}
+      </ul>
+      {%- else -%}
       <p class="event-pc"><strong>Program committee:</strong> to be announced.</p>
+      {%- endif -%}
+      {%- if next.organizers -%}
+      <p class="event-steering">Steering committee:
+        {% for p in site.data.steering %}{% if p.url %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+      </p>
+      {%- endif -%}
     </div>
   </section>
 

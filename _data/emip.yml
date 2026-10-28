@@ -36,6 +36,12 @@ photos:
     # Public domain (CC0) by Zarateman, so no credit is required:
     # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
 
+# Workshop organizers (name, affiliation, url, photo) and program committee
+# ("Name, Affiliation" lines). Until organizers are set, the homepage shows the
+# steering committee (_data/steering.yml); until the committee is set, "to be announced".
+organizers:
+program_committee:
+
 # Important dates, in order. All deadlines are Anywhere on Earth.
 dates:
   - label: Paper submission
