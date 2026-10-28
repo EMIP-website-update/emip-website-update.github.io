@@ -1,21 +1,22 @@
-<div class="page__footer-follow">
-  <ul class="social-icons">
-    {% if site.data.ui-text[site.locale].follow_label %}
-      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
-    {% endif %}
-
-    {% if site.footer.links %}
-      {% for link in site.footer.links %}
-        {% if link.label and link.url %}
-          <li><a href="{{ link.url }}" rel="nofollow noopener noreferrer"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-
-    {% unless site.atom_feed.hide %}
-      <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
-    {% endunless %}
-  </ul>
-</div>
-
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__about">
+      <strong>EMIP</strong> is the International Workshop on Eye Movements in Programming, held since 2013.
+      It is run by its <a href="{{ '/organizers/' | relative_url }}">steering committee</a> and supported by its <a href="{{ '/sponsors/' | relative_url }}">sponsors</a>.
+    </p>
+    <ul class="site-footer__links">
+      {%- for link in site.footer.links -%}
+        {%- if link.label and link.url -%}
+        <li><a href="{{ link.url }}" rel="noopener">{{ link.label }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- unless site.atom_feed.hide -%}
+        <li><a href="{{ site.atom_feed.path | default: '/feed.xml' | relative_url }}">RSS feed</a></li>
+      {%- endunless -%}
+      {%- if site.repository -%}
+        <li><a href="https://github.com/{{ site.repository }}">Site source</a></li>
+      {%- endif -%}
+    </ul>
+    <p class="site-footer__copy">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</p>
+  </div>
+</footer>

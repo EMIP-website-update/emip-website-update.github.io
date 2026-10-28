@@ -1,22 +1,88 @@
 ---
-layout: archive
+layout: default
 ---
+{%- assign next = site.data.emip -%}
+<div class="wrap home">
 
-{{ content }}
+  <section class="home-intro" aria-labelledby="home-title">
+    <div class="home-intro__text">
+      <p class="home-intro__series">International workshop series, since 2013</p>
+      <h1 id="home-title" class="home-intro__title">Eye Movements in Programming</h1>
+      <div class="home-intro__lede">
+        {{ content }}
+      </div>
+      <p class="home-intro__next">
+        Next: <a href="{{ next.url | relative_url }}">EMIP {{ next.year }}</a>
+        with {{ next.host }} in {{ next.place }}{% if next.host_dates %}, {{ next.host_dates }}{% endif %}.
+      </p>
+    </div>
+    <div class="home-intro__figure">
+      {% include scanpath.html %}
+    </div>
+  </section>
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+  <section class="home-section" aria-labelledby="next-title">
+    <h2 class="home-section__head" id="next-title">Next workshop</h2>
+    <div class="home-section__body">
+      <h3 class="edition-title">
+        <a href="{{ next.url | relative_url }}">EMIP {{ next.year }}</a>
+        <span>The {{ next.ordinal }} International Workshop on Eye Movements in Programming</span>
+      </h3>
+      <dl class="facts">
+        {%- if next.host -%}
+        <div><dt>Held with</dt><dd>{% if next.host_url %}<a href="{{ next.host_url }}">{{ next.host }}</a>{% else %}{{ next.host }}{% endif %}{% if next.host_name %}, the {{ next.host_name }}{% endif %}</dd></div>
+        {%- endif -%}
+        {%- if next.place -%}<div><dt>Place</dt><dd>{{ next.place }}</dd></div>{%- endif -%}
+        {%- if next.host_dates -%}<div><dt>Conference</dt><dd>{{ next.host_dates }}</dd></div>{%- endif -%}
+        {%- if next.workshop_date -%}<div><dt>Workshop day</dt><dd>{{ next.workshop_date }}</dd></div>{%- endif -%}
+        {%- if next.paper_deadline -%}<div><dt>Paper deadline</dt><dd>{{ next.paper_deadline }}</dd></div>{%- endif -%}
+        <div><dt>Call for papers</dt><dd>{% if next.cfp_url %}<a href="{{ next.cfp_url | relative_url }}">Read the call</a>{% else %}To be announced{% endif %}</dd></div>
+        {%- if next.program_url -%}<div><dt>Program</dt><dd><a href="{{ next.program_url | relative_url }}">See the program</a></dd></div>{%- endif -%}
+      </dl>
+      {%- if next.note -%}<p class="home-note">{{ next.note }}</p>{%- endif -%}
+      {%- if next.previous -%}
+      <p class="home-previous">
+        Last edition: <a href="{{ next.previous.url | relative_url }}">EMIP {{ next.previous.year }}</a>,
+        {{ next.previous.host }} in {{ next.previous.place }}{% if next.previous.papers %}, with {{ next.previous.papers }} accepted papers{% endif %}.
+        {%- if next.previous.program_url %} <a href="{{ next.previous.program_url | relative_url }}">Program</a>.{% endif %}
+      </p>
+      {%- endif -%}
+    </div>
+  </section>
 
-{% if paginator %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
-{% endif %}
+  <section class="home-section" aria-labelledby="data-title">
+    <h2 class="home-section__head" id="data-title">The EMIP dataset</h2>
+    <div class="home-section__body">
+      <p class="home-section__lede">
+        Labs around the world ran the same code-reading experiment on loaned SMI eye trackers
+        and pooled the recordings into one open dataset. Programmers read two short programs,
+        <em>Rectangle</em> and <em>Vehicle</em>, in Java, Python or Scala, and answered a comprehension question about each.
+      </p>
+      <dl class="facts facts--compact">
+        <div><dt>Participants</dt><dd>269 recorded, 15 excluded</dd></div>
+        <div><dt>Tracker</dt><dd>SMI RED250 mobile, 250&nbsp;Hz</dd></div>
+        <div><dt>Stimuli</dt><dd>2 programs in 3 languages</dd></div>
+        <div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></dd></div>
+      </dl>
+      <ul class="link-row">
+        <li><a href="{{ '/dataset/' | relative_url }}">Dataset</a></li>
+        <li><a href="{{ '/corrected-dataset/' | relative_url }}">Corrected dataset and EMIP Toolkit</a></li>
+        <li><a href="{{ '/stimulus-material/' | relative_url }}">Stimulus material</a></li>
+        <li><a href="{{ '/participating-labs/' | relative_url }}">Participating labs</a></li>
+      </ul>
+      <p class="cite">
+        Bednarik, R., Busjahn, T., Gibaldi, A., et al. (2020). EMIP: The eye movements in programming dataset.
+        <em>Science of Computer Programming</em>, 198, 102520.
+        <a href="https://doi.org/10.1016/j.scico.2020.102520">doi:10.1016/j.scico.2020.102520</a>
+      </p>
+    </div>
+  </section>
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% include archive-single.html type=entries_layout %}
-  {% endfor %}
+  <section class="home-section" aria-labelledby="archive-title">
+    <h2 class="home-section__head" id="archive-title">Workshops since 2013</h2>
+    <div class="home-section__body">
+      {% include editions-table.html %}
+    </div>
+  </section>
+
 </div>
-
-{% include paginator.html %}

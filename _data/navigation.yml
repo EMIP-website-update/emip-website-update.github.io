@@ -1,11 +1,11 @@
-# main links
+# Main menu (top of every page). "short" is the label shown in the menu;
+# "title" is kept for the section rail beside pages.
 main:
-  - title: "EMIP 2026 Workshop"
-    url: /workshop/emip-2026/
-    children:
-      - title: "Program"
-        url: /workshop/emip-2026-program/
+  - title: "EMIP 2027 Workshop"
+    short: "EMIP 2027"
+    url: /workshop/emip-2027/
   - title: "Previous Workshops"
+    short: "Past workshops"
     url: /workshop/previous-workshops/
     children:
     - title: "EMIP 2013 Workshop"
@@ -32,7 +32,10 @@ main:
       url: /workshop/emip-2024/
     - title: "EMIP 2025 Workshop"
       url: /workshop/emip-2025/
+    - title: "EMIP 2026 Workshop"
+      url: /workshop/emip-2026/
   - title: "Distributed Data Collection"
+    short: "Dataset"
     url: /distributed-data-collection/
     children:
     - title: "Call for Contributions"
@@ -92,6 +95,8 @@ previous-workshops:
     url: /workshop/emip-2024/
   - title: "EMIP 2025 Workshop"
     url: /workshop/emip-2025/
+  - title: "EMIP 2026 Workshop"
+    url: /workshop/emip-2026/
 
 emip-2013:
   - title: "EMIP 2013 Workshop"
@@ -525,3 +530,8 @@ emip-2026:
     children:
       - title: "Program"
         url: /workshop/emip-2026-program/
+
+emip-2027:
+  - title: "EMIP 2027 Workshop"
+    url: /workshop/emip-2027/
+    children: []

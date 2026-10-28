@@ -1,0 +1,14 @@
+{%- assign people = include.people | default: site.data.steering -%}
+<ul class="people">
+  {%- for p in people -%}
+  <li class="person">
+    {%- if p.photo -%}
+      <img class="person__photo" src="{{ p.photo | relative_url }}" alt="" width="240" height="240" loading="lazy">
+    {%- else -%}
+      <span class="person__photo person__photo--initials" aria-hidden="true">{{ p.initials }}</span>
+    {%- endif -%}
+    <span class="person__name">{% if p.url %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</span>
+    {%- if p.affiliation -%}<span class="person__affiliation">{{ p.affiliation }}</span>{%- endif -%}
+  </li>
+  {%- endfor -%}
+</ul>

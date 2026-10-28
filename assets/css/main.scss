@@ -1,8 +1,15 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+# EMIP theme. Partials live in _sass/emip/.
 ---
 
 @charset "utf-8";
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
+@import "emip/fonts";
+@import "emip/base";
+@import "emip/masthead";
+@import "emip/page";
+@import "emip/prose";
+@import "emip/home";
+@import "emip/scanpath";
+@import "emip/people";
+@import "emip/footer";

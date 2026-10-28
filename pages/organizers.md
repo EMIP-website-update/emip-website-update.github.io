@@ -7,10 +7,6 @@ sidebar:
   nav: "main"
 ---
 
-**EMIP Steering Committee** (in alphabetical order)
+The EMIP steering committee, in alphabetical order. Each year's workshop organizers and program committee are listed on that [workshop's page](/workshop/previous-workshops/).
 
-|                                                                                                                                  |                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| <img src="/images/portraits/naser_square.JPG" width="250"><br>**[Naser Al Madi](https://www.cs.colby.edu/nsalmadi)** | <img src="/images/portraits/RB_2016-cropped.png" width="250"><br>**[Roman Bednarik](http://cs.uef.fi/~rbednari/)** |
-| <img src="/images/portraits/headshot-2018-lores-cropped.png" width="250"><br>**[Andrew Begel](http://andrewbegel.com/)**         | <br>**[Teresa Busjahn](https://www.htw-berlin.de/hochschule/personen/person/?eid=12337)**                          |
-| <img src="/images/portraits/np.jpeg" width="250"><br>**[Norman Peitek](https://peitek.com/)**                                    | <img src="/images/portraits/9JQAaVqP_400x400.jpg" width="250"><br>**[Bonita Sharif](https://www.shbonita.me/)**    |
+{% include people-grid.html %}

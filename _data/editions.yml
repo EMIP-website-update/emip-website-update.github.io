@@ -1,0 +1,112 @@
+# Every EMIP workshop, newest first. Used by the homepage, the
+# Previous Workshops page and the year list beside each workshop page.
+# Add next year's workshop at the top.
+
+- year: 2027
+  ordinal: Fifteenth
+  with: ETRA 2027
+  place: Pamplona, Spain
+  date: June 2027
+  url: /workshop/emip-2027/
+  status: planned
+
+- year: 2026
+  ordinal: Fourteenth
+  with: ETRA 2026
+  place: Marrakech, Morocco
+  date: June 1, 2026
+  url: /workshop/emip-2026/
+
+- year: 2025
+  ordinal: Thirteenth
+  with: ETRA 2025
+  place: Tokyo, Japan
+  date: May 26, 2025
+  url: /workshop/emip-2025/
+
+- year: 2024
+  ordinal: Twelfth
+  with: ETRA 2024
+  place: Glasgow, United Kingdom
+  date: June 7, 2024
+  url: /workshop/emip-2024/
+
+- year: 2023
+  ordinal: Eleventh
+  with: ETRA 2023
+  place: Tübingen, Germany, and online
+  date: June 2, 2023
+  url: /workshop/emip-2023/
+
+- year: 2022
+  ordinal: Tenth
+  with: ICSE 2022
+  place: Online
+  date: May 18, 2022
+  url: /workshop/emip-2022/
+
+- year: 2021
+  title: Best Practice Stimulus Design
+  with: Hands-on workshop
+  place: Online
+  date: Nov 29 – Dec 3, 2021
+  url: /emip-2021-ii/
+  in_year_list: false
+
+- year: 2021
+  ordinal: Eighth
+  with: ETRA 2021
+  place: Online
+  date: May 27, 2021
+  url: /workshop/emip-2021/
+
+- year: 2020
+  ordinal: Seventh
+  with: ETRA 2020
+  place: Stuttgart, Germany
+  date: June 2, 2020
+  url: /workshop/emip-2020/
+
+- year: 2019
+  ordinal: Sixth
+  with: ICSE 2019
+  place: Montréal, Canada
+  date: May 27, 2019
+  url: /workshop/emip-2019/
+
+- year: 2018
+  ordinal: Fifth
+  with: ETRA 2018
+  place: Warsaw, Poland
+  date: June 17, 2018
+  url: /workshop/emip-2018/
+
+- year: 2017
+  ordinal: Fourth
+  title: Spring Academy
+  place: Freie Universität Berlin, Germany
+  date: March 16–17, 2017
+  url: /workshop/emip-2017/
+
+- year: 2015
+  ordinal: Third
+  title: Models to Data
+  place: University of Eastern Finland, Joensuu
+  date: November 22–24, 2015
+  url: /workshop/emip-2015/
+
+- year: 2014
+  ordinal: Second
+  title: Analyzing the Novice’s Gaze
+  with: WiPSCE 2014
+  place: Freie Universität Berlin, Germany
+  date: November 7–8, 2014
+  url: /workshop/emip-2014/
+
+- year: 2013
+  ordinal: First
+  title: Analyzing the Expert’s Gaze
+  with: Koli Calling 2013
+  place: University of Eastern Finland
+  date: November 13–14, 2013
+  url: /workshop/emip-2013/

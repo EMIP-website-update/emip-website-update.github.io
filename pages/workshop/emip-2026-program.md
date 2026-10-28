@@ -7,13 +7,12 @@ sidebar:
   nav: "emip-2026"
 ---
 
-The Fourteenth International Workshop on Eye Movements in Programming 2026 will be held on June 1st, 2026. It is co-located with the [2026 ACM Symposium of Eye Tracking Research & Applications (ETRA)](http://etra.acm.org/2026/) in Marrakech, Morocco.
+The Fourteenth International Workshop on Eye Movements in Programming 2026 was held on June 1st, 2026. It was co-located with the [2026 ACM Symposium of Eye Tracking Research & Applications (ETRA)](http://etra.acm.org/2026/) in Marrakech, Morocco.
 
 Please check our [call for papers](/workshop/emip-2026/)!
 
 ## EMIP 2026 Schedule
 
-Program is subject to change!
 
 | WEST (Local) | Event |
 | --- | --- | 

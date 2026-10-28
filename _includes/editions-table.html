@@ -1,0 +1,19 @@
+<table class="editions">
+  <thead>
+    <tr><th scope="col">Year</th><th scope="col">Workshop</th><th scope="col">Held with</th><th scope="col">Place</th></tr>
+  </thead>
+  <tbody>
+    {%- for e in site.data.editions -%}
+    <tr{% if e.status == 'planned' %} class="is-planned"{% endif %}>
+      <td class="editions__year"><a href="{{ e.url | relative_url }}">{{ e.year }}</a></td>
+      <td>
+        <a href="{{ e.url | relative_url }}">{% if e.ordinal %}{{ e.ordinal }} workshop{% else %}{{ e.title }}{% endif %}</a>
+        {%- if e.ordinal and e.title %}<span class="editions__theme">{{ e.title }}</span>{% endif -%}
+        {%- if e.status == 'planned' %}<span class="editions__status">planned</span>{% endif -%}
+      </td>
+      <td>{{ e.with }}</td>
+      <td>{{ e.place }}<span class="editions__date">{{ e.date }}</span></td>
+    </tr>
+    {%- endfor -%}
+  </tbody>
+</table>

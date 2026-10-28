@@ -1,0 +1,32 @@
+# EMIP steering committee, shown on /organizers/ in this order.
+# photo is optional; without one the page shows initials.
+
+- name: Naser Al Madi
+  url: https://www.cs.colby.edu/nsalmadi
+  affiliation: Colby College, USA
+  photo: /images/portraits/web/al-madi.jpg
+
+- name: Roman Bednarik
+  url: http://cs.uef.fi/~rbednari/
+  affiliation: University of Eastern Finland
+  photo: /images/portraits/web/bednarik.jpg
+
+- name: Andrew Begel
+  url: http://andrewbegel.com/
+  affiliation: Carnegie Mellon University, USA
+  photo: /images/portraits/web/begel.jpg
+
+- name: Teresa Busjahn
+  url: https://www.htw-berlin.de/hochschule/personen/person/?eid=12337
+  affiliation: HTW Berlin, Germany
+  initials: TB
+
+- name: Norman Peitek
+  url: https://peitek.com/
+  affiliation: Saarland University, Germany
+  photo: /images/portraits/web/peitek.jpg
+
+- name: Bonita Sharif
+  url: https://www.shbonita.me/
+  affiliation: University of Nebraska–Lincoln, USA
+  photo: /images/portraits/web/sharif.jpg

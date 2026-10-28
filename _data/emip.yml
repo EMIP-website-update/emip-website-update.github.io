@@ -1,0 +1,30 @@
+# The next (or current) workshop, shown on the homepage.
+# Update this file once a year. Leave a value empty to hide that row.
+
+year: 2027
+ordinal: Fifteenth
+url: /workshop/emip-2027/
+
+# planned  -> date and call not out yet
+# open     -> call for papers is open
+# program  -> program is published
+status: planned
+
+host: ETRA 2027
+host_name: ACM Symposium on Eye Tracking Research & Applications
+host_url: https://etra.acm.org/2027/
+place: Pamplona, Spain
+host_dates: June 7–10, 2027
+workshop_date: To be announced
+paper_deadline:
+cfp_url:
+program_url:
+note: The workshop day, call for papers and submission details will be posted here.
+
+previous:
+  year: 2026
+  url: /workshop/emip-2026/
+  program_url: /workshop/emip-2026-program/
+  host: ETRA 2026
+  place: Marrakech, Morocco
+  papers: 5

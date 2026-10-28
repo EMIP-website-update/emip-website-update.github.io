@@ -1,0 +1,159 @@
+/* Markdown content. Pages use "#" for their sections, so h1 inside
+   .prose is a section heading, not a second page title. */
+
+.prose { overflow-wrap: break-word; }
+.prose > :first-child { margin-top: 0; }
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose dl,
+.prose blockquote,
+.prose table,
+.prose pre,
+.prose figure {
+  margin: 0 0 1.1rem;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--serif);
+  color: var(--ink);
+  line-height: 1.25;
+  text-wrap: balance;
+  scroll-margin-top: 1.5rem;
+}
+
+.prose h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2.75rem 0 0.9rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+.prose h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 2.25rem 0 0.75rem;
+}
+.prose h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 1.75rem 0 0.5rem;
+}
+.prose h4 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  margin: 1.5rem 0 0.4rem;
+}
+
+.prose ul,
+.prose ol { padding-left: 1.3rem; }
+.prose li { margin-bottom: 0.35rem; }
+.prose li > p { margin-bottom: 0.4rem; }
+.prose ul { list-style: none; }
+.prose ul > li { position: relative; }
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0.78em;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--muted);
+}
+
+.prose strong { font-weight: 650; }
+.prose del { color: var(--muted); }
+
+.prose blockquote {
+  margin-left: 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+.prose img { display: block; margin-block: 0.5rem 1.25rem; }
+.prose img[style*="float"] { margin-block: 0.3rem 0.75rem; }
+.prose p > img { display: inline-block; margin: 0; }
+
+.prose iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  margin-bottom: 1.25rem;
+}
+
+/* Code */
+.prose code,
+.prose kbd {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--paper-2);
+  padding: 0.08em 0.3em;
+  border-radius: 2px;
+}
+.prose pre {
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  background: var(--paper-2);
+  border-left: 2px solid var(--rule);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+.prose .highlight { margin-bottom: 1.1rem; }
+.prose .highlight pre { margin: 0; }
+
+/* Tables read like a conference program: hairlines, no stripes. */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+.prose thead th {
+  text-align: left;
+  font-family: var(--serif);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1px solid var(--ink);
+  padding: 0.35rem 1rem 0.35rem 0;
+}
+.prose td {
+  vertical-align: top;
+  padding: 0.55rem 1rem 0.55rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.prose td:first-child { min-width: 7.5rem; }
+.prose td em { font-style: italic; }
+
+/* Some older pages put portraits inside a table: keep them tidy. */
+.prose td img { display: block; margin: 0 0 0.4rem; }
+
+.prose .people { margin-bottom: 1.5rem; padding-left: 0; }
+
+/* The workshop archive table keeps its own layout inside page content. */
+.prose .editions { display: table; width: 100%; font-size: 0.975rem; }
+.prose .editions td:first-child { min-width: 0; }
+@media (max-width: 40rem) {
+  .prose .editions { display: block; }
+}
