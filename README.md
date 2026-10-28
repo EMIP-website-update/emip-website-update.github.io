@@ -2,9 +2,11 @@
 
 Redesign drafts for [www.emipws.org](https://www.emipws.org). This repository is a fork of [EMIPws/emipws.github.io](https://github.com/EMIPws/emipws.github.io), the source of the live site.
 
-**Compare the drafts and give feedback: <https://emip-website-update.github.io/>**
+**The draft site: <https://emip-website-update.github.io/>** shows the chosen design, the [Event page](https://emip-website-update.github.io/event/) (`design/event`): one scrolling page about the next workshop, with the venue photo.
 
-**Chosen direction: [Event page](https://emip-website-update.github.io/event/)** (`design/event`), the homepage as the page of the next workshop on one scrolling page, with the venue photo.
+**Compare it with the current site and give feedback: <https://emip-website-update.github.io/compare/>**
+
+Earlier drafts (`design/editorial`, `design/one-page`) are kept as branches but no longer built; remove `"hidden": true` from [`design-notes.json`](design-notes.json) to show one again.
 
 ## Branches
 
@@ -14,7 +16,7 @@ Redesign drafts for [www.emipws.org](https://www.emipws.org). This repository is
 | `master` | The live site's source. Kept in sync with EMIPws/emipws.github.io; don't edit it here |
 | `design/<name>` | One design draft each, published at `https://emip-website-update.github.io/<name>/` |
 
-The compare page always shows the live site as **Current site**, built straight from EMIPws/emipws.github.io.
+The compare page always shows the live site as **Current site**, built straight from EMIPws/emipws.github.io. The design marked `"featured": true` in `design-notes.json` is also published at the site root.
 
 ## Adding a design
 
@@ -27,6 +29,7 @@ The compare page always shows the live site as **Current site**, built straight 
    If you start from `master` instead, copy `.github/workflows/preview.yml` over from `design/editorial`.
 2. Push the branch. About two minutes later it appears in the compare page's menus.
 3. Optionally give it a title and a one-line note in [`design-notes.json`](design-notes.json) on this branch.
+4. Release branches such as `release/event` are not built; they hold a design ready to propose to EMIPws/emipws.github.io.
 
 ## Feedback
 

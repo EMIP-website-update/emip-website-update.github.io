@@ -5,15 +5,17 @@
   },
   "editorial": {
     "title": "Editorial",
-    "note": "Printed-report look: Source Serif and IBM Plex, a data-driven homepage with an animated scanpath figure, section rails on inner pages."
+    "note": "Printed-report look: Source Serif and IBM Plex, a data-driven homepage with an animated scanpath figure, section rails on inner pages.",
+    "hidden": true
   },
   "one-page": {
     "title": "One page",
-    "note": "Editorial look, but the whole site scrolls on one page: the menu jumps to each section, long texts are folded, and each workshop year keeps its own page."
+    "note": "Editorial look, but the whole site scrolls on one page: the menu jumps to each section, long texts are folded, and each workshop year keeps its own page.",
+    "hidden": true
   },
   "event": {
-    "title": "Event page (chosen)",
-    "note": "Chosen direction: the homepage is the 2027 workshop on one scrolling page, with the Pamplona photo, call for papers, dates, submission and organizers, then the dataset and past workshops.",
+    "title": "Event page",
+    "note": "The chosen design: one scrolling page about the 2027 workshop, with the Plaza del Castillo photo.",
     "featured": true
   }
 }

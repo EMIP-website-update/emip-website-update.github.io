@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>EMIP Website Drafts</title>
-<link rel="icon" href="current/images/EMIP_Icon_2021_transparent.png">
+<link rel="icon" href="/current/images/EMIP_Icon_2021_transparent.png">
 <style>
   :root {
     --paper: #fbfaf7; --paper-2: #f3f1ec; --ink: #1b1d22; --ink-2: #464a53; --muted: #6c6f77;
@@ -326,7 +326,7 @@
   $("copy").addEventListener("click", async () => {
     const f = feedback();
     if (!check(f)) return;
-    const text = `EMIP website drafts: ${location.origin}/\n\nPreferred design: ${f.preferred}\n${f.page ? `Page: ${f.page}\n` : ""}\n${f.comments}\n`;
+    const text = `EMIP website drafts: ${location.origin}/compare/\n\nPreferred design: ${f.preferred}\n${f.page ? `Page: ${f.page}\n` : ""}\n${f.comments}\n`;
     try {
       await navigator.clipboard.writeText(text);
       $("status").textContent = "Copied. Paste it into an email.";
@@ -370,7 +370,7 @@
 
   $("feedback-open").addEventListener("click", openFeedback);
 
-  fetch("designs.json")
+  fetch("/designs.json")
     .then((r) => r.json())
     .then((cfg) => {
       repo = cfg.repo;

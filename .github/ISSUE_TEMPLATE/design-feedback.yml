@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Compare the designs at https://emip-website-update.github.io/ first. Everyone on the review can read this issue.
+        Compare the designs at https://emip-website-update.github.io/compare/ first. Everyone on the review can read this issue.
   - type: input
     id: preferred
     attributes:

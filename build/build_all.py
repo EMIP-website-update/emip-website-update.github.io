@@ -4,8 +4,9 @@
 Each version is built with Jekyll the way GitHub Pages builds www.emipws.org,
 then moved under /<slug>/: root-relative links are rewritten, search engines
 are told not to index it, and a small "draft preview" badge is added. The
-compare page from site/ goes at the root, with designs.json describing every
-version.
+featured design (design-notes.json) is also published at the site root, the
+compare page from site/ goes to /compare/, and designs.json describes every
+version. Designs marked "hidden" are not built.
 
 Run from the root of a checkout of the `previews` branch:
 
@@ -92,36 +93,36 @@ def prefix_srcset(match, base):
     return match.group(1) + match.group(2) + ", ".join(parts) + match.group(2)
 
 
-def move_under(dest, version):
-    """Rewrite a site built for "/" so it works from /<slug>/."""
-    base = f"/{version['slug']}/"
+def move_under(dest, version, base):
+    """Prepare a site built for "/" to be served from `base` ("/" or "/<slug>/")."""
     badge = (f'<script src="/_hub/badge.js" data-design="{html.escape(version["slug"])}" '
-             f'data-title="{html.escape(version["title"])}" defer></script>')
+             f'data-base="{base.rstrip("/")}" data-title="{html.escape(version["title"])}" defer></script>')
     (dest / "CNAME").unlink(missing_ok=True)
     for path in dest.rglob("*"):
         if path.suffix not in (".html", ".css"):
             continue
         text = path.read_text(encoding="utf-8", errors="surrogateescape")
-        text = ATTR.sub(lambda m: m.group(1) + base, text)
-        text = SRCSET.sub(lambda m: prefix_srcset(m, base), text)
-        text = CSS_URL.sub(lambda m: m.group(1) + base, text)
-        text = REFRESH.sub(lambda m: m.group(1) + base, text)
+        if base != "/":
+            text = ATTR.sub(lambda m: m.group(1) + base, text)
+            text = SRCSET.sub(lambda m: prefix_srcset(m, base), text)
+            text = CSS_URL.sub(lambda m: m.group(1) + base, text)
+            text = REFRESH.sub(lambda m: m.group(1) + base, text)
         if path.suffix == ".html":
             text = HEAD.sub(lambda m: m.group(0) + '<meta name="robots" content="noindex, nofollow">', text, count=1)
             text = BODY_END.sub(lambda m: badge + m.group(0), text, count=1)
         path.write_text(text, encoding="utf-8", errors="surrogateescape")
 
 
-def broken_links(dest, slug):
-    """Internal links that point at nothing, as (page, target) pairs."""
+def broken_links(pages, prefix):
+    """Links starting with `prefix` in the pages under `pages` that point at nothing in _out/."""
     missing = set()
-    for page in dest.rglob("*.html"):
+    for page in pages.rglob("*.html"):
         for target in LINK.findall(page.read_text(encoding="utf-8", errors="replace")):
-            if not target.startswith(f"/{slug}/"):
+            if not target.startswith(prefix):
                 continue
             local = OUT / target.lstrip("/")
             if not (local.is_file() or (local / "index.html").is_file() or local.with_suffix(".html").is_file()):
-                missing.add((str(page.relative_to(OUT)), target))
+                missing.add((str(page.relative_to(pages)), target))
     return sorted(missing)
 
 
@@ -141,6 +142,8 @@ def main():
         if args.only and version["slug"] != args.only:
             continue
         note = notes.get(version["slug"], {})
+        if note.get("hidden"):
+            continue
         version["title"] = note.get("title") or version["slug"].replace("-", " ").capitalize()
         version["note"] = note.get("note", "")
         version["featured"] = bool(note.get("featured"))
@@ -148,17 +151,31 @@ def main():
         src = checkout(version)
         dest = OUT / version["slug"]
         jekyll(src, dest)
-        move_under(dest, version)
+        move_under(dest, version, f"/{version['slug']}/")
         version["url"] = f"/{version['slug']}"
         version.pop("remote")
         built.append(version)
 
+    # The featured design also opens at the site root, so the address shows the site itself.
+    featured = next((v for v in built if v["featured"]), None)
+    root_build = ROOT / "_root"
+    if featured:
+        print(f"\n== {featured['title']} at the site root", flush=True)
+        if root_build.exists():
+            shutil.rmtree(root_build)
+        jekyll(SRC / featured["slug"], root_build)
+        move_under(root_build, featured, "/")
+        shutil.copytree(root_build, OUT, dirs_exist_ok=True)
+
     shutil.copytree(ROOT / "site", OUT, dirs_exist_ok=True)
     (OUT / "designs.json").write_text(json.dumps({"repo": REPO, "designs": built}, indent=2))
 
-    for version in built:
-        missing = broken_links(OUT / version["slug"], version["slug"])
-        print(f"{version['slug']}: {len(missing)} broken internal link(s)")
+    checks = [(v["slug"], OUT / v["slug"], f"/{v['slug']}/") for v in built]
+    if featured:
+        checks.append(("site root", root_build, "/"))
+    for name, pages, prefix in checks:
+        missing = broken_links(pages, prefix)
+        print(f"{name}: {len(missing)} broken internal link(s)")
         for page, target in missing[:15]:
             print(f"  {page} -> {target}")
     return 0

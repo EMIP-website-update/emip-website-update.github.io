@@ -1,15 +1,15 @@
-// Marks a draft page as a preview and links back to the compare page.
+// Marks a draft page as a preview and links to the compare page.
 // Hidden when the page is shown inside the compare page itself.
 (function () {
   var script = document.currentScript;
   if (!script || window.top !== window.self) return;
   var slug = script.getAttribute("data-design");
-  var title = script.getAttribute("data-title");
-  var path = location.pathname.slice(slug.length + 1) || "/";
+  var base = script.getAttribute("data-base") || "";
+  var path = location.pathname.slice(base.length) || "/";
 
   var badge = document.createElement("a");
-  badge.href = "/?b=" + encodeURIComponent(slug) + "&path=" + encodeURIComponent(path);
-  badge.textContent = "Draft preview: " + title + " · compare and give feedback";
+  badge.href = "/compare/?b=" + encodeURIComponent(slug) + "&path=" + encodeURIComponent(path);
+  badge.textContent = "Draft preview \u00b7 compare and give feedback";
   badge.setAttribute("style", [
     "position:fixed", "right:12px", "bottom:12px", "z-index:2147483647",
     "padding:6px 12px", "border-radius:999px", "background:#1b1d22", "color:#fbfaf7",
