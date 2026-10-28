@@ -6,5 +6,9 @@
   "editorial": {
     "title": "Editorial",
     "note": "Printed-report look: Source Serif and IBM Plex, a data-driven homepage with an animated scanpath figure, section rails on inner pages."
+  },
+  "one-page": {
+    "title": "One page",
+    "note": "Editorial look, but the whole site scrolls on one page: the menu jumps to each section, long texts are folded, and each workshop year keeps its own page."
   }
 }
