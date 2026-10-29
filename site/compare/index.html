@@ -4,390 +4,311 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>EMIP Website Drafts</title>
+<title>EMIP Website Review</title>
 <link rel="icon" href="/current/images/EMIP_Icon_2021_transparent.png">
 <style>
   :root {
     --paper: #fbfaf7; --paper-2: #f3f1ec; --ink: #1b1d22; --ink-2: #464a53; --muted: #6c6f77;
-    --rule: #d8d3c8; --accent: #2055a0; --accent-wash: #e6eef8;
+    --rule: #d8d3c8; --accent: #2055a0; --accent-ink: #083262; --accent-wash: #e6eef8;
     --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
-  body { display: flex; flex-direction: column; background: var(--paper-2); color: var(--ink); font: 14px/1.45 var(--sans); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); }
   a { color: var(--accent); }
-  input, select, button, textarea { font: inherit; color: inherit; }
-  input, select, textarea { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; }
-  button { cursor: pointer; background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.65rem; }
+  button { font: inherit; color: inherit; cursor: pointer; background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 0.35rem 0.75rem; }
   button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  button.primary { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; font-weight: 600; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.6rem 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
-  header h1 { margin: 0 0.5rem 0 0; font-size: 15px; font-weight: 600; }
-  .group { display: flex; align-items: center; gap: 0.35rem; }
-  .group > span { color: var(--muted); }
-  #path { width: 15rem; font-family: var(--mono); font-size: 13px; }
-  #feedback-open { margin-left: auto; }
-  .pages { display: flex; flex-wrap: wrap; gap: 0.2rem; padding: 0.35rem 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
-  .pages button { border: 0; background: none; color: var(--accent); padding: 0.15rem 0.45rem; }
-  .pages button.is-current { background: var(--paper-2); color: var(--ink); font-weight: 600; }
+  .top { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; padding: 0.7rem 1rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .top strong { font-size: 16px; }
+  .top .spacer { margin-left: auto; }
+  .wrap { max-width: 76rem; margin: 0 auto; padding: 0 1rem 4rem; }
+  section { padding-top: 2rem; }
+  h1, h2 { font-size: 20px; margin: 0 0 0.35rem; }
+  .lede { margin: 0 0 1.25rem; color: var(--ink-2); }
 
-  main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); min-height: 0; }
-  main.single { grid-template-columns: 1fr; }
-  .pane { display: flex; flex-direction: column; background: var(--paper-2); min-width: 0; min-height: 0; }
-  .pane__bar { padding: 0.4rem 0.75rem; background: var(--paper); border-bottom: 1px solid var(--rule); }
-  .pane__top { display: flex; align-items: center; gap: 0.5rem; }
-  .pane__top a { margin-left: auto; font-size: 12px; white-space: nowrap; }
-  .pane__note { margin: 0.25rem 0 0; color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .pane__stage { flex: 1; position: relative; overflow: hidden; }
-  .pane__stage iframe { position: absolute; top: 0; left: 50%; border: 0; background: #fff; transform-origin: top center; box-shadow: 0 0 0 1px var(--rule); }
-  .notice { margin: 0; padding: 0.35rem 1rem; color: var(--muted); font-size: 12px; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  /* Picture options */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 1.25rem; }
+  .card { margin: 0; display: flex; flex-direction: column; }
+  .card__frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; border: 1px solid var(--rule); }
+  .card__frame img, .card__frame > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .card__frame img { object-fit: cover; }
+  .card h3 { margin: 0.6rem 0 0.15rem; font-size: 16px; }
+  .card__badge { margin-left: 0.4rem; padding: 0.05rem 0.45rem; border-radius: 999px; background: var(--accent-wash); color: var(--accent-ink); font-size: 12px; font-weight: 500; vertical-align: 2px; }
+  .card p { margin: 0 0 0.6rem; font-size: 13px; color: var(--muted); }
+  .card p a { color: inherit; }
+  .card button { margin-top: auto; align-self: flex-start; }
 
-  dialog { width: min(40rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); padding: 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); }
+  /* Scanpaths: circles sized by duration, lines in viewing order, replayed in real time. */
+  .card--photo svg { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); }
+  .card--photo .scanpath__saccades line { stroke: #fff; stroke-opacity: 0.95; stroke-width: 3.5; }
+  .card--photo .scanpath__fixations circle { fill: var(--accent); fill-opacity: 0.5; stroke: #fff; stroke-width: 4; }
+  .card--code .card__frame { padding: 0.5rem; }
+  .card--code .card__frame > svg { position: static; }
+  .card--code .scanpath__code text { font-family: var(--mono); font-size: 16px; fill: #3b3e45; }
+  .card--code .scanpath__saccades line { stroke: var(--accent-ink); stroke-width: 1.3; stroke-opacity: 0.5; }
+  .card--code .scanpath__fixations circle { fill: var(--accent); fill-opacity: 0.16; stroke: var(--accent); stroke-width: 1.6; }
+  .card--code .scanpath__fixations text { font-size: 13px; font-weight: 600; fill: var(--accent-ink); text-anchor: middle; }
+  .playing .scanpath__fixations g { animation: appear 0.9s ease-out both; animation-delay: calc(var(--t) * 1ms); }
+  .playing .scanpath__fixations circle { transform-box: fill-box; transform-origin: center; animation: pop 0.9s ease-out both; animation-delay: inherit; }
+  .playing .scanpath__saccades line { animation: appear 0.25s linear both; animation-delay: calc(var(--t) * 1ms - 60ms); }
+  @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop { 0% { transform: scale(0.35); } 35%, 100% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .playing * { animation: none !important; } }
+
+  /* Current site and new site */
+  .controls { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; margin-bottom: 0.75rem; }
+  .group { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+  .group > span { color: var(--muted); margin-right: 0.15rem; }
+  .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .pane__bar { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
+  .pane__bar a { font-size: 13px; }
+  .pane__stage { position: relative; height: 70vh; min-height: 26rem; overflow: hidden; background: var(--paper-2); border: 1px solid var(--rule); }
+  .pane__stage iframe { position: absolute; top: 0; left: 50%; border: 0; background: #fff; transform-origin: top center; }
+  @media (max-width: 52rem) { .panes { grid-template-columns: 1fr; } }
+
+  /* Feedback */
+  .so-far ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+  dialog { width: min(34rem, calc(100vw - 2rem)); padding: 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); }
   dialog::backdrop { background: rgba(27, 29, 34, 0.35); }
   .dlg { padding: 1.25rem 1.5rem 1.5rem; }
-  .dlg h2 { margin: 0 0 0.25rem; font-size: 18px; }
-  .dlg > p { margin: 0 0 1rem; color: var(--ink-2); }
+  .dlg h2 { margin-bottom: 0.25rem; }
+  .dlg > p { margin: 0 0 1rem; color: var(--ink-2); font-size: 14px; }
   fieldset { margin: 0 0 1rem; padding: 0; border: 0; }
   legend { font-weight: 600; margin-bottom: 0.4rem; }
   .choices { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .choices label { display: flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.65rem; border: 1px solid var(--rule); border-radius: 999px; background: #fff; cursor: pointer; }
+  .choices label { display: flex; gap: 0.35rem; align-items: center; padding: 0.3rem 0.65rem; border: 1px solid var(--rule); border-radius: 999px; background: #fff; cursor: pointer; }
   .choices label:has(input:checked) { border-color: var(--accent); background: var(--accent-wash); }
-  .field { display: block; margin: 0 0 1rem; }
-  .field > span { display: block; font-weight: 600; margin-bottom: 0.35rem; }
-  .field textarea { width: 100%; min-height: 8rem; resize: vertical; }
-  .check { display: flex; gap: 0.5rem; align-items: baseline; margin: 0 0 1.25rem; color: var(--ink-2); }
-  .check code { font-family: var(--mono); font-size: 12px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; align-items: center; }
-  .actions .status { margin-right: auto; color: var(--muted); font-size: 12px; }
-  .so-far { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
-  .so-far h3 { margin: 0 0 0.5rem; font-size: 14px; }
-  .tally { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin: 0 0 0.75rem; padding: 0; list-style: none; }
-  .tally b { font-variant-numeric: tabular-nums; }
-  .recent { margin: 0; padding: 0; list-style: none; }
-  .recent li { padding: 0.45rem 0; border-top: 1px solid var(--paper-2); color: var(--ink-2); }
-  .recent .meta { color: var(--muted); font-size: 12px; }
-
-  @media (max-width: 52rem) {
-    main { grid-template-columns: 1fr; }
-    main > .pane:nth-child(2) { display: none; }
-    #single { display: none; }
-  }
+  textarea { width: 100%; min-height: 6rem; font: inherit; padding: 0.4rem 0.5rem; border: 1px solid var(--rule); border-radius: 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; align-items: center; margin-top: 1rem; }
+  .actions .status { margin-right: auto; color: var(--muted); font-size: 13px; }
 </style>
 </head>
 <body>
-<header>
-  <h1>EMIP website drafts</h1>
-  <div class="group">
-    <span>Page</span>
-    <input id="path" value="/" spellcheck="false" aria-label="Page to open in both designs">
-  </div>
-  <div class="group" role="group" aria-label="Screen width">
-    <span>Width</span>
-    <button data-width="1280" aria-pressed="true">Desktop</button>
-    <button data-width="820" aria-pressed="false">Tablet</button>
-    <button data-width="390" aria-pressed="false">Phone</button>
-  </div>
-  <button id="single" aria-pressed="false">One at a time</button>
+<header class="top">
+  <strong>EMIP website draft</strong>
+  <a href="/">Open the new site</a>
+  <span class="spacer"></span>
   <button id="feedback-open" class="primary">Give feedback</button>
 </header>
-<nav class="pages" id="pages" aria-label="Common pages"></nav>
-<p class="notice" id="notice" hidden></p>
-<main id="panes"></main>
+
+<main class="wrap">
+  <section>
+    <h1>1. Which picture should go at the top of the page?</h1>
+    <p class="lede">Each picture shows the gaze path the page replays when it loads. <button id="replay">Replay all</button></p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section>
+    <h2>2. Current site and new site, side by side</h2>
+    <div class="controls">
+      <div class="group" id="pages"><span>Page</span></div>
+      <div class="group" id="widths"><span>Screen</span></div>
+    </div>
+    <div class="panes" id="panes"></div>
+  </section>
+
+  <section class="so-far" id="so-far" hidden>
+    <h2>Feedback so far</h2>
+    <div id="tally"></div>
+  </section>
+</main>
 
 <dialog id="feedback" aria-labelledby="feedback-title">
   <form class="dlg" method="dialog">
     <h2 id="feedback-title">Give feedback</h2>
-    <p>Your feedback is posted as an issue on GitHub, where the other reviewers can read it. Posting needs a free GitHub account. Without one, use <em>Copy as text</em> and send it by email instead.</p>
+    <p>Your feedback is posted as an issue on GitHub, where the other reviewers can read it. Posting needs a free GitHub account; without one, use <em>Copy as text</em> and send it by email.</p>
     <fieldset>
-      <legend>Which design do you prefer overall?</legend>
+      <legend>Which picture do you like best?</legend>
       <div class="choices" id="choices"></div>
     </fieldset>
-    <label class="field">
-      <span>Comments</span>
-      <textarea id="comments" placeholder="What works, what doesn't, what's missing"></textarea>
-    </label>
-    <label class="check">
-      <input type="checkbox" id="mention-page" checked>
-      <span>Mention the page I'm looking at: <code id="page-label"></code></span>
-    </label>
+    <label for="comments"><strong>Anything else?</strong> (optional)</label>
+    <textarea id="comments" placeholder="What works, what doesn't, what's missing"></textarea>
     <div class="actions">
       <span class="status" id="status" role="status"></span>
       <button value="cancel" formnovalidate>Close</button>
       <button type="button" id="copy">Copy as text</button>
       <button type="button" id="submit" class="primary">Continue on GitHub</button>
     </div>
-    <section class="so-far" id="so-far" hidden>
-      <h3>Feedback so far</h3>
-      <ul class="tally" id="tally"></ul>
-      <ul class="recent" id="recent"></ul>
-    </section>
   </form>
 </dialog>
 
 <script>
-  // The ?hero= entries switch the homepage picture in designs that support it (Event page).
-  const PAGES = [
-    ["Home", "/"],
-    ["Home: gaze over venue", "/?hero=venue-gaze"],
-    ["Home: gaze on code", "/?hero=gaze"],
-    ["EMIP 2027", "/workshop/emip-2027/"],
-    ["EMIP 2026", "/workshop/emip-2026/"],
-    ["2026 program", "/workshop/emip-2026-program/"],
-    ["Past workshops", "/workshop/previous-workshops/"],
-    ["EMIP 2017", "/workshop/emip-2017/"],
-    ["Dataset", "/dataset/"],
-    ["Corrected dataset", "/corrected-dataset/"],
-    ["Resources", "/resources/"],
-    ["Organizers", "/organizers/"],
-    ["Sponsors", "/sponsors/"],
+  // Picture options. `gaze` is [x, y, milliseconds] in the photo's own pixels (w x h),
+  // placed by hand; D is a real recording from the EMIP dataset.
+  const PICTURES = [
+    { id: "A", title: "Café Iruña façade", current: true, src: "pictures/a-cafe-iruna.jpg", w: 1600, h: 1200,
+      note: "Plaza del Castillo, Pamplona. Public domain, no credit needed.",
+      gaze: [[828,112,260],[830,192,220],[835,375,300],[724,452,200],[835,600,280],[1228,668,240],[1478,508,220],[1176,914,380],[560,914,300],[694,1094,340],[806,1138,260],[340,648,220],[828,140,300]] },
+    { id: "B", title: "The bandstand", src: "pictures/b-bandstand.jpg", w: 1400, h: 1120,
+      note: 'Plaza del Castillo, Pamplona. Photo: <a href="https://commons.wikimedia.org/wiki/File:Kiosco_of_Plaza_del_Castillo_-_Pamplona,_Spain_-_July_17,_2024.jpg">Giorgio Galeotti</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (the site would show this credit).',
+      gaze: [[585,262,260],[590,470,340],[468,590,200],[760,600,240],[1240,440,300],[1300,620,280],[1030,900,420],[760,1000,260],[640,860,180],[130,650,220],[590,650,200],[580,320,380]] },
+    { id: "C", title: "Façades around the square", src: "pictures/c-facades.jpg", w: 1400, h: 873,
+      note: 'Plaza del Castillo, Pamplona. Photo: <a href="https://commons.wikimedia.org/wiki/File:Plaza_del_Castillo_in_Pamplona_(3).jpg">Krzysztof Golik</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (the site would show this credit).',
+      gaze: [[590,132,260],[548,262,300],[356,268,240],[205,528,300],[258,742,200],[850,568,260],[930,300,220],[1131,628,380],[1252,642,340],[1240,352,220],[1240,238,200],[590,150,300]] },
+    { id: "D", title: "Gaze on code", svg: "pictures/d-code.svg",
+      note: "No photo: a real recording from the EMIP dataset, participant 60 reading Rectangle.java." },
   ];
-  const WIDTH_NAMES = { 1280: "desktop", 820: "tablet", 390: "phone" };
-
+  const PAGES = [["Home", "/"], ["A past workshop", "/workshop/emip-2026/"], ["Dataset", "/dataset/"]];
+  const WIDTHS = [["Desktop", 1280], ["Phone", 390]];
+  const REPO = "EMIP-website-update/emip-website-update.github.io";
   const $ = (id) => document.getElementById(id);
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-  let repo = "";
-  let designs = [];
-  const state = { path: "/", width: 1280, single: false, a: "", b: "" };
+  // 1. Picture cards
 
-  try { Object.assign(state, JSON.parse(localStorage.getItem("emip-compare") || "{}")); } catch (e) {}
-  const params = new URLSearchParams(location.search);
-  if (params.get("path")) state.path = params.get("path");
-  if (params.get("a")) state.a = params.get("a");
-  if (params.get("b")) state.b = params.get("b");
-  if (params.get("w")) state.width = Number(params.get("w")) || state.width;
-
-  function remember() {
-    try { localStorage.setItem("emip-compare", JSON.stringify(state)); } catch (e) {}
-    const q = new URLSearchParams({ path: state.path, a: state.a, b: state.b, w: state.width });
-    history.replaceState(null, "", "?" + q);
+  function gazeSvg(p) {
+    let t = 0, lines = "", dots = "", prev = null;
+    for (const [x, y, ms] of p.gaze) {
+      if (prev) lines += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${x}" y2="${y}" style="--t:${t}"/>`;
+      dots += `<g style="--t:${t}"><circle cx="${x}" cy="${y}" r="${Math.round(ms / 12 + 14)}"/></g>`;
+      prev = [x, y];
+      t += ms + 40;
+    }
+    return `<svg viewBox="0 0 ${p.w} ${p.h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="scanpath__saccades">${lines}</g><g class="scanpath__fixations">${dots}</g></svg>`;
   }
 
-  const bySlug = (slug) => designs.find((d) => d.slug === slug);
-  const picks = () => (state.single ? [state.a] : [state.a, state.b]);
+  async function buildCards() {
+    for (const p of PICTURES) {
+      const card = document.createElement("figure");
+      card.className = "card " + (p.svg ? "card--code" : "card--photo");
+      const visual = p.svg ? await fetch(p.svg).then((r) => r.text()) : `<img src="${p.src}" alt="">${gazeSvg(p)}`;
+      card.innerHTML = `
+        <div class="card__frame">${visual}</div>
+        <h3>${p.id} · ${p.title}${p.current ? '<span class="card__badge">on the site now</span>' : ""}</h3>
+        <p>${p.note}</p>
+        <button type="button">I prefer ${p.id}</button>`;
+      card.querySelector("button").addEventListener("click", () => openFeedback(p.id));
+      $("cards").appendChild(card);
+    }
+    playAll();
+  }
 
-  function buildPanes() {
-    const panes = $("panes");
-    panes.innerHTML = "";
-    panes.classList.toggle("single", state.single);
-    picks().forEach((slug, i) => {
-      const pane = document.createElement("section");
-      pane.className = "pane";
-      pane.innerHTML = `
-        <div class="pane__bar">
-          <div class="pane__top">
-            <select aria-label="Design in pane ${i + 1}">${designs.map((d) =>
-              `<option value="${esc(d.slug)}"${d.slug === slug ? " selected" : ""}>${esc(d.title)}</option>`).join("")}</select>
-            <a target="_blank" rel="noopener">Open in new tab</a>
-          </div>
-          <p class="pane__note"></p>
-        </div>
-        <div class="pane__stage"><iframe title="Design preview ${i + 1}"></iframe></div>`;
-      pane.querySelector("select").addEventListener("change", (e) => {
-        state[i === 0 ? "a" : "b"] = e.target.value;
-        remember();
-        load();
-      });
-      pane.querySelector("iframe").addEventListener("load", (e) => followPane(e.target, i));
-      panes.appendChild(pane);
+  function playAll() {
+    document.querySelectorAll(".card__frame").forEach((f) => {
+      f.classList.remove("playing");
+      void f.offsetWidth; // restart the animations
+      f.classList.add("playing");
     });
-    load();
+  }
+  $("replay").addEventListener("click", playAll);
+
+  // 2. Current site and new site
+
+  let path = "/", width = 1280;
+
+  function buildPanes(designs) {
+    const current = designs.find((d) => d.slug === "current") || designs[0];
+    const fresh = designs.find((d) => d.featured) || designs[designs.length - 1];
+    $("panes").innerHTML = [["Current site", current], ["New site", fresh]].map(([label, d]) => `
+      <div class="pane" data-base="${d.url}">
+        <div class="pane__bar"><strong>${label}</strong><a target="_blank" rel="noopener">Open in a new tab</a></div>
+        <div class="pane__stage"><iframe title="${label}"></iframe></div>
+      </div>`).join("");
+    show();
   }
 
-  function load() {
-    $("path").value = state.path;
-    document.querySelectorAll(".pane").forEach((pane, i) => {
-      const d = bySlug(picks()[i]) || designs[0];
-      const src = d.url + state.path;
+  function show() {
+    document.querySelectorAll(".pane").forEach((pane) => {
+      const src = pane.dataset.base + path;
       const frame = pane.querySelector("iframe");
-      if (frame.dataset.src !== src) { frame.dataset.src = src; frame.src = src; }
-      pane.querySelector(".pane__top a").href = src;
-      const updated = d.date ? `Updated ${new Date(d.date).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : "";
-      const note = pane.querySelector(".pane__note");
-      note.innerHTML = [esc(d.note || ""), d.branch_url ? `<a href="${esc(d.branch_url)}" target="_blank" rel="noopener">${esc(updated || d.branch)}</a>` : ""]
-        .filter(Boolean).join(" · ");
-      note.title = d.subject || "";
+      if (frame.getAttribute("src") !== src) frame.setAttribute("src", src);
+      pane.querySelector(".pane__bar a").href = src;
     });
-    document.querySelectorAll("#pages button").forEach((b) => b.classList.toggle("is-current", b.dataset.path === state.path));
+    document.querySelectorAll("#pages button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.path === path));
+    document.querySelectorAll("#widths button").forEach((b) => b.setAttribute("aria-pressed", Number(b.dataset.width) === width));
     fit();
   }
 
-  // When someone clicks a link inside one design, open the same page in the other.
-  function followPane(frame, i) {
-    const d = bySlug(picks()[i]);
-    let p;
-    try { p = frame.contentWindow.location.pathname; } catch (e) { showNotice(true); return; }
-    const base = new URL(d.url + "/", location.href).pathname;
-    if (!p.startsWith(base)) return;
-    const rel = "/" + p.slice(base.length) + frame.contentWindow.location.search;
-    if (rel === state.path) return;
-    frame.dataset.src = d.url + rel;
-    state.path = rel;
-    remember();
-    load();
-  }
-
-  function showNotice(crossOrigin) {
-    const n = $("notice");
-    if (!crossOrigin || !n.hidden) return;
-    n.textContent = "Links clicked inside a pane only move that pane here; use the page box or the page list to move both.";
-    n.hidden = false;
-  }
-
-  // Draw each design at the chosen screen width, scaled down to fit its pane.
+  // Draw each site at the chosen screen width, scaled down to fit its pane.
   function fit() {
     document.querySelectorAll(".pane__stage").forEach((stage) => {
       const frame = stage.querySelector("iframe");
-      const scale = Math.min(1, stage.clientWidth / state.width);
-      frame.style.width = state.width + "px";
+      const scale = Math.min(1, stage.clientWidth / width);
+      frame.style.width = width + "px";
       frame.style.height = stage.clientHeight / scale + "px";
       frame.style.transform = `translateX(-50%) scale(${scale})`;
     });
   }
 
-  function setupControls() {
-    PAGES.forEach(([label, path]) => {
-      const b = document.createElement("button");
-      b.textContent = label;
-      b.dataset.path = path;
-      b.addEventListener("click", () => { state.path = path; remember(); load(); });
-      $("pages").appendChild(b);
-    });
-    $("path").addEventListener("change", () => {
-      let p = $("path").value.trim() || "/";
-      if (!p.startsWith("/")) p = "/" + p;
-      state.path = p;
-      remember();
-      load();
-    });
-    document.querySelectorAll("[data-width]").forEach((b) => {
-      b.setAttribute("aria-pressed", Number(b.dataset.width) === state.width);
-      b.addEventListener("click", () => {
-        state.width = Number(b.dataset.width);
-        document.querySelectorAll("[data-width]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-        remember();
-        fit();
-      });
-    });
-    $("single").setAttribute("aria-pressed", state.single);
-    $("single").addEventListener("click", () => {
-      state.single = !state.single;
-      $("single").setAttribute("aria-pressed", state.single);
-      remember();
-      buildPanes();
-    });
-    window.addEventListener("resize", fit);
-  }
+  PAGES.forEach(([label, p]) => {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.dataset.path = p;
+    b.addEventListener("click", () => { path = p; show(); });
+    $("pages").appendChild(b);
+  });
+  WIDTHS.forEach(([label, w]) => {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.dataset.width = w;
+    b.addEventListener("click", () => { width = w; show(); });
+    $("widths").appendChild(b);
+  });
+  window.addEventListener("resize", fit);
 
   // Feedback
 
-  const NO_PREF = "No preference yet";
+  const NO_PREF = "No preference";
 
-  function openFeedback() {
-    const shown = picks().map(bySlug).filter(Boolean);
-    $("choices").innerHTML = [...designs.map((d) => d.title), NO_PREF].map((title) =>
-      `<label><input type="radio" name="preferred" value="${esc(title)}"> ${esc(title)}</label>`).join("");
-    $("page-label").textContent = `${state.path} at ${WIDTH_NAMES[state.width] || state.width + "px"} width, comparing ${shown.map((d) => d.title).join(" and ")}`;
+  function openFeedback(pick) {
+    $("choices").innerHTML = [...PICTURES.map((p) => `${p.id} · ${p.title}`), NO_PREF].map((label) =>
+      `<label><input type="radio" name="picture" value="${label}"${label.startsWith(pick + " ") ? " checked" : ""}> ${label}</label>`).join("");
     $("status").textContent = "";
     $("feedback").showModal();
-    loadSoFar();
   }
+  $("feedback-open").addEventListener("click", () => openFeedback(""));
 
   function feedback() {
-    const preferred = (document.querySelector("input[name=preferred]:checked") || {}).value || "";
-    const comments = $("comments").value.trim();
-    const page = $("mention-page").checked ? $("page-label").textContent : "";
-    return { preferred, comments, page };
-  }
-
-  function check(f) {
-    if (!f.preferred) { $("status").textContent = "Pick a design first (or “No preference yet”)."; return false; }
-    if (!f.comments) { $("status").textContent = "Add a comment or two first."; $("comments").focus(); return false; }
-    return true;
+    const picture = (document.querySelector("input[name=picture]:checked") || {}).value || "";
+    if (!picture) $("status").textContent = "Pick a picture first (or “No preference”).";
+    return { picture, comments: $("comments").value.trim() };
   }
 
   $("submit").addEventListener("click", () => {
     const f = feedback();
-    if (!check(f)) return;
-    const q = new URLSearchParams({
-      template: "design-feedback.yml",
-      title: f.preferred === NO_PREF ? "Feedback: no preference yet" : `Feedback: prefers ${f.preferred}`,
-      preferred: f.preferred,
-      page: f.page,
-      comments: f.comments,
-    });
-    window.open(`https://github.com/${repo}/issues/new?${q}`, "_blank", "noopener");
+    if (!f.picture) return;
+    const q = new URLSearchParams({ template: "design-feedback.yml", title: `Feedback: ${f.picture}`, picture: f.picture, comments: f.comments });
+    window.open(`https://github.com/${REPO}/issues/new?${q}`, "_blank", "noopener");
     $("status").textContent = "Opened GitHub in a new tab. Press “Create” there to post it.";
   });
 
   $("copy").addEventListener("click", async () => {
     const f = feedback();
-    if (!check(f)) return;
-    const text = `EMIP website drafts: ${location.origin}/compare/\n\nPreferred design: ${f.preferred}\n${f.page ? `Page: ${f.page}\n` : ""}\n${f.comments}\n`;
+    if (!f.picture) return;
+    const text = `EMIP website draft: ${location.origin}/\n\nPicture I like best: ${f.picture}\n${f.comments ? "\n" + f.comments + "\n" : ""}`;
     try {
       await navigator.clipboard.writeText(text);
       $("status").textContent = "Copied. Paste it into an email.";
     } catch (e) {
-      $("status").textContent = "Couldn't reach the clipboard; select the comment text and copy it by hand.";
+      $("status").textContent = "Couldn't reach the clipboard; select your comment and copy it by hand.";
     }
   });
 
-  function section(body, label) {
-    const m = (body || "").match(new RegExp("### " + label + "\\s+([\\s\\S]*?)(?=\\n### |$)"));
-    const v = m ? m[1].trim() : "";
-    return v === "_No response_" ? "" : v;
-  }
-
-  let soFarLoaded = false;
-  async function loadSoFar() {
-    if (soFarLoaded || !repo) return;
+  // Count the picture choices in the feedback issues posted so far.
+  async function loadTally() {
     try {
-      const res = await fetch(`https://api.github.com/repos/${repo}/issues?labels=design-feedback&state=all&per_page=100`);
+      const res = await fetch(`https://api.github.com/repos/${REPO}/issues?labels=design-feedback&state=all&per_page=100`);
       if (!res.ok) return;
       const issues = (await res.json()).filter((i) => !i.pull_request);
-      soFarLoaded = true;
-      if (!issues.length) return;
       const counts = new Map();
-      issues.forEach((i) => {
-        const raw = section(i.body, "Preferred design");
-        const d = designs.find((x) => [x.title, x.slug].some((n) => n.toLowerCase() === raw.toLowerCase()));
-        const key = d ? d.title : raw || NO_PREF;
-        counts.set(key, (counts.get(key) || 0) + 1);
-      });
-      $("tally").innerHTML = [...counts].sort((a, b) => b[1] - a[1])
-        .map(([k, n]) => `<li>${esc(k)}: <b>${n}</b></li>`).join("");
-      $("recent").innerHTML = issues.slice(0, 6).map((i) => {
-        const text = section(i.body, "Comments");
-        return `<li>${esc(text.length > 180 ? text.slice(0, 180) + "…" : text)}
-          <div class="meta"><a href="${esc(i.html_url)}" target="_blank" rel="noopener">${esc(i.user.login)}, ${new Date(i.created_at).toLocaleDateString()}</a></div></li>`;
-      }).join("");
+      for (const i of issues) {
+        const m = (i.body || "").match(/### Preferred picture\s+([A-D]|No preference)/);
+        if (m) counts.set(m[1], (counts.get(m[1]) || 0) + 1);
+      }
+      if (!counts.size) return;
+      $("tally").innerHTML = `<ul>${[...counts].sort((a, b) => b[1] - a[1]).map(([k, n]) =>
+        `<li>${k === NO_PREF ? k : "Picture " + k}: ${n}</li>`).join("")}</ul>
+        <p><a href="https://github.com/${REPO}/issues?q=label%3Adesign-feedback">Read all feedback</a></p>`;
       $("so-far").hidden = false;
-    } catch (e) { /* the list is a bonus; the form works without it */ }
+    } catch (e) { /* the tally is a bonus; feedback works without it */ }
   }
 
-  $("feedback-open").addEventListener("click", openFeedback);
-
-  fetch("/designs.json")
-    .then((r) => r.json())
-    .then((cfg) => {
-      repo = cfg.repo;
-      designs = cfg.designs;
-      if (!bySlug(state.a)) state.a = (bySlug("current") || designs[0]).slug;
-      if (!bySlug(state.b) || state.b === state.a) {
-        // The featured (chosen) design first, otherwise the most recently updated one.
-        const others = designs.filter((d) => d.slug !== state.a).sort((x, y) => (y.date || "").localeCompare(x.date || ""));
-        state.b = (others.find((d) => d.featured) || others[0] || designs[0]).slug;
-      }
-      remember();
-      setupControls();
-      buildPanes();
-    })
-    .catch(() => {
-      $("panes").innerHTML = '<p class="notice">Couldn’t load the list of designs (designs.json).</p>';
-    });
+  buildCards();
+  fetch("/designs.json").then((r) => r.json()).then((cfg) => buildPanes(cfg.designs))
+    .catch(() => { $("panes").textContent = "Couldn’t load the list of sites (designs.json)."; });
+  loadTally();
 </script>
 </body>
 </html>
