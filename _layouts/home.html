@@ -37,11 +37,21 @@ layout: default
     </div>
 
     {%- assign photo = next.photo -%}
-    <figure class="hero-photo event-hero__visual">
+    <figure class="hero-photo event-hero__visual{% if photo.gaze %} gaze{% endif %}"{% if photo.gaze %} data-gaze{% endif %}>
       <div class="hero-photo__frame">
         <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}">
+        {%- if photo.gaze -%}
+          {%- comment -%} Each fixation is a circle sized by its duration, joined to the previous one by a saccade line; --t is when it appears (ms). {%- endcomment -%}
+          {%- assign t = 0 -%}{%- assign lines = '' -%}{%- assign dots = '' -%}
+          {%- for f in photo.gaze -%}
+            {%- unless forloop.first -%}{%- capture lines -%}{{ lines }}<line x1="{{ px }}" y1="{{ py }}" x2="{{ f[0] }}" y2="{{ f[1] }}" style="--t:{{ t }}"/>{%- endcapture -%}{%- endunless -%}
+            {%- capture dots -%}{{ dots }}<g style="--t:{{ t }}"><circle cx="{{ f[0] }}" cy="{{ f[1] }}" r="{{ f[2] | divided_by: 12 | plus: 14 }}"/></g>{%- endcapture -%}
+            {%- assign px = f[0] -%}{%- assign py = f[1] -%}{%- assign t = t | plus: f[2] | plus: 40 -%}
+          {%- endfor -%}
+        <svg viewBox="0 0 {{ photo.width }} {{ photo.height }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="gaze__saccades">{{ lines }}</g><g class="gaze__fixations">{{ dots }}</g></svg>
+        {%- endif -%}
       </div>
-      <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
+      <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.gaze %} The circles are an illustrative scanpath. <button type="button" class="gaze__replay" hidden>Replay</button>{% endif %}{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
     </figure>
   </div>
 </section>
