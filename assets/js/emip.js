@@ -1,4 +1,4 @@
-// emipws.org: menu, one-page section jumps and the year list toggle.
+// emipws.org: menu, one-page section jumps, year list toggle and the scanpath over the venue photo.
 (function () {
   "use strict";
 
@@ -61,5 +61,32 @@
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     spied.forEach(function (s) { spy.observe(s.section); });
+  }
+
+  // Venue photo: replays the illustrative scanpath once the photo is on screen.
+  var gaze = document.querySelector("[data-gaze]");
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (gaze && !still && "IntersectionObserver" in window) {
+    var replay = gaze.querySelector(".gaze__replay");
+    var dots = gaze.querySelectorAll(".gaze__fixations g");
+    var lastT = dots.length ? parseInt(dots[dots.length - 1].style.getPropertyValue("--t"), 10) || 0 : 0;
+    var timer;
+    var play = function () {
+      gaze.classList.remove("is-playing");
+      void gaze.getBoundingClientRect(); // restart CSS animations
+      gaze.classList.add("is-playing");
+      if (replay) replay.hidden = true;
+      clearTimeout(timer);
+      timer = setTimeout(function () { if (replay) replay.hidden = false; }, lastT + 1000);
+    };
+    gaze.classList.add("is-armed");
+    var seen = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        seen.disconnect();
+        play();
+      }
+    }, { threshold: 0.4 });
+    seen.observe(gaze);
+    if (replay) replay.addEventListener("click", play);
   }
 })();

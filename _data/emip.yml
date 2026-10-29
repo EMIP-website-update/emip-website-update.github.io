@@ -27,11 +27,30 @@ note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call fo
 photo:
   src: /images/venues/2027-pamplona-castillo-1600.jpg
   width: 1600
+  height: 1200
   small: /images/venues/2027-pamplona-castillo-800.jpg
   alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
   caption: Plaza del Castillo, Pamplona
   # Public domain (CC0) by Zarateman, so no credit is required:
   # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
+  # Illustrative scanpath drawn over the photo and replayed when it comes into view:
+  # [x, y, milliseconds] in the photo's pixels, in viewing order. Placed by hand on
+  # things people tend to look at (ornament, lettering, people); not recorded data.
+  # Remove `gaze` to show the photo alone; redo it for a new photo.
+  gaze:
+    - [828, 112, 260]
+    - [830, 192, 220]
+    - [835, 375, 300]
+    - [724, 452, 200]
+    - [835, 600, 280]
+    - [1228, 668, 240]
+    - [1478, 508, 220]
+    - [1176, 914, 380]
+    - [560, 914, 300]
+    - [694, 1094, 340]
+    - [806, 1138, 260]
+    - [340, 648, 220]
+    - [828, 140, 300]
 
 # Workshop organizers (name, affiliation, url, photo) and program committee
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the
