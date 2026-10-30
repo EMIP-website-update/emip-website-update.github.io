@@ -1,5 +1,5 @@
 name: Design feedback
-description: Say which picture you prefer for the new EMIP website, and anything else.
+description: Say which banner photo you prefer for the new EMIP website, and anything else.
 title: "Feedback: "
 labels: ["design-feedback"]
 body:
@@ -11,7 +11,7 @@ body:
     id: picture
     attributes:
       label: Preferred picture
-      description: A, B, C or D as named on the compare page, or "No preference".
+      description: A, B or C as named on the compare page, or "No preference".
     validations:
       required: true
   - type: textarea
