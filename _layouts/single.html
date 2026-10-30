@@ -25,17 +25,11 @@ layout: default
   {%- endif -%}
 {%- endif -%}
 
-{%- capture section_nav -%}{% include sidebar.html %}{%- endcapture -%}
-{%- assign section_nav = section_nav | strip -%}
 
 {%- capture toc -%}{% include toc.html html=content sanitize=true h_min=1 h_max=2 class="toc__list" skip_no_ids=true %}{%- endcapture -%}
 {%- assign toc_items = toc | split: '<li' | size | minus: 1 -%}
 
-{%- comment -%}
-  Source order is title, section rail, text: on small screens they stack in
-  that order; on wide screens _page.scss moves the rail into the left column.
-{%- endcomment -%}
-<article class="wrap page{% if section_nav == '' %} page--no-rail{% endif %}{% if toc_items >= 3 and page.toc != false %} page--toc{% endif %}">
+<article class="page{% if toc_items >= 3 and page.toc != false %} page--toc{% endif %}">
   <header class="page__header">
     {%- if page.photo -%}
     <figure class="page__photo">
@@ -59,11 +53,6 @@ layout: default
     {%- endif -%}
   </header>
 
-  {%- if section_nav != '' -%}
-  <aside class="page__rail" aria-label="In this section">
-    {{ section_nav }}
-  </aside>
-  {%- endif -%}
 
   <div class="page__body prose">
     {{ content }}

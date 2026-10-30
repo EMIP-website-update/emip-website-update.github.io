@@ -1,0 +1,51 @@
+{%- comment -%}
+  The whole website: a column on the left on wide screens, and the panel behind
+  the Menu button on smaller ones (where it also lists this year's sections,
+  which wide screens show in the top menu).
+{%- endcomment -%}
+{%- assign next = site.data.emip -%}
+<nav class="site-menu" id="site-menu" aria-label="EMIP website">
+  <p class="site-menu__home"><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>EMIP {{ next.year }} workshop</a></p>
+  <ul class="site-menu__list site-menu__sections">
+    {%- for link in site.data.navigation.main -%}
+    <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+
+  <p class="site-menu__label">Past workshops</p>
+  <ul class="site-menu__years">
+    {%- for e in site.data.editions -%}
+      {%- if e.year >= next.year or e.in_year_list == false -%}{%- continue -%}{%- endif -%}
+      {%- assign prefix = '/workshop/emip-' | append: e.year -%}
+      <li><a href="{{ e.url | relative_url }}"{% if page.url contains prefix %} aria-current="page"{% endif %}>{{ e.year }}</a></li>
+    {%- endfor -%}
+  </ul>
+  {%- comment -%} The year being viewed: its subpages (program, call for papers) from _data/navigation.yml. {%- endcomment -%}
+  {%- for e in site.data.editions -%}
+    {%- if e.in_year_list == false -%}{%- continue -%}{%- endif -%}
+    {%- assign prefix = '/workshop/emip-' | append: e.year -%}
+    {%- unless page.url contains prefix -%}{%- continue -%}{%- endunless -%}
+    {%- assign group_name = 'emip-' | append: e.year -%}
+    {%- for item in site.data.navigation[group_name] -%}
+      {%- if item.url == e.url and item.children.size > 0 -%}
+  <ul class="site-menu__list site-menu__sub">
+    <li><a href="{{ e.url | relative_url }}"{% if page.url == e.url %} aria-current="page"{% endif %}>EMIP {{ e.year }}</a></li>
+    {%- for child in item.children -%}
+    <li><a href="{{ child.url | relative_url }}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- break -%}
+  {%- endfor -%}
+  <p class="site-menu__more"><a href="{{ '/workshop/previous-workshops/' | relative_url }}"{% if page.url == '/workshop/previous-workshops/' %} aria-current="page"{% endif %}>All past workshops</a></p>
+
+  {%- for group in site.data.navigation.site -%}
+  <p class="site-menu__label">{{ group.title }}</p>
+  <ul class="site-menu__list">
+    {%- for item in group.children -%}
+    <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+  {%- endfor -%}
+</nav>

@@ -9,9 +9,12 @@
   <body class="layout--{{ page.layout | default: layout.layout }}">
     <a class="skip-link" href="#main">Skip to content</a>
     {% include masthead.html %}
-    <main id="main">
-      {{ content }}
-    </main>
+    <div class="wrap shell">
+      {% include site-menu.html %}
+      <main id="main">
+        {{ content }}
+      </main>
+    </div>
     {% include footer.html %}
     <script src="{{ '/assets/js/emip.js' | relative_url }}" defer></script>
   </body>

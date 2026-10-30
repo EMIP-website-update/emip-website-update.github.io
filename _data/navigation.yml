@@ -1,5 +1,4 @@
-# Main menu (top of every page). Each item jumps to a section of the
-# homepage, which is the page of the next workshop (_layouts/home.html).
+# Top menu: sections of this year's workshop on the homepage (_layouts/home.html).
 main:
   - title: "About"
     url: /#about
@@ -11,28 +10,36 @@ main:
     url: /#submission
   - title: "Organizers"
     url: /#organizers
+
+# Side menu: the rest of the website (_includes/site-menu.html). Past workshops
+# are listed there too, from _data/editions.yml.
+site:
   - title: "Dataset"
-    url: /#dataset
-    # Listed beside the dataset pages (not in the top menu).
     children:
-      - title: "Dataset"
+      - title: "The EMIP dataset"
         url: /dataset/
-      - title: "Corrected Dataset"
+      - title: "Corrected dataset and toolkit"
         url: /corrected-dataset/
-      - title: "Stimulus Material"
+      - title: "Stimulus material"
         url: /stimulus-material/
-      - title: "Participating Labs"
+      - title: "Participating labs"
         url: /participating-labs/
-      - title: "Call for Contributions"
+      - title: "Call for contributions"
         url: /call-for-contributions/
-      - title: "Coding Scheme"
+  - title: "Tools and resources"
+    children:
+      - title: "Coding scheme"
         url: /coding-scheme/
-      - title: "Visualizations and Tools"
+      - title: "Visualizations and tools"
         url: /visualizations-and-tools/
-      - title: "Resources"
+      - title: "Resources and reports"
         url: /resources/
-  - title: "Past workshops"
-    url: /#workshops
+  - title: "About EMIP"
+    children:
+      - title: "Steering committee"
+        url: /organizers/
+      - title: "Sponsors"
+        url: /sponsors/
 
 previous-workshops:
   - title: "EMIP 2013 Workshop"

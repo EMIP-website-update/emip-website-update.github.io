@@ -52,12 +52,10 @@
 
 .masthead__toggle { display: none; }
 
-/* Small screens: the menu folds behind a plain text button (only when JS runs). */
-@media (max-width: 52rem) {
+/* Below 64rem the top menu and the site menu share one panel behind the Menu
+   button (_shell.scss); without JS the top menu just wraps. */
+@media (max-width: 63.99rem) {
   .masthead__inner { column-gap: 1rem; }
-  .masthead__brand { font-size: 1.05rem; gap: 0.55rem; }
-  .masthead__brand span { max-width: 9.5rem; }
-  .masthead__brand img { width: 34px; }
   .js .masthead__toggle {
     display: inline-block;
     font: 500 0.9375rem/1 var(--sans);
@@ -68,13 +66,10 @@
     cursor: pointer;
   }
   .js .masthead__toggle[aria-expanded="true"] { background: var(--paper-2); }
-
-  .masthead__nav { flex-basis: 100%; }
   .js .masthead__nav { display: none; }
-  .js .masthead__nav.is-open { display: block; }
-
-  .masthead__nav ul { flex-direction: column; gap: 0; border-top: 1px solid var(--rule-soft); }
-  .masthead__nav li { border-bottom: 1px solid var(--rule-soft); }
-  .masthead__nav a { display: block; padding-block: 0.7rem; border: 0; font-size: 1rem; }
-  .masthead__nav a[aria-current="page"] { font-weight: 600; }
+}
+@media (max-width: 40rem) {
+  .masthead__brand { font-size: 1.05rem; gap: 0.55rem; }
+  .masthead__brand span { max-width: 9.5rem; }
+  .masthead__brand img { width: 34px; }
 }

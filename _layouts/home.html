@@ -2,15 +2,23 @@
 layout: default
 ---
 {%- comment -%}
-  The homepage is the page of the next workshop (_data/emip.yml), with the
-  call (_data/call.yml), the people, the dataset and the archive below it.
-  Section ids are targets of the main menu (_data/navigation.yml).
+  The homepage is only about this year's workshop (_data/emip.yml, call in
+  _data/call.yml): a banner of the host city, the title beside Fig. 1 (a real
+  scanpath from the EMIP dataset), then one section per topic. Section ids are
+  the targets of the top menu (_data/navigation.yml); the rest of the website
+  is in the side menu.
 {%- endcomment -%}
 {%- assign next = site.data.emip -%}
 {%- assign call = site.data.call -%}
 
+{%- assign photo = next.photo -%}
+<figure class="event-banner">
+  <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 64rem) 60rem, 100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
+  <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
+</figure>
+
 <section class="event-hero">
-  <div class="wrap event-hero__inner">
+  <div class="event-hero__inner">
     <div class="event-hero__text">
       <p class="event-hero__kicker">The {{ next.ordinal }} International Workshop on</p>
       <h1 class="event-hero__title">Eye Movements in Programming <span class="event-hero__year">{{ next.year }}</span></h1>
@@ -36,27 +44,11 @@ layout: default
       </p>
     </div>
 
-    {%- assign photo = next.photo -%}
-    <figure class="hero-photo event-hero__visual{% if photo.gaze %} gaze{% endif %}"{% if photo.gaze %} data-gaze{% endif %}>
-      <div class="hero-photo__frame">
-        <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 60rem) 50vw, 100vw" alt="{{ photo.alt | escape }}">
-        {%- if photo.gaze -%}
-          {%- comment -%} Each fixation is a circle sized by its duration, joined to the previous one by a saccade line; --t is when it appears (ms). {%- endcomment -%}
-          {%- assign t = 0 -%}{%- assign lines = '' -%}{%- assign dots = '' -%}
-          {%- for f in photo.gaze -%}
-            {%- unless forloop.first -%}{%- capture lines -%}{{ lines }}<line x1="{{ px }}" y1="{{ py }}" x2="{{ f[0] }}" y2="{{ f[1] }}" style="--t:{{ t }}"/>{%- endcapture -%}{%- endunless -%}
-            {%- capture dots -%}{{ dots }}<g style="--t:{{ t }}"><circle cx="{{ f[0] }}" cy="{{ f[1] }}" r="{{ f[2] | divided_by: 12 | plus: 14 }}"/></g>{%- endcapture -%}
-            {%- assign px = f[0] -%}{%- assign py = f[1] -%}{%- assign t = t | plus: f[2] | plus: 40 -%}
-          {%- endfor -%}
-        <svg viewBox="0 0 {{ photo.width }} {{ photo.height }}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="gaze__saccades">{{ lines }}</g><g class="gaze__fixations">{{ dots }}</g></svg>
-        {%- endif -%}
-      </div>
-      <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.gaze %} The circles are an illustrative scanpath. <button type="button" class="gaze__replay" hidden>Replay</button>{% endif %}{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
-    </figure>
+    <div class="event-hero__visual">{% include scanpath.html %}</div>
   </div>
 </section>
 
-<div class="wrap event">
+<div class="event">
 
   <section class="event-section" id="about" aria-labelledby="about-title">
     <h2 class="event-section__head" id="about-title">About the workshop</h2>
@@ -114,58 +106,8 @@ layout: default
       {%- else -%}
       <p class="event-pc"><strong>Program committee:</strong> to be announced.</p>
       {%- endif -%}
-      {%- if next.organizers -%}
-      <p class="event-steering">Steering committee:
-        {% for p in site.data.steering %}{% if p.url %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}.
-      </p>
-      {%- endif -%}
     </div>
   </section>
 
-  <section class="event-section" id="dataset" aria-labelledby="dataset-title">
-    <h2 class="event-section__head" id="dataset-title">The EMIP dataset</h2>
-    <div class="event-section__body">
-      <p>
-        Labs around the world ran the same code-reading experiment and pooled their recordings into one open dataset:
-        269 programmers recorded (15 excluded), reading <em>Rectangle</em> and <em>Vehicle</em> in Java, Python or Scala
-        on an SMI RED250 tracker at 250&nbsp;Hz. Free to use under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-      </p>
-      <ul class="link-list">
-        <li><a href="{{ '/dataset/' | relative_url }}">Dataset</a></li>
-        <li><a href="{{ '/corrected-dataset/' | relative_url }}">Corrected dataset and EMIP Toolkit</a></li>
-        <li><a href="{{ '/stimulus-material/' | relative_url }}">Stimulus material</a></li>
-        <li><a href="{{ '/participating-labs/' | relative_url }}">Participating labs</a></li>
-        <li><a href="{{ '/coding-scheme/' | relative_url }}">Coding scheme</a></li>
-        <li><a href="{{ '/visualizations-and-tools/' | relative_url }}">Visualizations and tools</a></li>
-        <li><a href="{{ '/resources/' | relative_url }}">Resources and reports</a></li>
-      </ul>
-      <p class="cite">
-        Bednarik, R., Busjahn, T., Gibaldi, A., et al. (2020). EMIP: The eye movements in programming dataset.
-        <em>Science of Computer Programming</em>, 198, 102520.
-        <a href="https://doi.org/10.1016/j.scico.2020.102520">doi:10.1016/j.scico.2020.102520</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="event-section" id="workshops" aria-labelledby="past-title">
-    <h2 class="event-section__head" id="past-title">Past workshops</h2>
-    <div class="event-section__body">
-      {% include editions-table.html before=next.year %}
-      <div id="sponsors" class="event-sponsors">
-        <h3 class="event-subhead">Sponsors</h3>
-        <ul class="sponsors">
-          <li>
-            <span class="sponsors__name">Joensuu University Foundation</span>
-            <span class="sponsors__for">2013, Analyzing the expert’s gaze · 2015, Models to data</span>
-          </li>
-          <li>
-            <img src="{{ '/images/SMI-Logo.jpg' | relative_url }}" alt="SMI (SensoMotoric Instruments)" class="sponsors__logo">
-            <span class="sponsors__for">2014, Analyzing the novice’s gaze · 2015, Models to data</span>
-          </li>
-        </ul>
-      </div>
-      <p class="event-note">Follow EMIP on <a href="https://twitter.com/emipws">Twitter</a> or <a href="https://www.facebook.com/emipws/">Facebook</a> for news and updates.</p>
-    </div>
-  </section>
 
 </div>
