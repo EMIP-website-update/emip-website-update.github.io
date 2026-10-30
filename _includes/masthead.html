@@ -1,22 +1,19 @@
 {%- comment -%}
-  Menu items jump to sections of the one-page homepage. There, emip.js marks
-  the section being read; on past workshop pages "Past workshops" is marked here.
+  Top menu: this year's workshop sections (emip.js marks the one being read).
+  The rest of the site is in the side menu (site-menu.html), which the Menu
+  button opens on smaller screens.
 {%- endcomment -%}
-{%- assign on_workshop = false -%}
-{%- if page.url contains '/workshop/' or page.url == '/emip-2021-ii/' -%}{%- assign on_workshop = true -%}{%- endif -%}
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="{{ '/' | relative_url }}">
       {%- if site.logo -%}<img src="{{ site.logo | relative_url }}" alt="" width="40" height="35">{%- endif -%}
       <span>{{ site.masthead_title | default: site.title }}</span>
     </a>
-    <button class="masthead__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    <nav id="site-nav" class="masthead__nav" aria-label="Main">
+    <button class="masthead__toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    <nav id="site-nav" class="masthead__nav" aria-label="EMIP {{ site.data.emip.year }}">
       <ul>
         {%- for link in site.data.navigation.main -%}
-          {%- assign active = false -%}
-          {%- if on_workshop and link.url == '/#workshops' -%}{%- assign active = true -%}{%- endif -%}
-          <li><a href="{{ link.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ link.short | default: link.title }}</a></li>
+        <li><a href="{{ link.url | relative_url }}">{{ link.short | default: link.title }}</a></li>
         {%- endfor -%}
       </ul>
     </nav>

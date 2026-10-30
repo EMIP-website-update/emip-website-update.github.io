@@ -16,26 +16,3 @@ html { scroll-padding-top: 5rem; }
   color: var(--ink);
   border-bottom-color: var(--ink);
 }
-@media (max-width: 52rem) {
-  .masthead__nav a.is-current { font-weight: 600; }
-  /* Long menus scroll inside the sticky header instead of running off screen. */
-  .masthead__nav.is-open { max-height: calc(100vh - 4.5rem); overflow-y: auto; }
-}
-
-.sponsors {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--rule);
-}
-.sponsors li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 1.5rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.sponsors__name { font-weight: 600; }
-.sponsors__logo { display: block; width: 7rem; height: auto; }
-.sponsors__for { color: var(--ink-2); font-size: 0.9375rem; }

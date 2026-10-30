@@ -21,7 +21,8 @@ submit_url:
 program_url:
 note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call for papers will be posted on this page.
 
-# Venue photo beside the title: a 4:3 JPEG about 1600 px wide plus an 800 px copy.
+# Banner photo of the host city across the top of the homepage: a JPEG about
+# 1600 px wide plus an 800 px copy; `position` picks the part a wide banner shows.
 # For a photo whose license asks for credit (e.g. CC BY), add `credit`, `source`,
 # `license` and `license_url`; they are then shown under it.
 photo:
@@ -31,31 +32,22 @@ photo:
   small: /images/venues/2027-pamplona-castillo-800.jpg
   alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
   caption: Plaza del Castillo, Pamplona
+  position: 50% 42%
   # Public domain (CC0) by Zarateman, so no credit is required:
   # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
-  # Illustrative scanpath drawn over the photo and replayed when it comes into view:
-  # [x, y, milliseconds] in the photo's pixels, in viewing order. Placed by hand on
-  # things people tend to look at (ornament, lettering, people); not recorded data.
-  # Remove `gaze` to show the photo alone; redo it for a new photo.
-  gaze:
-    - [828, 112, 260]
-    - [830, 192, 220]
-    - [835, 375, 300]
-    - [724, 452, 200]
-    - [835, 600, 280]
-    - [1228, 668, 240]
-    - [1478, 508, 220]
-    - [1176, 914, 380]
-    - [560, 914, 300]
-    - [694, 1094, 340]
-    - [806, 1138, 260]
-    - [340, 648, 220]
-    - [828, 140, 300]
 
 # Workshop organizers (name, affiliation, url, photo) and program committee
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the
 # steering committee (_data/steering.yml); until the committee is set, "to be announced".
 organizers:
+  - name: Yasmine Elfaris
+  - name: Naser Al Madi
+    affiliation: Colby College, USA
+    url: https://www.cs.colby.edu/nsalmadi
+    photo: /images/portraits/web/al-madi.jpg
+  - name: Teresa Busjahn
+    affiliation: HTW Berlin, Germany
+    url: https://www.htw-berlin.de/hochschule/personen/person/?eid=12337
 program_committee:
 
 # Important dates, in order. All deadlines are Anywhere on Earth.
