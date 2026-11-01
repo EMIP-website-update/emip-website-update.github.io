@@ -17,5 +17,9 @@
     "title": "Event page",
     "note": "The chosen design: one scrolling page about the 2027 workshop, with the Plaza del Castillo photo.",
     "featured": true
+  },
+  "previous": {
+    "title": "Previous version",
+    "note": "How the draft looked before the Oct 30 feedback: the plaza photo with an illustrative gaze path, and one page that also had the dataset and past workshops."
   }
 }
