@@ -98,6 +98,13 @@ layout: default
       <p class="event-note event-note--top">The steering committee is shown until the {{ next.year }} organizers are announced.</p>
       {% include people-grid.html %}
       {%- endif -%}
+      {%- if next.chairs -%}
+      <ul class="chairs">
+        {%- for c in next.chairs -%}
+        <li><strong>{{ c.role }}:</strong> {% if c.url %}<a href="{{ c.url }}">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% if c.affiliation %}, {{ c.affiliation }}{% endif %}</li>
+        {%- endfor -%}
+      </ul>
+      {%- endif -%}
       {%- if next.program_committee -%}
       <h3 class="event-subhead">Program committee</h3>
       <ul class="pc-list">
