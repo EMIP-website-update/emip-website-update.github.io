@@ -45,6 +45,13 @@
 .person__name a { color: var(--ink); text-decoration-color: var(--rule); }
 .person__name a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
+.person__role {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-ink);
+}
+
 .person__affiliation {
   font-size: 0.9375rem;
   color: var(--muted);
