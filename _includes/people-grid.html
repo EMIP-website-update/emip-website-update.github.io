@@ -9,6 +9,7 @@
       <span class="person__photo person__photo--initials" aria-hidden="true">{% if p.initials %}{{ p.initials }}{% else %}{{ names.first | slice: 0 }}{{ names.last | slice: 0 }}{% endif %}</span>
     {%- endif -%}
     <span class="person__name">{% if p.url %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</span>
+    {%- if p.role -%}<span class="person__role">{{ p.role }}</span>{%- endif -%}
     {%- if p.affiliation -%}<span class="person__affiliation">{{ p.affiliation }}</span>{%- endif -%}
   </li>
   {%- endfor -%}
