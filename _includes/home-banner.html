@@ -1,6 +1,17 @@
-{%- comment -%} Full-width banner of the host city, above the side menu and the page (homepage only). {%- endcomment -%}
+{%- comment -%} Full-width banner of the host city with this year's title over it, above the side menu and the page (homepage only). {%- endcomment -%}
 {%- assign next = site.data.emip -%}{%- assign photo = next.photo -%}
 <figure class="event-banner">
   <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
+  <div class="event-banner__overlay">
+    <div class="wrap event-banner__text">
+        <p class="event-banner__kicker">The {{ next.ordinal }} International Workshop on</p>
+        <h1 class="event-banner__title">Eye Movements in Programming <span class="event-banner__year">{{ next.year }}</span></h1>
+        <ul class="event-banner__meta">
+          <li>Co-located with <a href="{{ next.host_url }}">{{ next.host }}</a></li>
+          <li>{{ next.place }}</li>
+          <li>{{ next.host_dates }}</li>
+        </ul>
+    </div>
+  </div>
   <figcaption class="wrap">{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
 </figure>

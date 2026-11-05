@@ -16,13 +16,6 @@ layout: default
 <section class="event-hero">
   <div class="event-hero__inner">
     <div class="event-hero__text">
-      <p class="event-hero__kicker">The {{ next.ordinal }} International Workshop on</p>
-      <h1 class="event-hero__title">Eye Movements in Programming <span class="event-hero__year">{{ next.year }}</span></h1>
-      <ul class="event-hero__meta">
-        <li>Co-located with <a href="{{ next.host_url }}">{{ next.host }}</a></li>
-        <li>{{ next.place }}</li>
-        <li>{{ next.host_dates }}</li>
-      </ul>
       <p class="event-hero__status">
         {%- case next.status -%}
           {%- when 'open' -%}<span class="status status--open">Submissions open</span> Deadline {{ next.paper_deadline }} (AoE).
