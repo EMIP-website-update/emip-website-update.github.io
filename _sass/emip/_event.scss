@@ -2,15 +2,58 @@
    beside Fig. 1, then one section per topic. It sits beside the site menu, so
    two-column parts start at wider screens than elsewhere. */
 
-/* Banner: full width under the header, on the homepage only. */
-.event-banner { margin: 0; }
+/* Banner: full width under the header, on the homepage only, with this year's
+   title over a dark fade at the bottom so the white text stays readable. */
+.event-banner { margin: 0; position: relative; }
 .event-banner img {
   display: block;
   width: 100%;
-  height: clamp(12rem, 34vw, 32rem);
+  height: clamp(22rem, 42vw, 38rem);
   object-fit: cover;
-  background: var(--paper-2);
+  background: var(--ink);
 }
+.event-banner__overlay {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: clamp(22rem, 42vw, 38rem);
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(to top, rgba(10, 14, 22, 0.82) 0%, rgba(10, 14, 22, 0.55) 40%, rgba(10, 14, 22, 0.05) 75%);
+}
+.event-banner__text {
+  width: 100%;
+  padding-bottom: clamp(1.25rem, 3vw, 2.5rem);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+.event-banner__kicker {
+  margin: 0 0 0.4rem;
+  font-style: italic;
+  font-size: clamp(1rem, calc(0.9rem + 0.4vw), 1.25rem);
+  color: rgba(255, 255, 255, 0.88);
+}
+.event-banner__title {
+  margin: 0 0 0.9rem;
+  max-width: 16ch;
+  font-size: clamp(2.3rem, calc(1.3rem + 3.6vw), 4.5rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.event-banner__year { color: #cfe0ff; }
+.event-banner__meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+.event-banner__meta a { color: #fff; text-decoration-color: rgba(255, 255, 255, 0.6); }
 .event-banner figcaption {
   margin-top: 0.45rem;
   font-family: var(--sans);
