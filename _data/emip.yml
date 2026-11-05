@@ -43,7 +43,8 @@ photo:
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the
 # steering committee (_data/steering.yml); until the committee is set, "to be announced".
 organizers:
-  - name: Yasmine Elfaris
+  - name: Yasmine Elfares
+    affiliation: University of Glasgow, United Kingdom
   - name: Naser Al Madi
     affiliation: Colby College, USA
     url: https://www.cs.colby.edu/nsalmadi
