@@ -12,10 +12,6 @@ layout: default
 {%- assign call = site.data.call -%}
 
 {%- assign photo = next.photo -%}
-<figure class="event-banner">
-  <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="(min-width: 64rem) 60rem, 100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
-  <figcaption>{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
-</figure>
 
 <section class="event-hero">
   <div class="event-hero__inner">
@@ -93,13 +89,13 @@ layout: default
     <h2 class="event-section__head" id="organizers-title">Organizers</h2>
     <div class="event-section__body">
       {%- if next.organizers -%}
-      {%- comment -%} Chairs (web chair and so on) join the organizers' row, with their role under the name. {%- endcomment -%}
-      {%- assign people = next.organizers -%}
-      {%- if next.chairs -%}{%- assign people = people | concat: next.chairs -%}{%- endif -%}
-      {% include people-grid.html people=people %}
+      {% include people-grid.html people=next.organizers %}
       {%- else -%}
       <p class="event-note event-note--top">The steering committee is shown until the {{ next.year }} organizers are announced.</p>
       {% include people-grid.html %}
+      {%- endif -%}
+      {%- if next.chairs -%}
+      <div class="chairs-row">{% include people-grid.html people=next.chairs %}</div>
       {%- endif -%}
       {%- if next.program_committee -%}
       <h3 class="event-subhead">Program committee</h3>

@@ -9,6 +9,7 @@
   <body class="layout--{{ page.layout | default: layout.layout }}">
     <a class="skip-link" href="#main">Skip to content</a>
     {% include masthead.html %}
+    {%- if page.layout == 'home' %}{% include home-banner.html %}{% endif %}
     <div class="wrap shell">
       {% include site-menu.html %}
       <main id="main">

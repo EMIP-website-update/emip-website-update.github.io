@@ -48,8 +48,8 @@ organizers:
   - name: Teresa Busjahn
     affiliation: HTW Berlin, Germany
     url: https://www.htw-berlin.de/hochschule/personen/person/?eid=12337
-# Other roles (role, name, affiliation, url, photo), shown in the organizers'
-# row with the role under the name.
+# Other roles (role, name, affiliation, url, photo), shown in a row under the
+# organizers with the role under the name.
 chairs:
   - role: Web chair
     name: Anas Abuamar
