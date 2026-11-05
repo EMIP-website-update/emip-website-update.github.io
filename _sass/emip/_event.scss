@@ -11,6 +11,8 @@
   height: clamp(22rem, 42vw, 38rem);
   object-fit: cover;
   background: var(--ink);
+  /* Calmer colours so the photo sits with the site's paper-and-ink palette. */
+  filter: saturate(0.72) contrast(0.94) brightness(0.96) sepia(0.08);
 }
 .event-banner__overlay {
   position: absolute;
@@ -18,7 +20,11 @@
   height: clamp(22rem, 42vw, 38rem);
   display: flex;
   align-items: flex-end;
-  background: linear-gradient(to top, rgba(10, 14, 22, 0.82) 0%, rgba(10, 14, 22, 0.55) 40%, rgba(10, 14, 22, 0.05) 75%);
+  /* Deep navy from the site's accent: a light tint over the whole photo,
+     stronger at the bottom where the title sits. */
+  background:
+    linear-gradient(to top, rgba(4, 22, 48, 0.88) 0%, rgba(6, 30, 62, 0.6) 38%, rgba(8, 50, 98, 0.12) 72%, rgba(8, 50, 98, 0.18) 100%),
+    linear-gradient(rgba(8, 50, 98, 0.14), rgba(8, 50, 98, 0.14));
 }
 .event-banner__text {
   width: 100%;
