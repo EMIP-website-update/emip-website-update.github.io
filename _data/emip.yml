@@ -26,15 +26,18 @@ note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call fo
 # For a photo whose license asks for credit (e.g. CC BY), add `credit`, `source`,
 # `license` and `license_url`; they are then shown under it.
 photo:
-  src: /images/venues/2027-pamplona-castillo-1600.jpg
-  width: 1600
-  height: 1200
-  small: /images/venues/2027-pamplona-castillo-800.jpg
-  alt: Ornate red-brick and sandstone façade on Plaza del Castillo, Pamplona, with balconies, the arcades of Café Iruña and trees in front, under a deep blue sky
-  caption: Plaza del Castillo, Pamplona
-  position: 50% 42%
-  # Public domain (CC0) by Zarateman, so no credit is required:
-  # https://commons.wikimedia.org/wiki/File:Pamplona_-_Plaza_del_Castillo_12.jpg
+  src: /images/venues/2027-pamplona-river-walls-2000.jpg
+  width: 2000
+  height: 1326
+  small: /images/venues/2027-pamplona-river-walls-800.jpg
+  alt: The Arga river winding through autumn trees below Pamplona's old stone city walls and gate, with the city and hills behind under a cloudy sky
+  caption: The Arga river below the old city walls, Pamplona
+  position: 50% 62%
+  # Free under the Unsplash License; credit is not required but Unsplash asks for it.
+  credit: Maksym Diachenko on Unsplash
+  source: https://unsplash.com/photos/xA9pdG-fXQM
+  license: Unsplash License
+  license_url: https://unsplash.com/license
 
 # Workshop organizers (name, affiliation, url, photo) and program committee
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the
