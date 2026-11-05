@@ -95,7 +95,10 @@ layout: default
       {% include people-grid.html %}
       {%- endif -%}
       {%- if next.chairs -%}
-      <div class="chairs-row">{% include people-grid.html people=next.chairs %}</div>
+      <div class="chairs-row">
+        <h3 class="event-subhead">Chairs</h3>
+        {% include people-grid.html people=next.chairs %}
+      </div>
       {%- endif -%}
       {%- if next.program_committee -%}
       <h3 class="event-subhead">Program committee</h3>
