@@ -2,20 +2,17 @@
    beside Fig. 1, then one section per topic. It sits beside the site menu, so
    two-column parts start at wider screens than elsewhere. */
 
-/* Banner */
-.event-banner { margin: 1.5rem 0 0; }
+/* Banner: full width under the header, on the homepage only. */
+.event-banner { margin: 0; }
 .event-banner img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: clamp(12rem, 34vw, 32rem);
   object-fit: cover;
   background: var(--paper-2);
 }
-@media (min-width: 40rem) {
-  .event-banner img { aspect-ratio: 3 / 1; }
-}
 .event-banner figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.45rem;
   font-family: var(--sans);
   font-size: 0.8125rem;
   color: var(--muted);
@@ -156,6 +153,8 @@
   font-size: 1.15rem;
   font-weight: 600;
 }
+
+.chairs-row { margin-top: 1.75rem; }
 
 .event-pc { margin-top: 1.75rem !important; }
 

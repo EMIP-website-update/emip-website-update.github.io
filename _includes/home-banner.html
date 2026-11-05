@@ -1,0 +1,6 @@
+{%- comment -%} Full-width banner of the host city, above the side menu and the page (homepage only). {%- endcomment -%}
+{%- assign next = site.data.emip -%}{%- assign photo = next.photo -%}
+<figure class="event-banner">
+  <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
+  <figcaption class="wrap">{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
+</figure>
