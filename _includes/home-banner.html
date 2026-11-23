@@ -1,17 +1,43 @@
-{%- comment -%} Full-width banner of the host city with this year's title over it, above the side menu and the page (homepage only). {%- endcomment -%}
+{%- comment -%}
+  Homepage top: full-width banner of the host city with this year's title,
+  dates and the main buttons over it, then a strip of three quick facts.
+{%- endcomment -%}
 {%- assign next = site.data.emip -%}{%- assign photo = next.photo -%}
 <figure class="event-banner">
   <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
   <div class="event-banner__overlay">
     <div class="wrap event-banner__text">
-        <p class="event-banner__kicker">The {{ next.ordinal }} International Workshop on</p>
-        <h1 class="event-banner__title">Eye Movements in Programming <span class="event-banner__year">{{ next.year }}</span></h1>
-        <ul class="event-banner__meta">
-          <li>Co-located with <a href="{{ next.host_url }}">{{ next.host }}</a></li>
-          <li>{{ next.place }}</li>
-          <li>{{ next.host_dates }}</li>
-        </ul>
+      <p class="event-banner__kicker">The {{ next.ordinal }} International Workshop</p>
+      <h1 class="event-banner__title"><span class="event-banner__year">EMIP {{ next.year }}</span> Eye Movements in Programming</h1>
+      <p class="event-banner__when">{{ next.host_dates }} · {{ next.place }}</p>
+      {%- if next.tagline %}<p class="event-banner__tagline">{{ next.tagline }}</p>{% endif %}
+      <p class="event-banner__actions">
+        {%- case next.status -%}
+          {%- when 'open' -%}<a class="button button--light" href="{{ next.submit_url }}">Submit a paper</a>
+          {%- when 'program' -%}<a class="button button--light" href="{{ next.program_url | relative_url }}">See the program</a>
+          {%- else -%}<a class="button button--light" href="#call-for-papers">Call for papers</a>
+        {%- endcase -%}
+        <a class="button button--ghost" href="#dates">Important dates</a>
+      </p>
     </div>
   </div>
   <figcaption class="wrap">{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
 </figure>
+<div class="event-facts">
+  <ul class="wrap event-facts__list">
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+      <span><strong>{{ next.host_dates }}</strong> Workshop day: {{ next.workshop_date | downcase }}</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+      <span><strong>{{ next.place }}</strong> Co-located with <a href="{{ next.host_url }}">{{ next.host }}</a></span>
+    </li>
+    {%- if next.format %}
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3"/></svg>
+      <span><strong>{{ next.format }}</strong> {{ next.format_note }}</span>
+    </li>
+    {%- endif %}
+  </ul>
+</div>

@@ -23,14 +23,6 @@ layout: default
           {%- else -%}<span class="status">Call for papers coming soon</span> {{ next.note }}
         {%- endcase -%}
       </p>
-      <p class="event-hero__actions">
-        {%- case next.status -%}
-          {%- when 'open' -%}<a class="button" href="{{ next.submit_url }}">Submit a paper <span aria-hidden="true">→</span></a>
-          {%- when 'program' -%}<a class="button" href="{{ next.program_url | relative_url }}">See the program <span aria-hidden="true">→</span></a>
-          {%- else -%}<a class="button" href="#call-for-papers">Call for papers <span aria-hidden="true">→</span></a>
-        {%- endcase -%}
-        <a class="text-link" href="#dates">Important dates</a>
-      </p>
     </div>
 
     <div class="event-hero__visual">{% include scanpath.html %}</div>
