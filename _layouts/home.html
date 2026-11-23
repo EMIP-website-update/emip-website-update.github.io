@@ -41,9 +41,8 @@ layout: default
 
   <section class="event-section" id="about" aria-labelledby="about-title">
     <h2 class="event-section__head" id="about-title">About the workshop</h2>
-    <div class="event-section__body">
-      <div class="event-lede">{{ content }}</div>
-      <p>EMIP brings together researchers who study how people read and understand code by analyzing eye movements and other behavioral data. Since 2013 the workshop has met to share methods, models, datasets and tools, and to ask what gaze behavior can tell us about the cognitive processes behind programming.</p>
+    <div class="event-section__body event-about">
+      {{ content }}
     </div>
   </section>
 
@@ -52,8 +51,12 @@ layout: default
     <div class="event-section__body">
       <p>{{ call.intro }}</p>
       <ul class="topics">
-        {%- for topic in call.topics -%}<li>{{ topic }}</li>{%- endfor -%}
+        {%- for topic in call.topics -%}<li><strong>{{ topic.title }}.</strong> {{ topic.text }}</li>{%- endfor -%}
       </ul>
+      {%- if call.challenge -%}
+      <h3 class="event-subhead" id="challenge">{{ call.challenge.title }}</h3>
+      {%- for p in call.challenge.paragraphs -%}<p>{{ p }}</p>{%- endfor -%}
+      {%- endif -%}
       {%- if call.source -%}<p class="event-note">{{ call.source }}</p>{%- endif -%}
     </div>
   </section>
@@ -74,7 +77,18 @@ layout: default
       <dl class="rows rows--wide">
         {%- for s in call.submission -%}<div><dt>{{ s.label }}</dt><dd>{{ s.text }}</dd></div>{%- endfor -%}
       </dl>
-      <p class="event-note">Based on the 2026 rules. The 2027 details will be confirmed with the call.</p>
+      <p class="event-note">The submission site and templates will be announced with the full call.</p>
+    </div>
+  </section>
+
+  <section class="event-section" id="keynote" aria-labelledby="keynote-title">
+    <h2 class="event-section__head" id="keynote-title">Keynote speaker</h2>
+    <div class="event-section__body">
+      {%- if next.keynote -%}
+      {% include people-grid.html people=next.keynote %}
+      {%- else -%}
+      <p>The workshop opens with a keynote. The speaker will be announced here.</p>
+      {%- endif -%}
     </div>
   </section>
 
@@ -92,16 +106,28 @@ layout: default
         {% include people-grid.html people=next.chairs %}
       </div>
       {%- endif -%}
+    </div>
+  </section>
+
+  <section class="event-section" id="program-committee" aria-labelledby="pc-title">
+    <h2 class="event-section__head" id="pc-title">Program committee</h2>
+    <div class="event-section__body">
       {%- if next.program_committee -%}
-      <h3 class="event-subhead">Program committee</h3>
       <ul class="pc-list">
         {%- for m in next.program_committee -%}<li>{{ m }}</li>{%- endfor -%}
       </ul>
       {%- else -%}
-      <p class="event-pc"><strong>Program committee:</strong> to be announced.</p>
+      <p>To be announced.</p>
       {%- endif -%}
     </div>
   </section>
 
+  <section class="event-section" id="co-located" aria-labelledby="colocated-title">
+    <h2 class="event-section__head" id="colocated-title">Co-located event</h2>
+    <div class="event-section__body">
+      <p>EMIP {{ next.year }} is a workshop of <a href="{{ next.host_url }}">{{ next.host }}</a>, the {{ next.host_name }}, held {{ next.host_dates }} in {{ next.place }}. Registration and venue details will be on the ETRA website.</p>
+      <p><a class="button" href="{{ next.host_url }}">Visit {{ next.host }} <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
 
 </div>

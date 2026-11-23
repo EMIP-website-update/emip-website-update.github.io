@@ -2,7 +2,7 @@
 
 Source for [www.emipws.org](https://www.emipws.org), built with Jekyll on GitHub Pages.
 
-The homepage is only about this year's workshop: a banner of the host city, the title beside Fig. 1 (a real scanpath from the EMIP dataset), then about, call for papers, important dates, submission and organizers on one scrolling page. The top menu jumps to those sections. The rest of the website (past workshops, the dataset pages, tools and resources, steering committee, sponsors) is in the side menu, a column on the left on wide screens and the panel behind the Menu button on smaller ones.
+The homepage is only about this year's workshop: a banner of the host city, the title beside Fig. 1 (a real scanpath from the EMIP dataset), then about, call for papers, dates, submission, keynote, organizers, program committee and the co-located conference on one scrolling page. The top menu lists the website's sections (EMIP '27, past events, dataset, tools and resources, about); the side menu lists the pages of the section you are in, and on the homepage it jumps to this year's sections. The side menu is a column on the left on wide screens and the panel behind the Menu button on smaller ones.
 
 ## Updating the site each year
 
@@ -17,7 +17,7 @@ Most of the homepage comes from two data files, so a new year is mostly editing 
 4. **Banner photo of the host city:** a JPEG about 1600 px wide plus an 800 px copy in `images/venues/`, referenced under `photo` in `_data/emip.yml`; `position` chooses the part of it the wide banner shows. Prefer public-domain (CC0) photos or your own. If a photo's license asks for credit (for example CC BY), add `credit`, `source`, `license` and `license_url`; the credit then appears under the photo.
 5. **After the workshop:** write its page as `pages/workshop/emip-YYYY.md` (copy a recent year), add the next year at the top of `_data/editions.yml`, and update `_data/emip.yml` for the following workshop. The side menu and the Past Workshops page list every edition before the next one. If the year has subpages (program, call for papers), add an `emip-YYYY` group with `children` to `_data/navigation.yml` so the side menu lists them under that year.
 6. **Steering committee:** `_data/steering.yml`, shown on the Steering Committee page. Portraits go in `images/portraits/web/` as square JPEGs around 480 px.
-7. **Menus:** the top menu is `main` and the side menu's groups are `site` in `_data/navigation.yml`.
+7. **Menus:** in `_data/navigation.yml`, `main` is the top menu and each of its sections has a list of the same name for the side menu (`workshop`, `dataset`, `tools`, `about`; past events come from `_data/editions.yml`). `_includes/section.html` works out which section a page is in.
 
 Page titles written as `EMIP 2026 Workshop - Program` are shown as a small line ("EMIP 2026 Workshop") above the heading ("Program").
 
