@@ -1,0 +1,19 @@
+{%- comment -%}
+  Sets `section` to the website section this page belongs to (see `main` in
+  _data/navigation.yml): workshop, past, dataset, tools, about, or blank.
+{%- endcomment -%}
+{%- assign section = '' -%}
+{%- if page.layout == 'home' -%}
+  {%- assign section = 'workshop' -%}
+{%- elsif page.url contains '/workshop/' or page.url == '/emip-2021-ii/' -%}
+  {%- assign section = 'past' -%}
+{%- elsif page.url == '/distributed-data-collection/' -%}
+  {%- assign section = 'dataset' -%}
+{%- else -%}
+  {%- assign names = "dataset,tools,about" | split: ',' -%}
+  {%- for name in names -%}
+    {%- for item in site.data.navigation[name] -%}
+      {%- if item.url == page.url -%}{%- assign section = name -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endif -%}

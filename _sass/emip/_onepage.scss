@@ -1,4 +1,4 @@
-/* One-page homepage: the menu stays on screen and jumps to sections. */
+/* The header stays on screen; the homepage side menu jumps to its sections. */
 
 html { scroll-padding-top: 5rem; }
 @media (prefers-reduced-motion: no-preference) {
@@ -9,10 +9,4 @@ html { scroll-padding-top: 5rem; }
   position: sticky;
   top: 0;
   z-index: 5;
-}
-
-/* The section being read, marked by emip.js. */
-.masthead__nav a.is-current {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
 }

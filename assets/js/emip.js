@@ -1,5 +1,5 @@
-// emipws.org: the Menu button on smaller screens, the section marker in the top
-// menu, and the Fig. 1 scanpath playback on the homepage.
+// emipws.org: the Menu button on smaller screens, the section marker in the
+// homepage side menu, and the Fig. 1 scanpath playback on the homepage.
 (function () {
   "use strict";
   var root = document.documentElement;
@@ -28,8 +28,8 @@
     });
   }
 
-  // Top menu: mark the homepage section being read (the hero clears it).
-  var nav = document.getElementById("site-nav");
+  // Side menu: mark the homepage section being read (the hero clears it).
+  var nav = document.getElementById("site-menu");
   var spied = [];
   var intro = document.querySelector(".event-hero");
   if (intro) spied.push({ link: null, section: intro });

@@ -1,5 +1,24 @@
-# Top menu: sections of this year's workshop on the homepage (_layouts/home.html).
+# Top menu (every page): the sections of the website. `section` ties each one to
+# its side menu in _includes/site-menu.html.
 main:
+  - title: "EMIP '27"
+    url: /
+    section: workshop
+  - title: "Past events"
+    url: /workshop/previous-workshops/
+    section: past
+  - title: "Dataset"
+    url: /dataset/
+    section: dataset
+  - title: "Tools and resources"
+    url: /resources/
+    section: tools
+  - title: "About"
+    url: /about/
+    section: about
+
+# Side menu on the homepage: this year's workshop sections.
+workshop:
   - title: "About"
     url: /#about
   - title: "Call for papers"
@@ -8,38 +27,41 @@ main:
     url: /#dates
   - title: "Submission"
     url: /#submission
+  - title: "Keynote speaker"
+    url: /#keynote
   - title: "Organizers"
     url: /#organizers
+  - title: "Program committee"
+    url: /#program-committee
+  - title: "Co-located event"
+    url: /#co-located
 
-# Side menu: the rest of the website (_includes/site-menu.html). Past workshops
-# are listed there too, from _data/editions.yml.
-site:
-  - title: "Dataset"
-    children:
-      - title: "The EMIP dataset"
-        url: /dataset/
-      - title: "Corrected dataset and toolkit"
-        url: /corrected-dataset/
-      - title: "Stimulus material"
-        url: /stimulus-material/
-      - title: "Participating labs"
-        url: /participating-labs/
-      - title: "Call for contributions"
-        url: /call-for-contributions/
+# Side menus of the other sections (past events are listed from _data/editions.yml).
+dataset:
+  - title: "The EMIP dataset"
+    url: /dataset/
+  - title: "Corrected dataset and toolkit"
+    url: /corrected-dataset/
+  - title: "Stimulus material"
+    url: /stimulus-material/
+  - title: "Participating labs"
+    url: /participating-labs/
+  - title: "Call for contributions"
+    url: /call-for-contributions/
+tools:
   - title: "Tools and resources"
-    children:
-      - title: "Coding scheme"
-        url: /coding-scheme/
-      - title: "Visualizations and tools"
-        url: /visualizations-and-tools/
-      - title: "Resources and reports"
-        url: /resources/
+    url: /resources/
+  - title: "Coding scheme"
+    url: /coding-scheme/
+  - title: "Visualizations and tools"
+    url: /visualizations-and-tools/
+about:
   - title: "About EMIP"
-    children:
-      - title: "Steering committee"
-        url: /organizers/
-      - title: "Sponsors"
-        url: /sponsors/
+    url: /about/
+  - title: "Steering committee"
+    url: /organizers/
+  - title: "Sponsors"
+    url: /sponsors/
 
 previous-workshops:
   - title: "EMIP 2013 Workshop"

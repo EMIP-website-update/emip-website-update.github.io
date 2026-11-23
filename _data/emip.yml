@@ -59,6 +59,8 @@ chairs:
     name: Anas Abuamar
     affiliation: Colby College, USA
     photo: /images/portraits/web/abuamar.jpg
+# Keynote speaker(s) (name, affiliation, url, photo); until set, "to be announced".
+keynote:
 program_committee:
 
 # Important dates, in order. All deadlines are Anywhere on Earth.
