@@ -2,13 +2,14 @@
    beside Fig. 1, then one section per topic. It sits beside the site menu, so
    two-column parts start at wider screens than elsewhere. */
 
-/* Banner: full width under the header, on the homepage only, with this year's
-   title over a dark fade at the bottom so the white text stays readable. */
+/* Banner: full width under the header, on the homepage only. The title,
+   dates and buttons sit on the left over a navy fade, so the right of the photo
+   keeps its colour; a strip of quick facts follows. */
 .event-banner { margin: 0; position: relative; }
 .event-banner img {
   display: block;
   width: 100%;
-  height: clamp(22rem, 42vw, 38rem);
+  height: clamp(30rem, 48vw, 42rem);
   object-fit: cover;
   background: var(--ink);
   /* Livelier colours: greener hills, warmer buildings, less grey sky. */
@@ -17,47 +18,64 @@
 .event-banner__overlay {
   position: absolute;
   inset: 0 0 auto 0;
-  height: clamp(22rem, 42vw, 38rem);
+  height: clamp(30rem, 48vw, 42rem);
   display: flex;
-  align-items: flex-end;
-  /* Deep navy from the site's accent, only at the bottom where the title sits,
-     so the rest of the photo keeps its colour. */
-  background: linear-gradient(to top, rgba(4, 22, 48, 0.85) 0%, rgba(6, 30, 62, 0.5) 34%, rgba(8, 50, 98, 0) 62%);
+  align-items: center;
+  background:
+    linear-gradient(to right, rgba(4, 22, 48, 0.86) 0%, rgba(6, 30, 62, 0.62) 38%, rgba(8, 50, 98, 0.08) 68%, rgba(8, 50, 98, 0) 100%),
+    linear-gradient(to top, rgba(4, 22, 48, 0.35), rgba(4, 22, 48, 0) 30%);
 }
 .event-banner__text {
   width: 100%;
-  padding-bottom: clamp(1.25rem, 3vw, 2.5rem);
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
+.event-banner__text > * { max-width: 36rem; }
 .event-banner__kicker {
-  margin: 0 0 0.4rem;
-  font-style: italic;
-  font-size: clamp(1rem, calc(0.9rem + 0.4vw), 1.25rem);
-  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 0.9rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #a9c8ff;
 }
 .event-banner__title {
-  margin: 0 0 0.9rem;
-  max-width: 16ch;
-  font-size: clamp(2.3rem, calc(1.3rem + 3.6vw), 4.5rem);
-  line-height: 1.02;
-  font-weight: 500;
+  margin: 0 0 1.1rem;
+  font-size: clamp(2.1rem, calc(1.2rem + 2.8vw), 3.75rem);
+  line-height: 1.04;
+  font-weight: 600;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
-.event-banner__year { color: #cfe0ff; }
-.event-banner__meta {
-  list-style: none;
+.event-banner__year {
+  display: block;
+  color: #a9c8ff;
+}
+.event-banner__when {
+  margin: 0 0 0.6rem;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.event-banner__tagline {
+  margin: 0 0 1.6rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+.event-banner__actions {
   margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem 1.5rem;
+  gap: 0.75rem;
   font-family: var(--sans);
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.92);
+  text-shadow: none;
 }
-.event-banner__meta a { color: #fff; text-decoration-color: rgba(255, 255, 255, 0.6); }
+.event-banner__actions .button--light { background: #fff; color: var(--accent-ink); }
+.event-banner__actions .button--light:hover { background: var(--accent-wash); color: var(--accent-ink); }
+.event-banner__actions .button--ghost { background: rgba(4, 22, 48, 0.25); border: 1px solid rgba(255, 255, 255, 0.7); }
+.event-banner__actions .button--ghost:hover { background: rgba(4, 22, 48, 0.5); }
 .event-banner figcaption {
   margin-top: 0.45rem;
   font-family: var(--sans);
@@ -65,6 +83,56 @@
   color: var(--muted);
 }
 .event-banner figcaption a { color: inherit; }
+@media (max-width: 40rem) {
+  .event-banner img, .event-banner__overlay { height: 34rem; }
+  .event-banner__overlay {
+    align-items: flex-end;
+    padding-bottom: 1.75rem;
+    background: linear-gradient(to top, rgba(4, 22, 48, 0.92) 0%, rgba(6, 30, 62, 0.7) 55%, rgba(8, 50, 98, 0.1) 100%);
+  }
+  .event-banner__tagline { font-size: 1rem; }
+}
+
+/* Quick facts under the banner. */
+.event-facts {
+  margin-top: 0.9rem;
+  background: var(--paper-2);
+  border-block: 1px solid var(--rule);
+}
+.event-facts__list {
+  list-style: none;
+  margin-block: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+@media (min-width: 48rem) {
+  .event-facts__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .event-facts__list li + li { border-left: 1px solid var(--rule); padding-left: 1.5rem; }
+}
+.event-facts__list li {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 1rem 1rem 1rem 0;
+}
+@media (max-width: 47.99rem) {
+  .event-facts__list li + li { border-top: 1px solid var(--rule); }
+}
+.event-facts svg {
+  flex: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.1rem;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.event-facts strong { display: block; color: var(--ink); font-size: 0.975rem; }
 
 /* Hero */
 .event-hero {
