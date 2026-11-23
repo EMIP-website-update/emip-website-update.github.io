@@ -1,7 +1,8 @@
 {%- comment -%}
-  Top menu: this year's workshop sections (emip.js marks the one being read).
-  The rest of the site is in the side menu (site-menu.html), which the Menu
-  button opens on smaller screens.
+  Top menu: on the homepage, this year's workshop sections (emip.js marks the one
+  being read); on every other page, just a link back to this year's workshop, so
+  it isn't mistaken for that page's own sections. The rest of the site is in the
+  side menu (site-menu.html), which the Menu button opens on smaller screens.
 {%- endcomment -%}
 <header class="masthead">
   <div class="wrap masthead__inner">
@@ -12,9 +13,13 @@
     <button class="masthead__toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
     <nav id="site-nav" class="masthead__nav" aria-label="EMIP {{ site.data.emip.year }}">
       <ul>
-        {%- for link in site.data.navigation.main -%}
-        <li><a href="{{ link.url | relative_url }}">{{ link.short | default: link.title }}</a></li>
-        {%- endfor -%}
+        {%- if page.layout == 'home' -%}
+          {%- for link in site.data.navigation.main -%}
+          <li><a href="{{ link.url | relative_url }}">{{ link.short | default: link.title }}</a></li>
+          {%- endfor -%}
+        {%- else -%}
+          <li><a href="{{ '/' | relative_url }}">EMIP {{ site.data.emip.year }} workshop</a></li>
+        {%- endif -%}
       </ul>
     </nav>
   </div>

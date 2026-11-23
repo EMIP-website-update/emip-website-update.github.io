@@ -6,11 +6,13 @@
 {%- assign next = site.data.emip -%}
 <nav class="site-menu" id="site-menu" aria-label="EMIP website">
   <p class="site-menu__home"><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>EMIP {{ next.year }} workshop</a></p>
+  {%- if page.layout == 'home' -%}
   <ul class="site-menu__list site-menu__sections">
     {%- for link in site.data.navigation.main -%}
     <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
     {%- endfor -%}
   </ul>
+  {%- endif -%}
 
   <p class="site-menu__label">Past workshops</p>
   <ul class="site-menu__years">
