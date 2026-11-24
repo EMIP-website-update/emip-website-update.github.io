@@ -81,6 +81,7 @@ photo_license_url: https://unsplash.com/license
 organizers:
   - name: Yasmine Elfares
     affiliation: University of Glasgow, United Kingdom
+    photo: /images/portraits/web/elfares.jpg
   - name: Naser Al Madi
     affiliation: Colby College, USA
     url: https://www.cs.colby.edu/nsalmadi
