@@ -6,17 +6,81 @@
    dates and buttons sit on the left over a navy fade, so the right of the photo
    keeps its colour; a strip of quick facts follows. */
 .event-banner { margin: 0; position: relative; }
-.event-banner img {
+.event-banner__slides {
+  position: relative;
+  height: clamp(30rem, 48vw, 42rem);
+  overflow: hidden;
+  background: var(--ink);
+}
+.event-banner__slides img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: clamp(30rem, 48vw, 42rem);
+  height: 100%;
   object-fit: cover;
-  background: var(--ink);
   /* Livelier colours: greener hills, warmer buildings, less grey sky. */
   filter: saturate(1.35) contrast(1.08) brightness(1.04);
 }
+/* Without JS only the first photo shows. */
+.no-js .event-banner__slides img + img { display: none; }
+/* Slideshow (emip.js): each photo fades in and slowly drifts while it is shown. */
+.js .event-banner--slides img {
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.js .event-banner--slides img.is-active { opacity: 1; z-index: 1; }
+.js .event-banner--slides img.is-leaving { z-index: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .event-banner--slides img.is-active,
+  .js .event-banner--slides img.is-leaving { animation: banner-drift 9s ease-out both; }
+  .js .event-banner--slides img:nth-child(even).is-active,
+  .js .event-banner--slides img:nth-child(even).is-leaving { animation-name: banner-drift-2; }
+  .event-banner.is-paused img { animation-play-state: paused !important; }
+}
+@keyframes banner-drift {
+  from { transform: scale(1.02) translate(0, 0); }
+  to { transform: scale(1.1) translate(-1.5%, -1%); }
+}
+@keyframes banner-drift-2 {
+  from { transform: scale(1.1) translate(1.5%, 0); }
+  to { transform: scale(1.02) translate(0, 0); }
+}
+.event-banner__pause {
+  position: absolute;
+  z-index: 3;
+  right: max(var(--gutter), calc((100% - 76rem) / 2 + var(--gutter)));
+  top: calc(clamp(30rem, 48vw, 42rem) - 3.25rem);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(4, 22, 48, 0.45);
+  cursor: pointer;
+}
+.event-banner__pause:hover { background: rgba(4, 22, 48, 0.7); }
+/* Pause icon (two bars), or a play triangle when paused. */
+.event-banner__pause::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.7rem;
+  height: 0.8rem;
+  transform: translate(-50%, -50%);
+  border-inline: 0.22rem solid #fff;
+}
+.event-banner__pause[aria-pressed="true"]::before {
+  width: 0;
+  height: 0;
+  margin-left: 0.1rem;
+  border-inline: 0;
+  border-left: 0.7rem solid #fff;
+  border-block: 0.42rem solid transparent;
+}
 .event-banner__overlay {
   position: absolute;
+  z-index: 2;
   inset: 0 0 auto 0;
   height: clamp(30rem, 48vw, 42rem);
   display: flex;
@@ -84,7 +148,8 @@
 }
 .event-banner figcaption a { color: inherit; }
 @media (max-width: 40rem) {
-  .event-banner img, .event-banner__overlay { height: 34rem; }
+  .event-banner__slides, .event-banner__overlay { height: 34rem; }
+  .event-banner__pause { top: 1rem; }
   .event-banner__overlay {
     align-items: flex-end;
     padding-bottom: 1.75rem;

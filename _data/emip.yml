@@ -27,23 +27,55 @@ submit_url:
 program_url:
 note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call for papers will be posted on this page.
 
-# Banner photo of the host city across the top of the homepage: a JPEG about
-# 1600 px wide plus an 800 px copy; `position` picks the part a wide banner shows.
-# For a photo whose license asks for credit (e.g. CC BY), add `credit`, `source`,
-# `license` and `license_url`; they are then shown under it.
-photo:
-  src: /images/venues/2027-pamplona-river-walls-2000.jpg
-  width: 2000
-  height: 1326
-  small: /images/venues/2027-pamplona-river-walls-800.jpg
-  alt: The Arga river winding through autumn trees below Pamplona's old stone city walls and gate, with the city and hills behind under a cloudy sky
-  caption: The Arga river below the old city walls, Pamplona
-  position: 50% 62%
-  # Free under the Unsplash License; credit is not required but Unsplash asks for it.
-  credit: Maksym Diachenko on Unsplash
-  source: https://unsplash.com/photos/xA9pdG-fXQM
-  license: Unsplash License
-  license_url: https://unsplash.com/license
+# Banner of the host city across the top of the homepage: one photo, or several
+# that slowly fade from one to the next (with a pause button). Each is a JPEG
+# about 2000 px wide plus an 800 px copy; `position` picks the part a wide
+# banner shows. Add `credit`, `source`, `license` and `license_url` for photos
+# whose license asks for credit; they are listed under the banner.
+banner_caption: Pamplona, host city of ETRA 2027
+photos:
+  - src: /images/venues/2027-pamplona-river-walls-2000.jpg
+    small: /images/venues/2027-pamplona-river-walls-800.jpg
+    width: 2000
+    height: 1326
+    alt: The Arga river winding through autumn trees below Pamplona's old stone city walls and gate, with the city and hills behind
+    position: 50% 62%
+    credit: Maksym Diachenko
+    source: https://unsplash.com/photos/xA9pdG-fXQM
+  - src: /images/venues/2027-pamplona-plaza-facades-2000.jpg
+    small: /images/venues/2027-pamplona-plaza-facades-800.jpg
+    width: 2000
+    height: 1333
+    alt: Colourful old façades with balconies around the Plaza del Castillo under a blue sky
+    position: 50% 55%
+    credit: Alain Rouiller
+    source: https://unsplash.com/photos/Zyuw6xDXWEU
+  - src: /images/venues/2027-pamplona-bandstand-2000.jpg
+    small: /images/venues/2027-pamplona-bandstand-800.jpg
+    width: 2000
+    height: 1339
+    alt: The bandstand in the Plaza del Castillo with people around it and pastel buildings behind
+    position: 50% 60%
+    credit: David Vives
+    source: https://unsplash.com/photos/b87x69Td--k
+  - src: /images/venues/2027-pamplona-navarre-palace-2000.jpg
+    small: /images/venues/2027-pamplona-navarre-palace-800.jpg
+    width: 2000
+    height: 1339
+    alt: The Palace of Navarre with a fountain and flower beds in front
+    position: 50% 50%
+    credit: David Vives
+    source: https://unsplash.com/photos/mBxeW4Hkx6M
+  - src: /images/venues/2027-pamplona-ciudadela-2000.jpg
+    small: /images/venues/2027-pamplona-ciudadela-800.jpg
+    width: 2000
+    height: 1331
+    alt: Green lawns and the old bastions of the Ciudadela park, with city buildings and hills behind
+    position: 50% 55%
+    credit: Maksym Diachenko
+    source: https://unsplash.com/photos/y8VPEj-V5lY
+photo_license: Unsplash License
+photo_license_url: https://unsplash.com/license
 
 # Workshop organizers (name, affiliation, url, photo) and program committee
 # ("Name, Affiliation" lines). Until organizers are set, the homepage shows the

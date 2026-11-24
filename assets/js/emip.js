@@ -1,4 +1,4 @@
-// emipws.org: the Menu button on smaller screens, the section marker in the
+// emipws.org: the Menu button on smaller screens, the homepage banner slideshow, the section marker in the
 // homepage side menu, and the Fig. 1 scanpath playback on the homepage.
 (function () {
   "use strict";
@@ -48,6 +48,47 @@
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     spied.forEach(function (s) { spy.observe(s.section); });
+  }
+
+  // Banner slideshow: shows each photo for a few seconds, then fades to the next.
+  // Stops on the first photo when the visitor prefers reduced motion.
+  var banner = document.querySelector(".event-banner--slides");
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (banner && !calm) {
+    var slides = banner.querySelectorAll(".event-banner__slides img");
+    var pause = banner.querySelector(".event-banner__pause");
+    var current = 0;
+    var ticker = null;
+    var next = function () {
+      var from = slides[current];
+      current = (current + 1) % slides.length;
+      Array.prototype.forEach.call(slides, function (img) { img.classList.remove("is-leaving"); });
+      from.classList.remove("is-active");
+      from.classList.add("is-leaving");
+      slides[current].classList.add("is-active");
+    };
+    var start = function () { ticker = setInterval(next, 7000); };
+    var stop = function () { clearInterval(ticker); ticker = null; };
+    // Load the other photos once the page has loaded, so the first one comes first.
+    window.addEventListener("load", function () {
+      Array.prototype.forEach.call(slides, function (img) { img.loading = "eager"; });
+    });
+    start();
+    if (pause) {
+      pause.hidden = false;
+      pause.addEventListener("click", function () {
+        var paused = pause.getAttribute("aria-pressed") !== "true";
+        pause.setAttribute("aria-pressed", String(paused));
+        pause.querySelector("span").textContent = paused ? "Play the slideshow" : "Pause the slideshow";
+        banner.classList.toggle("is-paused", paused);
+        if (paused) stop(); else start();
+      });
+    }
+    // Rest while the banner is off screen or the tab is hidden.
+    document.addEventListener("visibilitychange", function () {
+      if (pause && pause.getAttribute("aria-pressed") === "true") return;
+      if (document.hidden) stop(); else if (!ticker) start();
+    });
   }
 
   // Fig. 1: replays the recorded fixations in real time once the figure is on screen.
