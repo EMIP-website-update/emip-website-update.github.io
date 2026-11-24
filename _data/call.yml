@@ -50,7 +50,7 @@ challenge:
 
 submission:
   - label: Full papers
-    text: Up to 8 pages (single column) plus references. Every paper goes through one full review cycle, and accepted papers become part of the ETRA workshop proceedings.
+    text: Up to 8 pages (single column) plus references. Every paper goes through one full review cycle.
   - label: Work in progress
     text: Up to 4 pages (single column). Lightly reviewed and not published in the proceedings.
   - label: Review

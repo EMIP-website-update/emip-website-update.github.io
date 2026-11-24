@@ -30,5 +30,3 @@ The workshops have led to further collaborations among participants, several joi
 | [EMIP 2015](/workshop/emip-2015/) | 10 | 19 | – |
 | [EMIP 2014](/workshop/emip-2014/) | 9 | 21 | WiPSCE |
 | [EMIP 2013](/workshop/emip-2013/) | 9 | 15 | Koli Calling |
-
-The workshop is run by its [steering committee](/organizers/) and has been supported by its [sponsors](/sponsors/).
