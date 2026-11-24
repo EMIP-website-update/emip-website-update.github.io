@@ -74,11 +74,6 @@ layout: default
       <p class="event-note event-note--top">The steering committee is shown until the {{ next.year }} organizers are announced.</p>
       {% include people-grid.html %}
       {%- endif -%}
-      {%- if next.chairs -%}
-      <div class="chairs-row">
-        {% include people-grid.html people=next.chairs %}
-      </div>
-      {%- endif -%}
     </div>
   </section>
 
@@ -94,6 +89,17 @@ layout: default
       {%- endif -%}
     </div>
   </section>
+
+  {%- if next.chairs %}
+  {%- comment -%} Other roles (web chair, ...): headed by the role when there is one, "Chairs" otherwise. {%- endcomment -%}
+  {%- if next.chairs.size == 1 -%}{%- assign chairs_title = next.chairs.first.role -%}{%- else -%}{%- assign chairs_title = 'Chairs' -%}{%- endif %}
+  <section class="event-section" id="chairs" aria-labelledby="chairs-title">
+    <h2 class="event-section__head" id="chairs-title">{{ chairs_title }}</h2>
+    <div class="event-section__body">
+      {% include people-grid.html people=next.chairs hide_role=true %}
+    </div>
+  </section>
+  {%- endif %}
 
   <section class="event-section" id="co-located" aria-labelledby="colocated-title">
     <h2 class="event-section__head" id="colocated-title">Co-located event</h2>
