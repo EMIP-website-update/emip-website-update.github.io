@@ -207,82 +207,6 @@
 }
 .event-facts strong { display: block; color: var(--ink); font-size: 0.975rem; }
 
-/* Hero */
-.event-hero {
-  border-bottom: 1px solid var(--rule);
-  padding-block: 2rem 2.75rem;
-}
-.event-hero__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2rem 4rem;
-  align-items: center;
-}
-@media (min-width: 80rem) {
-  .event-hero { padding-block: 2.75rem 3.5rem; }
-  .event-hero__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; }
-}
-
-.event-hero__kicker {
-  margin: 0 0 0.5rem;
-  font-style: italic;
-  font-size: 1.15rem;
-  color: var(--ink-2);
-}
-
-.event-hero__title {
-  margin: 0 0 1.25rem;
-  font-size: clamp(2.3rem, calc(1.4rem + 2.2vw), 3.3rem);
-  line-height: 1.02;
-  font-weight: 500;
-  letter-spacing: -0.022em;
-  text-wrap: balance;
-}
-.event-hero__year {
-  display: block;
-  color: var(--accent-ink);
-}
-
-.event-hero__meta {
-  list-style: none;
-  margin: 0 0 1.25rem;
-  padding: 0;
-  font-family: var(--sans);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-
-.event-hero__status {
-  margin: 0 0 1.5rem;
-  max-width: 32rem;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-.status {
-  display: inline-block;
-  margin-right: 0.4rem;
-  padding: 0.1rem 0.55rem;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  font-family: var(--sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: var(--paper-2);
-}
-.status--open { border-color: #2f7a4f; color: #1f5b39; background: #e7f3ec; }
-.status--program { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-wash); }
-
-.event-hero__actions {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.5rem;
-  font-family: var(--sans);
-}
 .button {
   display: inline-block;
   padding: 0.7rem 1.15rem;
@@ -294,7 +218,6 @@
   text-decoration: none;
 }
 .button:hover { color: #fff; background: #04213f; }
-.text-link { font-size: 0.9375rem; }
 
 /* Sections */
 .event { padding-bottom: 3rem; }

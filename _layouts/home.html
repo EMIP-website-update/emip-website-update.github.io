@@ -3,30 +3,12 @@ layout: default
 ---
 {%- comment -%}
   The homepage is only about this year's workshop (_data/emip.yml, call in
-  _data/call.yml): a banner of the host city, the title beside Fig. 1 (a real
-  scanpath from the EMIP dataset), then one section per topic. Section ids are
-  the targets of the top menu (_data/navigation.yml); the rest of the website
-  is in the side menu.
+  _data/call.yml): the banner of the host city (home-banner.html), then one
+  section per topic. Section ids are the targets of the homepage side menu
+  (`workshop` in _data/navigation.yml).
 {%- endcomment -%}
 {%- assign next = site.data.emip -%}
 {%- assign call = site.data.call -%}
-
-
-<section class="event-hero">
-  <div class="event-hero__inner">
-    <div class="event-hero__text">
-      <p class="event-hero__status">
-        {%- case next.status -%}
-          {%- when 'open' -%}<span class="status status--open">Submissions open</span> Deadline {{ next.paper_deadline }} (AoE).
-          {%- when 'program' -%}<span class="status status--program">Program published</span> {{ next.workshop_date }}.
-          {%- else -%}<span class="status">Call for papers coming soon</span> {{ next.note }}
-        {%- endcase -%}
-      </p>
-    </div>
-
-    <div class="event-hero__visual">{% include scanpath.html %}</div>
-  </div>
-</section>
 
 <div class="event">
 

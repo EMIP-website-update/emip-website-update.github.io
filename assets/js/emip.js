@@ -1,5 +1,5 @@
-// emipws.org: the Menu button on smaller screens, the homepage banner slideshow, the section marker in the
-// homepage side menu, and the Fig. 1 scanpath playback on the homepage.
+// emipws.org: the Menu button on smaller screens, the homepage banner
+// slideshow, and the section marker in the homepage side menu.
 (function () {
   "use strict";
   var root = document.documentElement;
@@ -28,10 +28,10 @@
     });
   }
 
-  // Side menu: mark the homepage section being read (the hero clears it).
+  // Side menu: mark the homepage section being read (the banner clears it).
   var nav = document.getElementById("site-menu");
   var spied = [];
-  var intro = document.querySelector(".event-hero");
+  var intro = document.querySelector(".event-facts");
   if (intro) spied.push({ link: null, section: intro });
   Array.prototype.forEach.call(nav ? nav.querySelectorAll("a") : [], function (a) {
     var url = new URL(a.href);
@@ -91,33 +91,5 @@
       if (pause && pause.getAttribute("aria-pressed") === "true") return;
       if (document.hidden) stop(); else if (!ticker) start();
     });
-  }
-
-  // Fig. 1: replays the recorded fixations in real time once the figure is on screen.
-  var fig = document.querySelector("[data-scanpath]");
-  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (fig && !still && "IntersectionObserver" in window) {
-    var replay = fig.querySelector(".scanpath__replay");
-    var steps = fig.querySelectorAll(".scanpath__fixations g");
-    var last = steps[steps.length - 1];
-    var lastT = last ? parseInt(last.style.getPropertyValue("--t"), 10) || 0 : 0;
-    var timer;
-    var play = function () {
-      fig.classList.remove("is-playing");
-      void fig.getBoundingClientRect(); // restart CSS animations
-      fig.classList.add("is-playing");
-      if (replay) replay.hidden = true;
-      clearTimeout(timer);
-      timer = setTimeout(function () { if (replay) replay.hidden = false; }, lastT + 1000);
-    };
-    fig.classList.add("is-armed");
-    var seen = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        seen.disconnect();
-        play();
-      }
-    }, { threshold: 0.4 });
-    seen.observe(fig);
-    if (replay) replay.addEventListener("click", play);
   }
 })();
