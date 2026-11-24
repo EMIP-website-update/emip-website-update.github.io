@@ -2,7 +2,7 @@
 
 Source for [www.emipws.org](https://www.emipws.org), built with Jekyll on GitHub Pages.
 
-The homepage is only about this year's workshop: a banner of the host city, the title beside Fig. 1 (a real scanpath from the EMIP dataset), then about, call for papers, dates, submission, keynote, organizers, program committee and the co-located conference on one scrolling page. The top menu lists the website's sections (EMIP '27, past events, dataset, tools and resources, about); the side menu lists the pages of the section you are in, and on the homepage it jumps to this year's sections. The side menu is a column on the left on wide screens and the panel behind the Menu button on smaller ones.
+The homepage is only about this year's workshop: a banner of the host city (one photo, or a slow slideshow of several, set in `photos` in `_data/emip.yml`) with the title, dates and main buttons, a strip of quick facts, then about, call for papers, dates, submission, keynote, organizers, program committee and the co-located conference on one scrolling page. The top menu lists the website's sections (EMIP '27, past events, dataset, tools and resources, about); the side menu lists the pages of the section you are in, and on the homepage it jumps to this year's sections. The side menu is a column on the left on wide screens and the panel behind the Menu button on smaller ones.
 
 ## Updating the site each year
 
@@ -23,17 +23,7 @@ Page titles written as `EMIP 2026 Workshop - Program` are shown as a small line 
 
 ## Theme
 
-The layouts (`_layouts/default.html`, `single.html`, `home.html`, `moved.html`), includes (`masthead.html`, `site-menu.html`, `footer.html`, `editions-table.html`, `people-grid.html`, `scanpath.html`, `photo-credit.html`) and styles (`_sass/emip/`) are specific to this site. `layout: moved` makes a small page that sends an old address on to its new place (for example `/workshop/emip-2027/` to the homepage). Fonts (Source Serif 4, IBM Plex Sans and Mono, SIL Open Font License) are served from `assets/fonts/` rather than a font CDN. The older Minimal Mistakes files in `_sass/minimal-mistakes/` and `assets/js/` are no longer loaded and can be removed later.
-
-## Fig. 1
-
-`_includes/scanpath.html` is generated from the corrected EMIP dataset (`finalset_line_part.csv` from the [EMIP Toolkit](https://github.com/nalmadi/EMIP-Toolkit)):
-
-```
-python3 _scripts/make_scanpath.py finalset_line_part.csv --participant 60 --n 45 > _includes/scanpath.html
-```
-
-Change `--participant` or `--n` to show a different reader or a longer stretch of reading.
+The layouts (`_layouts/default.html`, `single.html`, `home.html`, `moved.html`), includes (`masthead.html`, `site-menu.html`, `footer.html`, `editions-table.html`, `people-grid.html`, `home-banner.html`, `section.html`) and styles (`_sass/emip/`) are specific to this site. `layout: moved` makes a small page that sends an old address on to its new place (for example `/workshop/emip-2027/` to the homepage). Fonts (Source Serif 4, IBM Plex Sans and Mono, SIL Open Font License) are served from `assets/fonts/` rather than a font CDN. The older Minimal Mistakes files in `_sass/minimal-mistakes/` and `assets/js/` are no longer loaded and can be removed later.
 
 ## Local preview
 
