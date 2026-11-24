@@ -16,7 +16,7 @@ host_url: https://etra.acm.org/2027/
 place: Pamplona, Spain
 venue_note: At ETRA 2027, hosted in Pamplona
 # One sentence under the title in the banner.
-tagline: Bringing together researchers who study how people read, write and understand code through eye tracking.
+tagline: Bringing together researchers, educators, industry professionals, and technology developers interested in the use of eye tracking in software development.
 # Third fact under the banner (the first two are the dates and the place).
 format: Hybrid, full day
 format_note: Keynote, papers, world café and a social event
@@ -30,9 +30,8 @@ note: EMIP 2027 is planned alongside ETRA 2027. The workshop day and the call fo
 # Banner of the host city across the top of the homepage: one photo, or several
 # that slowly fade from one to the next (with a pause button). Each is a JPEG
 # about 2000 px wide plus an 800 px copy; `position` picks the part a wide
-# banner shows. Add `credit`, `source`, `license` and `license_url` for photos
-# whose license asks for credit; they are listed under the banner.
-banner_caption: Pamplona, host city of ETRA 2027
+# banner shows. `credit` and `source` give the photographer, shown small in the
+# corner of the banner while their photo is on screen.
 photos:
   - src: /images/venues/2027-pamplona-river-walls-2000.jpg
     small: /images/venues/2027-pamplona-river-walls-800.jpg

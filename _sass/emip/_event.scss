@@ -50,7 +50,7 @@
   position: absolute;
   z-index: 3;
   right: max(var(--gutter), calc((100% - 76rem) / 2 + var(--gutter)));
-  top: calc(clamp(30rem, 48vw, 42rem) - 3.25rem);
+  top: calc(clamp(30rem, 48vw, 42rem) - 4.25rem);
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
@@ -140,19 +140,28 @@
 .event-banner__actions .button--light:hover { background: var(--accent-wash); color: var(--accent-ink); }
 .event-banner__actions .button--ghost { background: rgba(4, 22, 48, 0.25); border: 1px solid rgba(255, 255, 255, 0.7); }
 .event-banner__actions .button--ghost:hover { background: rgba(4, 22, 48, 0.5); }
-.event-banner figcaption {
-  margin-top: 0.45rem;
+/* Photo credit: small, in the bottom right corner of the photo. */
+.event-banner__credits {
+  position: absolute;
+  z-index: 3;
+  right: max(var(--gutter), calc((100% - 76rem) / 2 + var(--gutter)));
+  top: calc(clamp(30rem, 48vw, 42rem) - 1.6rem);
+  margin: 0;
   font-family: var(--sans);
-  font-size: 0.8125rem;
-  color: var(--muted);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
-.event-banner figcaption a { color: inherit; }
+.event-banner__credits a { color: inherit; text-decoration-color: rgba(255, 255, 255, 0.45); }
+.event-banner__credits a:hover { color: #fff; }
 @media (max-width: 40rem) {
   .event-banner__slides, .event-banner__overlay { height: 34rem; }
   .event-banner__pause { top: 1rem; }
+  .event-banner__credits { top: calc(34rem - 1.4rem); }
   .event-banner__overlay {
     align-items: flex-end;
-    padding-bottom: 1.75rem;
+    padding-bottom: 2.25rem;
     background: linear-gradient(to top, rgba(4, 22, 48, 0.92) 0%, rgba(6, 30, 62, 0.7) 55%, rgba(8, 50, 98, 0.1) 100%);
   }
   .event-banner__tagline { font-size: 1rem; }
@@ -160,7 +169,6 @@
 
 /* Quick facts under the banner. */
 .event-facts {
-  margin-top: 0.9rem;
   background: var(--paper-2);
   border-block: 1px solid var(--rule);
 }
