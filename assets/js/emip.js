@@ -57,6 +57,7 @@
   if (banner && !calm) {
     var slides = banner.querySelectorAll(".event-banner__slides img");
     var pause = banner.querySelector(".event-banner__pause");
+    var credits = banner.querySelectorAll(".event-banner__credits span");
     var current = 0;
     var ticker = null;
     var next = function () {
@@ -66,6 +67,7 @@
       from.classList.remove("is-active");
       from.classList.add("is-leaving");
       slides[current].classList.add("is-active");
+      Array.prototype.forEach.call(credits, function (c, i) { c.hidden = i !== current; });
     };
     var start = function () { ticker = setInterval(next, 7000); };
     var stop = function () { clearInterval(ticker); ticker = null; };
