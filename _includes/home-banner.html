@@ -2,9 +2,13 @@
   Homepage top: full-width banner of the host city with this year's title,
   dates and the main buttons over it, then a strip of three quick facts.
 {%- endcomment -%}
-{%- assign next = site.data.emip -%}{%- assign photo = next.photo -%}
-<figure class="event-banner">
-  <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="100vw" alt="{{ photo.alt | escape }}"{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
+{%- assign next = site.data.emip -%}
+<figure class="event-banner{% if next.photos.size > 1 %} event-banner--slides{% endif %}">
+  <div class="event-banner__slides">
+    {%- for photo in next.photos %}
+    <img src="{{ photo.src | relative_url }}" srcset="{{ photo.small | relative_url }} 800w, {{ photo.src | relative_url }} {{ photo.width }}w" sizes="100vw" width="{{ photo.width }}" height="{{ photo.height }}" alt="{% if forloop.first %}{{ photo.alt | escape }}{% endif %}"{% if forloop.first %} class="is-active" fetchpriority="high"{% else %} loading="lazy" decoding="async"{% endif %}{% if photo.position %} style="object-position: {{ photo.position }}"{% endif %}>
+    {%- endfor %}
+  </div>
   <div class="event-banner__overlay">
     <div class="wrap event-banner__text">
       <p class="event-banner__kicker">The {{ next.ordinal }} International Workshop</p>
@@ -21,7 +25,21 @@
       </p>
     </div>
   </div>
-  <figcaption class="wrap">{{ photo.caption }}, host city of {{ next.host }}.{% if photo.credit %} {% include photo-credit.html photo=photo %}{% endif %}</figcaption>
+  {%- if next.photos.size > 1 %}
+  <button class="event-banner__pause" type="button" aria-pressed="false" hidden><span class="visually-hidden">Pause the slideshow</span></button>
+  {%- endif %}
+  <figcaption class="wrap">{{ next.banner_caption }}.
+    {%- assign credits = next.photos | where_exp: "p", "p.credit" -%}
+    {%- if credits.size > 0 %} {% if credits.size > 1 %}Photos{% else %}Photo{% endif %}:
+      {%- assign seen = '' -%}
+      {%- for p in credits -%}
+        {%- assign key = '|' | append: p.credit | append: '|' -%}
+        {%- if seen contains key -%}{%- continue -%}{%- endif -%}
+        {%- unless seen == '' -%},{%- endunless %} <a href="{{ p.source }}">{{ p.credit }}</a>
+        {%- assign seen = seen | append: key -%}
+      {%- endfor %} on Unsplash, <a href="{{ next.photo_license_url }}">{{ next.photo_license }}</a>.
+    {%- endif %}
+  </figcaption>
 </figure>
 <div class="event-facts">
   <ul class="wrap event-facts__list">
